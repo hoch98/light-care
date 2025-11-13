@@ -1,0 +1,35 @@
+#root {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+.toggle-button {
+  position: absolute;
+  z-index: 2;
+  top: 2%;
+  left: 2%;
+  padding: 10px;
+  background-color: #fdb021;   /* vibrant orange */
+  color: #fff;                 /* white text */
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;                /* no border */
+  border-radius: 8px;          /* smooth rounded corners */
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow for depth */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.toggle-button:hover {
+  background-color: #ff9c1a;  /* slightly lighter on hover */
+  transform: translateY(-1px);
+}
+
+.toggle-button:active {
+  background-color: #e69500;  /* darker on click */
+  transform: translateY(1px);
+}
