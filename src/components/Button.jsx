@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { RoundedBoxGeometry } from "@react-three/drei";
 import { Text } from "@react-three/drei";
 
-function Button() {
+function Button(props) {
   const material = React.useMemo(
     () => new THREE.MeshPhysicalMaterial({
       color: "#FFA500",
@@ -43,8 +43,8 @@ function Button() {
     <mesh
       ref={ref}
       material={material}
-      rotation={[0, Math.PI / 6, 0]}
-      position={[-2.25, -1.25, 1]}
+      rotation={props.rotation}
+      position={props.position}
 
       onPointerEnter={() => {
         setHovered(true)

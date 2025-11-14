@@ -4,8 +4,7 @@ import { TextureLoader } from 'three'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from "three"
 import * as React from 'react'
-
-var toggled = false;
+import Switch from './Switch'
 
 function Frame(props) {
   const colorMap = useLoader(TextureLoader, 'media/frame_veneer/plywood_diff_4k.jpg')
@@ -194,7 +193,7 @@ function Product(props) {
 
 
   return (
-    <group position={[1.5, -2, 1.5]} scale={2} ref={ref}>
+    <group position={props.position} scale={2} ref={ref}>
       <TwoWayMirror />
       <Monitor displayToggled={props.displayToggled} />
       <Frame />
@@ -203,6 +202,7 @@ function Product(props) {
       <SideHolder position={[0.099, 1.21, 0]} />
       <RaspberryPi />
       <PiCamera />
+      
     </group>
   )
 }
