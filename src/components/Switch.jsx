@@ -67,8 +67,8 @@ function Knob(props) {
       position={props.position} 
       rotation={[-Math.PI/2, 0, 0]} 
       onClick={props.toggleDisplay}
-      onPointerEnter={() => {document.body.style.cursor="pointer"}}
-      onPointerLeave={() => {document.body.style.cursor="default"}}
+      onPointerEnter={() => {document.getElementById("body").style.cursor="pointer"}}
+      onPointerLeave={() => {document.getElementById("body").style.cursor="default"}}
     >
       <primitive receiveShadow object={obj} />
     </mesh>

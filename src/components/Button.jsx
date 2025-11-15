@@ -54,12 +54,12 @@ function Button(props) {
 
       onPointerEnter={() => {
         setHovered(true)
-        document.body.style.cursor = "pointer"
+        document.getElementById("body").style.cursor = "pointer"
       }}
       onPointerLeave={() => {
         setHovered(false);
         setPressed(false);
-        document.body.style.cursor = "default"
+        document.getElementById("body").style.cursor = "default"
       }}
 
       onPointerDown={() => { setPressed(true); }}

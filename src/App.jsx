@@ -9,12 +9,35 @@ import Switch from './components/Switch'
 import './App.css'
 
 function LoadingScreen() {
-  const { active, progress, errors, item, loaded, total } = useProgress();
-  return <Html center>
-    {/* <h1 style={{ fontFamily: "sans-serif" }}>{Math.round(progress)} % loaded</h1> */}
-    <Loader/>
-  </Html>;
+  const { progress, active } = useProgress();
+  const [show, setShow] = React.useState(true);
+
+  React.useEffect(() => {
+    let minTime = new Promise((resolve) => setTimeout(resolve, 500));
+    let assetsLoaded = new Promise((resolve) => {
+      if (!active) resolve();
+      else {
+        const unsubscribe = useProgress.subscribe(({ active }) => {
+          if (!active) {
+            resolve();
+            unsubscribe();
+          }
+        });
+      }
+    });
+
+    Promise.all([minTime, assetsLoaded]).then(() => setShow(false));
+  }, [active]);
+
+  if (!show) return null;
+
+  return (
+    <Html center>
+      <Loader/>
+    </Html>
+  );
 }
+
 
 function App() {
   const [displayToggled, setDisplayToggled] = React.useState(false);
@@ -23,7 +46,7 @@ function App() {
     setDisplayToggled(!displayToggled)
   }
   return (
-    <body style={{cursor: "default"}}>
+    <div id='body' style={{cursor: "default"}}>
       <div id="canvas-container">
         <Canvas shadows camera={{ fov: 75}}>
           <Suspense fallback={<LoadingScreen />}>
@@ -40,7 +63,7 @@ function App() {
           </Suspense>
         </Canvas>
       </div>
-    </body>
+    </div>
   )
 }
 
