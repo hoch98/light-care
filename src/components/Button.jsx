@@ -3,13 +3,16 @@ import * as THREE from "three"
 import { useFrame } from "@react-three/fiber";
 import { RoundedBoxGeometry } from "@react-three/drei";
 import { Text } from "@react-three/drei";
+import { useNavigate } from "react-router";
 
 function Button(props) {
+  const navigate = useNavigate();
+
   const material = React.useMemo(
     () => new THREE.MeshPhysicalMaterial({
       color: "#FFA500",
-      metalness: 0.2,   
-      roughness: 0.2,  
+      metalness: 0.2,
+      roughness: 0.2,
       transmission: 0.1,
       reflectivity: 1,
       ior: 1.52,
@@ -32,6 +35,9 @@ function Button(props) {
     // --- Press logic ---
     if (pressed) {
       targetScale.current.set(pulse, pulse, pulse * 0.5);
+      setTimeout(() => {
+        navigate("/about")
+      }, 250)
     } else {
       targetScale.current.set(pulse, pulse, pulse);
     }
@@ -56,7 +62,7 @@ function Button(props) {
         document.body.style.cursor = "default"
       }}
 
-      onPointerDown={() => setPressed(true)}
+      onPointerDown={() => { setPressed(true); }}
       onPointerUp={() => setPressed(false)}
     >
       <RoundedBoxGeometry
@@ -68,8 +74,8 @@ function Button(props) {
         creaseAngle={0.4}
       />
       <Text font={"fonts/Poppins-Black.ttf"} fontSize={0.2} position={[0, 0, 0.13]} color={"white"} lineHeight={1}>
-          Learn More
-        </Text>
+        Learn More
+      </Text>
     </mesh>
   );
 }

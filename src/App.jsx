@@ -1,16 +1,18 @@
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { CameraControls, useProgress, Html, Environment, Text, ContactShadows } from '@react-three/drei'
+import { Loader } from "@/components/retroui/Loader";
 import * as React from 'react'
 import Product from './components/Product'
 import Button from './components/Button'
 import Switch from './components/Switch'
 import './App.css'
 
-function Loader() {
+function LoadingScreen() {
   const { active, progress, errors, item, loaded, total } = useProgress();
   return <Html center>
-    <h1 style={{ fontFamily: "sans-serif" }}>{Math.round(progress)} % loaded</h1>
+    {/* <h1 style={{ fontFamily: "sans-serif" }}>{Math.round(progress)} % loaded</h1> */}
+    <Loader/>
   </Html>;
 }
 
@@ -24,7 +26,7 @@ function App() {
     <body style={{cursor: "default"}}>
       <div id="canvas-container">
         <Canvas shadows camera={{ fov: 75}}>
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<LoadingScreen />}>
             <ambientLight intensity={1} />
             <Switch position={[-2.25, 1.7, 1]} rotation={[0, Math.PI / 6, 0]} displayToggled={displayToggled} toggleDisplay={toggleDisplay}/>
             <Text font={"fonts/Poppins-Black.ttf"} color={"#FFA500"} position={[-2.25, 0.25, 1]} strokeColor={"black"} strokeWidth={0.002} rotation={[0, Math.PI / 6, 0]} lineHeight={1}>

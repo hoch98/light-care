@@ -42,8 +42,6 @@ function Knob(props) {
     }
   })
 
-  
-
   const knobMaterial = new THREE.MeshPhysicalMaterial({
     color: "rgba(255, 255, 255, 1)1)",
     metalness: 0.2,
@@ -59,10 +57,19 @@ function Knob(props) {
       child.material = knobMaterial
       child.castShadow = true
       child.receiveShadow = true
+      child.onClick = () => {}
     }
   })
   return (
-    <mesh ref={ref} receiveShadow position={props.position} rotation={[-Math.PI/2, 0, 0]} onClick={props.toggleDisplay}>
+    <mesh 
+      ref={ref} 
+      receiveShadow 
+      position={props.position} 
+      rotation={[-Math.PI/2, 0, 0]} 
+      onClick={props.toggleDisplay}
+      onPointerEnter={() => {document.body.style.cursor="pointer"}}
+      onPointerLeave={() => {document.body.style.cursor="default"}}
+    >
       <primitive receiveShadow object={obj} />
     </mesh>
   )
