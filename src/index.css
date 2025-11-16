@@ -1,13 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-div#canvas-container {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
+html {
+  scroll-behavior: smooth;
 }
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

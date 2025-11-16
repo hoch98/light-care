@@ -177,12 +177,12 @@ function Product(props) {
 
     if (ref.current) {
       // Base rotation (fixed)
-      const baseX = 0
-      const baseY = Math.PI / 4
-      const baseZ = -Math.PI / 36
+      const baseX = props.rotation[0]
+      const baseY = props.rotation[1]
+      const baseZ = props.rotation[2]
 
       // Gentle bobbing
-      ref.current.position.y = Math.sin(t * 1.5) * 0.03 - 2
+      ref.current.position.y = Math.sin(t * 1.5) * 0.03 + props.position[1]
 
       // Gentle rocking around base rotation
       ref.current.rotation.x = baseX + Math.sin(t * 1.2) * 0.01
