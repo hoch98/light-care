@@ -90,14 +90,14 @@ function App() {
           >
             <Suspense fallback={<LoadingScreen />}>
               <ambientLight intensity={1} />
-              <group position={width > 1200 ? [0, 0, 0] : [2.5, 2, -1]} rotation={width > 1200 ? [0, 0, 0] : [0, -Math.PI/6, 0]}>
+              <group position={width > 1200 ? [0, -0.3, 0] : [2.5, 2, -1]} rotation={width > 1200 ? [0, 0, 0] : [0, -Math.PI/6, 0]}>
                 <Switch position={[-2.25, 2.2, 1]} rotation={[0, Math.PI / 6, 0]} displayToggled={displayToggled} toggleDisplay={toggleDisplay}/>
                 <Text3d font={"fonts/Poppins-Black.ttf"} color={"#FFA500"} position={[-2.25, 0.75, 1]} strokeColor={"black"} strokeWidth={0.002} rotation={[0, Math.PI / 6, 0]} lineHeight={1}>
                   LIGHT {"\n"}CARE
                 </Text3d>
                 <Button position={[-2.25, -0.75, 1]} rotation={[0, Math.PI / 6, 0]}/>
               </group>  
-              <Product position={width > 1200 ? [1.5, -1.5, 1.5] : [0, -4, -1]} rotation={width > 1200 ? [0, Math.PI/4, -Math.PI/36] : [0, Math.PI/2, 0]} displayToggled={displayToggled}/>
+              <Product position={width > 1200 ? [1.5, -1.8, 1.5] : [0, -4, -1]} rotation={width > 1200 ? [0, Math.PI/4, -Math.PI/36] : [0, Math.PI/2, 0]} displayToggled={displayToggled}/>
               {width > 1200 ? <OrbitControls
                   enablePan={false}
                   enableZoom={false} 
