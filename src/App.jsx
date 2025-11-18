@@ -85,13 +85,6 @@ function App() {
       <div id='body' style={{cursor: "default"}}>
         <div id="canvas-container">
           <Canvas shadows camera={{ fov: 80}}
-            onWheelCapture={(e) => {
-              e.stopPropagation();   // stop event BEFORE R3F gets it
-            }}
-            onContextMenu={(e) => e.preventDefault()}   // prevent menu
-            onPointerDown={(e) => {
-              if (e.button === 2) e.stopPropagation(); // stop right-click drag
-            }}
             
             style={{backgroundColor: "transparent"}}
           >
@@ -105,15 +98,15 @@ function App() {
                 <Button position={[-2.25, -0.75, 1]} rotation={[0, Math.PI / 6, 0]}/>
               </group>  
               <Product position={width > 1200 ? [1.5, -1.5, 1.5] : [0, -4, -1]} rotation={width > 1200 ? [0, Math.PI/4, -Math.PI/36] : [0, Math.PI/2, 0]} displayToggled={displayToggled}/>
-              <OrbitControls
-                  enablePan={false}            // optional
-                  enableZoom={true}            // scroll zoom
+              {width > 1200 ? <OrbitControls
+                  enablePan={false}
+                  enableZoom={false} 
                   mouseButtons={{
                     LEFT: THREE.MOUSE.ROTATE,  // left-click rotates
-                    MIDDLE: THREE.MOUSE.DOLLY, // middle scroll zoom
+                    MIDDLE: null, // middle scroll zoom
                     RIGHT: null                 // right-click does nothing
                   }}
-                />
+                /> : <></>}
               <ContactShadows resolution={512} position={[0, -2, 0]} opacity={width > 1200 ? 1 : 0} scale={10} blur={2} far={5} />
               <Environment preset="city" blur={1} /> 
             </Suspense>

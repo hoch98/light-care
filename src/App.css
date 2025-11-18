@@ -18,11 +18,10 @@
   height: 120vh;
 }
 
-@media (min-width: 768px) {
-  #canvas-container {
-    height: 150vh;
-  }
+#canvas-container canvas {
+  touch-action: pan-y;
 }
+
 
 @media (min-width: 768px) {
   #canvas-container {
