@@ -25,7 +25,7 @@ function Body(props) {
     }
   })
   return (
-    <mesh receiveShadow position={props.position} rotation={[-Math.PI/2, 0, 0]}>
+    <mesh receiveShadow position={props.position} rotation={[-Math.PI / 2, 0, 0]}>
       <primitive receiveShadow object={obj} />
     </mesh>
   )
@@ -57,18 +57,18 @@ function Knob(props) {
       child.material = knobMaterial
       child.castShadow = true
       child.receiveShadow = true
-      child.onClick = () => {}
+      child.onClick = () => { }
     }
   })
   return (
-    <mesh 
-      ref={ref} 
-      receiveShadow 
-      position={props.position} 
-      rotation={[-Math.PI/2, 0, 0]} 
+    <mesh
+      ref={ref}
+      receiveShadow
+      position={props.position}
+      rotation={[-Math.PI / 2, 0, 0]}
       onClick={props.toggleDisplay}
-      onPointerEnter={() => {document.getElementById("body").style.cursor="pointer"}}
-      onPointerLeave={() => {document.getElementById("body").style.cursor="default"}}
+      onPointerEnter={() => { document.getElementById("body").style.cursor = "pointer" }}
+      onPointerLeave={() => { document.getElementById("body").style.cursor = "default" }}
     >
       <primitive receiveShadow object={obj} />
     </mesh>
@@ -87,8 +87,8 @@ function Switch(props) {
       position={props.position}
       scale={0.21}
     >
-      <Body/>
-      <Knob toggled={toggled} toggleDisplay={toggleDisplay}/>
+      <Body />
+      <Knob toggled={toggled} toggleDisplay={toggleDisplay} />
     </mesh>
   );
 }
