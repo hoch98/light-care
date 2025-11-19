@@ -1,5 +1,5 @@
 import React from "react";
-import * as THREE from "three"
+import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { RoundedBoxGeometry } from "@react-three/drei";
 import { Text } from "@react-three/drei";

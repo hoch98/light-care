@@ -4,7 +4,6 @@ import { TextureLoader } from 'three'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from "three"
 import * as React from 'react'
-import Switch from './Switch'
 
 function Frame(props) {
   const colorMap = useLoader(TextureLoader, 'media/frame_veneer/plywood_diff_4k.jpg')
@@ -119,29 +118,29 @@ function Monitor(props) {
   try {
     const image = useLoader(TextureLoader, 'media/default.jpg')
 
-    const screenMaterial = new THREE.MeshBasicMaterial({ 
-        map: image
+    const screenMaterial = new THREE.MeshBasicMaterial({
+      map: image
     });
 
     materialsArray = [
-        meshMaterial,
-        meshMaterial,
-        meshMaterial, 
-        meshMaterial, 
-        meshMaterial,   // Front
-        screenMaterial  // Back
+      meshMaterial,
+      meshMaterial,
+      meshMaterial,
+      meshMaterial,
+      meshMaterial,   // Front
+      screenMaterial  // Back
     ];
   } catch {
     materialsArray = [
-        meshMaterial,
-        meshMaterial,
-        meshMaterial, 
-        meshMaterial, 
-        meshMaterial,   // Front
-        meshMaterial  // Back
+      meshMaterial,
+      meshMaterial,
+      meshMaterial,
+      meshMaterial,
+      meshMaterial,   // Front
+      meshMaterial  // Back
     ];
   }
-  
+
 
   return (
     <mesh receiveShadow material={props.displayToggled ? materialsArray : meshMaterial} rotation={[0, Math.PI / 2, 0]} position={[0.041, 0.95, 0]}>
@@ -151,21 +150,21 @@ function Monitor(props) {
 }
 
 function RaspberryPi(props) {
-	var { nodes, materials, scene } = useGLTF("models/raspberry_pi/raspberry_pi_3.glb");
+  var { nodes, materials, scene } = useGLTF("models/raspberry_pi/raspberry_pi_3.glb");
   scene = scene.clone()
   var scaleFactor = 0.045
-	return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, 0, -Math.PI/2]} position={[0.054, 1.53, 0.25]}>
-      <primitive object={scene} />
-    </mesh>;
+  return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, 0, -Math.PI / 2]} position={[0.054, 1.53, 0.25]}>
+    <primitive object={scene} />
+  </mesh>;
 }
 
 function PiCamera(props) {
-	var { nodes, materials, scene } = useGLTF("models/camera/camera.glb");
+  var { nodes, materials, scene } = useGLTF("models/camera/camera.glb");
   scene = scene.clone()
   var scaleFactor = 0.022
-	return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, -Math.PI/2, 0]} position={[0.04, 1.8625, 0]}>
-      <primitive object={scene} />
-    </mesh>;
+  return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, -Math.PI / 2, 0]} position={[0.04, 1.8625, 0]}>
+    <primitive object={scene} />
+  </mesh>;
 }
 
 function Product(props) {
@@ -202,7 +201,7 @@ function Product(props) {
       <SideHolder position={[0.099, 1.21, 0]} />
       <RaspberryPi />
       <PiCamera />
-      
+
     </group>
   )
 }

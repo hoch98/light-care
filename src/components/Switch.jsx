@@ -1,8 +1,7 @@
 import React from "react";
-import * as THREE from "three"
+import * as THREE from "three";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
-import { Text } from "@react-three/drei";
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 function Body(props) {
   const obj = useLoader(OBJLoader, "/models/switch/body.obj").clone()
