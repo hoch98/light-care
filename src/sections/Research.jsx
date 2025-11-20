@@ -31,8 +31,9 @@ function Research() {
 
   return (
     <div className="content" style={{display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "5%"}}>
-      <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "6xl"} style={{textAlign: "center", marginBottom: "2%"}}>
+      <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "4xl"} style={{textAlign: "center", marginBottom: "2%"}}>
         RESEARCH
+        <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />
       </Text>
       <br />
       <Grid
@@ -47,12 +48,12 @@ function Research() {
               <GridItem>
                 <Card.Root borderRadius={"3%"} style={{aspectRatio: "1/1", padding: "10%", display: "flex", justifyContent: "center", flexDirection:"column"}}>
                   <Link to={item.link}>
-                    <Text className="link" fontWeight="bold" fontSize={width > 1200 ? "2xl" : "3xl"} style={{textAlign: "center"}}>
+                    <Text className="link" fontWeight="bold" fontSize={width > 1200 ? "2xl" : "1xl"} style={{textAlign: "center"}}>
                       {item.title}
                     </Text>
                   </Link>
                   <br />
-                  <Text fontSize={width > 1200 ? "1.2em" : (width > 900 ? "1.5em": "2xl")} style={{textAlign: "center"}}>
+                  <Text fontSize={width > 1200 ? "1.2em" : (width > 900 ? "1.5em": "1xl")} style={{textAlign: "center"}}>
                     {item.description}
                   </Text>
                 </Card.Root>
