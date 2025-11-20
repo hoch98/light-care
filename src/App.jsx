@@ -4,6 +4,7 @@ import { LightMode } from './components/ui/color-mode';
 import Showoff from './sections/Showoff';
 import LightCare from './sections/LightCare';
 import Starter from './sections/Starter';
+import Research from './sections/Research';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
         <div id='body' style={{ cursor: "default" }}>
           <Starter/>
           <LightCare />
-          <Showoff />
+          <Research />
         </div>
       </LightMode>
     </Provider>

@@ -5,20 +5,21 @@ import useWindowDimensions from '../hooks/useWindowDimensions.jsx'; // reuse you
 function LightCare() {
   const { width } = useWindowDimensions();
   return (
-    <div className="content">
+    <div className="content" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
       <Grid
         templateColumns={width > 1200 ? "1fr 2fr" : "1fr"}
-        gap={"5%"}
-        w="90vw"
+        gap={"2%"}
+        w={width > 1200 ? "70vw" : "90vw"}
         px={width > 1200 ? 4 : 16} // padding on sides
         py={width > 1200 ? 8 : 16} // vertical spacing
+        textAlign={width > 1200 ? "left" : "center"}
         alignItems="start"
       >
         <GridItem >
           <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "6xl"}>
             WHAT IS <br /> LIGHT CARE?
           </Text>
-          <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffaf36ff", width: "90%", height: "10px" }} />
+          <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "80%", height: "10px" }} />
         </GridItem>
 
         <GridItem>
