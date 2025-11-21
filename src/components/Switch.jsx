@@ -1,10 +1,11 @@
 import React from "react";
 import * as THREE from "three";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { useGLTF } from "@react-three/drei";
 
 function Body(props) {
-  const obj = useLoader(OBJLoader, "/models/switch/body.obj").clone()
+
+  var { scene } = useGLTF("models/switch/body.glb");
 
   const bodyMaterial = new THREE.MeshPhysicalMaterial({
     color: "rgba(114, 114, 114, 1)1)",
@@ -16,7 +17,7 @@ function Body(props) {
     envMapIntensity: 1.2,
   })
 
-  obj.traverse((child) => {
+  scene.traverse((child) => {
     if (child.isMesh) {
       child.material = bodyMaterial
       child.castShadow = true
@@ -25,14 +26,14 @@ function Body(props) {
   })
   return (
     <mesh receiveShadow position={props.position} rotation={[-Math.PI / 2, 0, 0]}>
-      <primitive receiveShadow object={obj} />
+      <primitive receiveShadow object={scene} />
     </mesh>
   )
 }
 
 function Knob(props) {
   const ref = React.useRef();
-  const obj = useLoader(OBJLoader, "/models/switch/knob.obj").clone()
+  var { scene } = useGLTF("models/switch/knob.glb");
 
   useFrame(() => {
     if (ref.current) {
@@ -51,7 +52,7 @@ function Knob(props) {
     envMapIntensity: 1.2,
   })
 
-  obj.traverse((child) => {
+  scene.traverse((child) => {
     if (child.isMesh) {
       child.material = knobMaterial
       child.castShadow = true
@@ -69,7 +70,7 @@ function Knob(props) {
       onPointerEnter={() => { document.getElementById("body").style.cursor = "pointer" }}
       onPointerLeave={() => { document.getElementById("body").style.cursor = "default" }}
     >
-      <primitive receiveShadow object={obj} />
+      <primitive receiveShadow object={scene} />
     </mesh>
   )
 }
