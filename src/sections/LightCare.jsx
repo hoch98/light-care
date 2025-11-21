@@ -5,7 +5,7 @@ import useWindowDimensions from '../hooks/useWindowDimensions.jsx'; // reuse you
 function LightCare() {
   const { width } = useWindowDimensions();
   return (
-    <div className="content" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <div className="content">
       <Grid
         templateColumns={width > 1200 ? "1fr 2fr" : "1fr"}
         gap={"2%"}

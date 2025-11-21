@@ -30,7 +30,7 @@ function Research() {
   ]
 
   return (
-    <div className="content" style={{display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "5%"}}>
+    <div className="content" style={{ marginBottom: "5%"}}>
       <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "4xl"} style={{textAlign: "center", marginBottom: "2%"}}>
         RESEARCH
         <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />

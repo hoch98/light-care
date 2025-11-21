@@ -86,7 +86,7 @@ function SideHolder({ position }) {
 function TwoWayMirror(props) {
   let meshMaterial = new THREE.MeshPhysicalMaterial({
     color: 0x999999,     // dark gray
-    metalness: 0.8,      // very reflective
+    metalness: 0.7,      // very reflective
     roughness: 0.01,     // almost perfectly smooth
     transmission: 0.9,   // mostly reflecting, partially see-through
     reflectivity: 0.3,
@@ -105,7 +105,7 @@ function TwoWayMirror(props) {
 
 function Monitor(props) {
   let meshMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0x000000,
+    color: 0xffffff,
     transparent: false,   // keep opaque
     opacity: 1,
     roughness: 0.8,
@@ -116,7 +116,7 @@ function Monitor(props) {
   let materialsArray;
 
   try {
-    const image = useLoader(TextureLoader, 'media/default.jpg')
+    const image = useLoader(TextureLoader, 'media/default.png')
 
     const screenMaterial = new THREE.MeshBasicMaterial({
       map: image
