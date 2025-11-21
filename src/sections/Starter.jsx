@@ -75,7 +75,7 @@ function Starter() {
             }}
           /> : <></>}
           <ContactShadows resolution={512} position={[0, -2, 0]} opacity={width > 1200 ? 1 : 0} scale={10} blur={2} far={5} />
-          <Environment preset="city" blur={1} />
+          <Environment files="media/modern_evening_street_1k.exr" blur={0} />
         </Suspense>
       </Canvas>
     </div>
