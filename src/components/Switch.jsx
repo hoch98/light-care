@@ -7,7 +7,7 @@ function Body(props) {
 
   var { scene } = useGLTF("models/switch/body.glb");
 
-  const bodyMaterial = new THREE.MeshPhysicalMaterial({
+  const bodyMaterial = new THREE.MeshStandardMaterial({
     color: "rgba(114, 114, 114, 1)1)",
     metalness: 0.2,
     roughness: 0.2,
@@ -42,7 +42,7 @@ function Knob(props) {
     }
   })
 
-  const knobMaterial = new THREE.MeshPhysicalMaterial({
+  const knobMaterial = new THREE.MeshStandardMaterial({
     color: "rgba(255, 255, 255, 1)1)",
     metalness: 0.2,
     roughness: 0.2,

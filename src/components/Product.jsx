@@ -9,7 +9,7 @@ function Frame(props) {
   colorMap.colorSpace = THREE.SRGBColorSpace;
   colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
   var { scene } = useGLTF("models/frame.glb");
-  let meshMaterial = new THREE.MeshPhysicalMaterial({
+  let meshMaterial = new THREE.MeshStandardMaterial({
     map: colorMap,       // single color texture
     metalness: 0.0,         // wood is not metallic
     roughness: 0.5,         // adjust for shininess
@@ -36,7 +36,7 @@ function BottomHolder(props) {
   colorMap.colorSpace = THREE.SRGBColorSpace;
   colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
   const {scene} = useGLTF("models/bottom_holder.glb");
-  let meshMaterial = new THREE.MeshPhysicalMaterial({
+  let meshMaterial = new THREE.MeshStandardMaterial({
     map: colorMap,       // single color texture
     metalness: 0.0,         // wood is not metallic
     roughness: 0.5,         // adjust for shininess
@@ -62,7 +62,7 @@ function SideHolder({ position }) {
   colorMap.colorSpace = THREE.SRGBColorSpace;
   colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
   const {scene} = useGLTF("models/side_holder.glb");
-  let meshMaterial = new THREE.MeshPhysicalMaterial({
+  let meshMaterial = new THREE.MeshStandardMaterial({
     map: colorMap,       // single color texture
     metalness: 0.0,         // wood is not metallic
     roughness: 0.5,         // adjust for shininess
@@ -84,7 +84,7 @@ function SideHolder({ position }) {
 }
 
 function TwoWayMirror(props) {
-  let meshMaterial = new THREE.MeshPhysicalMaterial({
+  let meshMaterial = new THREE.MeshStandardMaterial({
     color: 0x999999,     // dark gray
     metalness: 0.8,      // very reflective
     roughness: 0.01,     // almost perfectly smooth
@@ -104,7 +104,7 @@ function TwoWayMirror(props) {
 }
 
 function Monitor(props) {
-  let meshMaterial = new THREE.MeshPhysicalMaterial({
+  let meshMaterial = new THREE.MeshStandardMaterial({
     color: 0x000000,
     transparent: false,   // keep opaque
     opacity: 1,
