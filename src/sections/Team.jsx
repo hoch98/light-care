@@ -30,7 +30,7 @@ export default function OurTeamSection() {
   ];
 
   return (
-    <Box w={isWide ? "80vw" : "95vw"} px={isWide ? 4 : 4} py={isWide ? 20 : 16} mx="auto">
+    <div className="content" style={{marginBottom: "20px"}}>
       {/* Heading */}
       <Box
         textAlign={"center"}
@@ -60,8 +60,8 @@ export default function OurTeamSection() {
         mb={16}
       >
         <Grid templateColumns={isWide ? "2fr 1fr" : "1fr"} gap={10} alignItems="center">
-          <GridItem>
-            <Text fontWeight="bold" fontSize="2xl">Our mission</Text>
+          <GridItem textAlign={width > 1200 ? "left": "center"}>
+            <Text fontWeight="bold" fontSize="3xl">Our mission</Text>
             <Text mt={4} color="gray.700" lineHeight="taller">
               We combine AI, optical sensing, and design to help people understand their wellbeing without
               friction. 
@@ -97,6 +97,6 @@ export default function OurTeamSection() {
           </Box>
         ))}
       </Grid>
-    </Box>
+    </div>
   );
 }

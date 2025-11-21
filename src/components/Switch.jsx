@@ -11,9 +11,6 @@ function Body(props) {
     color: "rgba(114, 114, 114, 1)1)",
     metalness: 0.2,
     roughness: 0.2,
-    transmission: 0.1,
-    reflectivity: 1,
-    ior: 1.52,
     envMapIntensity: 1.2,
   })
 
@@ -46,9 +43,6 @@ function Knob(props) {
     color: "rgba(255, 255, 255, 1)1)",
     metalness: 0.2,
     roughness: 0.2,
-    transmission: 0.1,
-    reflectivity: 1,
-    ior: 1.52,
     envMapIntensity: 1.2,
   })
 

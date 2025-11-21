@@ -88,9 +88,6 @@ function TwoWayMirror(props) {
     color: 0x999999,     // dark gray
     metalness: 0.7,      // very reflective
     roughness: 0.01,     // almost perfectly smooth
-    transmission: 0.9,   // mostly reflecting, partially see-through
-    reflectivity: 0.3,
-    ior: 1.52,
     opacity: 0.8,
     transparent: true,
     envMapIntensity: 1.2,
@@ -110,7 +107,6 @@ function Monitor(props) {
     opacity: 1,
     roughness: 0.8,
     metalness: 0,
-    transmission: 0,      // no transmission, fully solid
   });
 
   let materialsArray;
