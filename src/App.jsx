@@ -1,7 +1,6 @@
 import './App.css';
 import { Provider } from './components/ui/provider';
 import { LightMode } from './components/ui/color-mode';
-import Showoff from './sections/Showoff';
 import LightCare from './sections/LightCare';
 import Starter from './sections/Starter';
 import Research from './sections/Research';

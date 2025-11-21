@@ -33,7 +33,7 @@ function LoadingScreen() {
   if (!show) return null;
 
   return (
-    <Html center>
+    <Html center style={{maxHeight: "100vh"}}>
       <Loader />
     </Html>
   );
