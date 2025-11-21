@@ -105,7 +105,7 @@ function TwoWayMirror(props) {
 
 function Monitor(props) {
   let meshMaterial = new THREE.MeshStandardMaterial({
-    color: 0x000000,
+    color: 0xffffff,
     transparent: false,   // keep opaque
     opacity: 1,
     roughness: 0.8,
