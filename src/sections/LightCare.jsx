@@ -24,7 +24,7 @@ function LightCare() {
 
         <GridItem>
           <Text fontSize={width > 1200 ? "xl" : "l"} lineHeight="taller">
-            Light Care is more than just a mirror — it’s a smart wellness companion designed to help you understand your body and optimize your wellbeing. At its core, Light Care uses advanced computer vision and AI to monitor subtle signs of fatigue and stress. Fine-tuned object detection models analyze your facial features in real-time, detecting indicators such as eye strain, facial tension, and even changes in skin tone.
+            Light Care is more than just a mirror, it’s a smart wellness companion designed to help you understand your body and optimize your wellbeing. At its core, Light Care uses advanced computer vision and AI to monitor subtle signs of fatigue and stress. Fine-tuned object detection models analyze your facial features in real-time, detecting indicators such as eye strain, facial tension, and even changes in skin tone.
             <br /><br />
             Using these insights, Light Care can estimate physiological metrics like heart rate just by observing slight variations in your face. From there, it provides personalized guidance, whether that’s recommending a short break, a relaxation exercise, or lifestyle adjustments to improve sleep and energy levels.
           </Text>
