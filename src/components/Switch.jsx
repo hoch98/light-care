@@ -71,7 +71,7 @@ function Knob(props) {
 
 
 
-function Switch(props) {
+const Switch = React.memo(function Switch(props) {
 
   const [toggled, toggleDisplay] = [props.displayToggled, props.toggleDisplay]
 
@@ -85,6 +85,6 @@ function Switch(props) {
       <Knob toggled={toggled} toggleDisplay={toggleDisplay} />
     </mesh>
   );
-}
+})
 
 export default Switch

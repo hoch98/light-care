@@ -6,7 +6,7 @@ import * as THREE from "three";
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { useProgress, Html, Environment, Text as Text3d, ContactShadows, OrbitControls } from '@react-three/drei';
+import { useProgress, Html, Environment, Text as Text3d, ContactShadows, OrbitControls, Preload } from '@react-three/drei';
 import { Loader } from "@/components/retroui/Loader";
 
 function LoadingScreen() {
@@ -74,8 +74,11 @@ function Starter() {
               RIGHT: null                 // right-click does nothing
             }}
           /> : <></>}
-          <ContactShadows resolution={512} position={[0, -2, 0]} opacity={width > 1200 ? 1 : 0} scale={10} blur={2} far={5} />
+          {
+            width > 1200 ? <ContactShadows resolution={512} position={[0, -2, 0]} opacity={width > 1200 ? 1 : 0} scale={10} blur={2} far={5} /> : <></>
+          }
           <Environment files="media/modern_evening_street_1k.exr" blur={0} />
+          <Preload all />
         </Suspense>
       </Canvas>
     </div>

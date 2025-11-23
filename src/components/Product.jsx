@@ -161,7 +161,7 @@ function PiCamera(props) {
   </mesh>;
 }
 
-function Product(props) {
+const Product = React.memo(function Product(props) {
 
   const ref = React.useRef();
 
@@ -197,6 +197,7 @@ function Product(props) {
 
     </group>
   )
-}
+})
+
 
 export default Product
