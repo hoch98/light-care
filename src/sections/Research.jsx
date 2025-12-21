@@ -1,10 +1,11 @@
-import { Grid, GridItem, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Text, Box} from "@chakra-ui/react";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx'; // reuse your hook
 import { Link } from "react-router";
 import { Card } from "@chakra-ui/react";
 
 function Research() {
   const { width } = useWindowDimensions();
+  const isWide = width > 1200;
 
   const research = [
     {
@@ -36,31 +37,16 @@ function Research() {
         <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />
       </Text>
       <br />
-      <Grid
-        templateColumns={width > 1200 ? "1fr 1fr 1fr 1fr" : (width > 900 ? "1fr 1fr" : "1fr")}
-        gap={"3%"}
-        w="80vw"
-        alignItems="start"
-      >
-        {
-          research.map((item) => {
-            return (
-              <GridItem>
-                <Card.Root borderRadius={"3%"} style={{aspectRatio: "1/1", padding: "10%", display: "flex", justifyContent: "center", flexDirection:"column"}}>
-                  <Link to={item.link}>
-                    <Text className="link" fontWeight="bold" fontSize={width > 1200 ? "2xl" : "1xl"} style={{textAlign: "center"}}>
-                      {item.title}
-                    </Text>
-                  </Link>
-                  <br />
-                  <Text fontSize={width > 1200 ? "1.2em" : (width > 900 ? "1.5em": "1xl")} style={{textAlign: "center"}}>
-                    {item.description}
-                  </Text>
-                </Card.Root>
-              </GridItem>
-            )
-          })
-        }
+      <Grid templateColumns={isWide ? "repeat(4, 1fr)" : "1fr"} gap={10}>
+        {research.map((r) => (
+          <Box key={r.title} bg="white" borderRadius="xl" boxShadow="md" p={8} textAlign="center">
+            <Text mt={4} fontWeight="semibold" fontSize="lg" className="link">
+              <a href={r.link}>{r.title}</a>
+            </Text>
+            <br />
+            <Text mt={3} fontSize="sm" color="gray.600" lineHeight="taller">{r.description}</Text>
+          </Box>
+        ))}
       </Grid>
     </div>
   );

@@ -36,13 +36,9 @@ function Button(props) {
     // --- Press logic ---
     if (pressed) {
       targetScale.current.set(pulse, pulse, pulse * 0.5);
-    // }
-    // if (pressed && !navigated.current) {
-    //   navigated.current = true;        // stop future calls
-
-    //   setTimeout(() => {
-    //     navigate("/about");
-    //   }, 250);
+      setTimeout(() => {
+        document.getElementById('mainContent').scrollIntoView();
+      }, 250);
     } else {
       targetScale.current.set(pulse, pulse, pulse);
     }

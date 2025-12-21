@@ -44,10 +44,6 @@ export default function OurTeamSection() {
           OUR TEAM
           <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />
         </Text>
-        <Text fontSize={isWide ? "xl" : "md"} color="gray.700" lineHeight="taller" maxW="900px" mx={isWide ? "0" : "auto"}>
-          We combine optical sensing, machine learning, and human‑centered design to make actionable wellbeing insights. We focus on reliability, accessibility, and clear
-          communication so people can make small, confident decisions every day.
-        </Text>
       </Box>
 
       {/* Mission card */}
@@ -58,15 +54,16 @@ export default function OurTeamSection() {
         boxShadow="md"
         p={isWide ? 12 : 8}
         mb={16}
+        ml={20}
+        mr={20}
       >
         <Grid templateColumns={isWide ? "2fr 1fr" : "1fr"} gap={10} alignItems="center">
           <GridItem textAlign={width > 1200 ? "left": "center"}>
             <Text fontWeight="bold" fontSize="3xl">Our mission</Text>
             <Text mt={4} color="gray.700" lineHeight="taller">
-              We combine AI, optical sensing, and design to help people understand their wellbeing without
-              friction. 
+              We combine AI, optical sensing, and design to help people understand their wellbeing more conveniently.
               <br />
-              Everything we create prioritizes scientific accuracy, privacy, and real‑world usability.
+              Everything we create prioritizes scientific accuracy, privacy, and real-world usability.
             </Text>
           </GridItem>
 
