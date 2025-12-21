@@ -5,20 +5,11 @@ import * as THREE from "three"
 import * as React from 'react'
 
 function Frame(props) {
-  const colorMap = useLoader(TextureLoader, 'media/frame_veneer/plywood_diff_1k.jpg')
-  colorMap.colorSpace = THREE.SRGBColorSpace;
-  colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
   var { scene } = useGLTF("models/frame.glb");
-  let meshMaterial = new THREE.MeshStandardMaterial({
-    map: colorMap,       // single color texture
-    metalness: 0.0,         // wood is not metallic
-    roughness: 0.5,         // adjust for shininess
-    envMapIntensity: 0.8,   // mild reflection if using HDRI
-  });
 
   scene.traverse((child) => {
     if (child.isMesh) {
-      child.material = meshMaterial;
+      child.material = props.meshMaterial;
       child.castShadow = true;
       child.receiveShadow = true;
     }
@@ -26,59 +17,66 @@ function Frame(props) {
 
   return (
     <mesh receiveShadow>
-      <primitive receiveShadow object={scene} rotation={[-Math.PI / 2, 0, Math.PI / 2]} />
+      <primitive receiveShadow object={scene} position={[0.138, 1, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} />
     </mesh>
   )
 }
 
 function BottomHolder(props) {
-  const colorMap = useLoader(TextureLoader, 'media/holder_veneer/wood_table_001_diff_1k.jpg')
-  colorMap.colorSpace = THREE.SRGBColorSpace;
-  colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
-  const {scene} = useGLTF("models/bottom_holder.glb");
-  let meshMaterial = new THREE.MeshStandardMaterial({
-    map: colorMap,       // single color texture
-    metalness: 0.0,         // wood is not metallic
-    roughness: 0.5,         // adjust for shininess
-    envMapIntensity: 0.8,   // mild reflection if using HDRI
-  });
-
-  scene.traverse((child) => {
-    if (child.isMesh) {
-      child.material = meshMaterial
-      child.castShadow = true
-      child.receiveShadow = true
-    }
-  })
   return (
-    <mesh receiveShadow>
-      <primitive receiveShadow object={scene} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0.1425, 0.05, 0]} />
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0.11, 0.1, 0.005]} material={props.meshMaterial}>
+      <boxGeometry args={[0.96, 0.2, 0.08]} />
     </mesh>
   )
 }
 
-function SideHolder({ position }) {
-  const colorMap = useLoader(TextureLoader, 'media/holder_veneer/wood_table_001_diff_1k.jpg')
-  colorMap.colorSpace = THREE.SRGBColorSpace;
-  colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
-  const {scene} = useGLTF("models/side_holder.glb");
-  let meshMaterial = new THREE.MeshStandardMaterial({
-    map: colorMap,       // single color texture
-    metalness: 0.0,         // wood is not metallic
-    roughness: 0.5,         // adjust for shininess
-    envMapIntensity: 0.8,   // mild reflection if using HDRI
-  });
+function Stabler(props) {
+  return (
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0.12, 0.18, 0.005]} material={props.meshMaterial}>
+      <boxGeometry args={[0.2, 0.1, 0.08]} />
+    </mesh>
+  )
+}
+
+function SideHolder(props) {
+  
+  return (
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={props.position} material={props.meshMaterial}>
+      <boxGeometry args={[0.045, 0.2, 1.54]} />
+    </mesh>
+  )
+}
+
+function Seperator(props) {
+  var { scene } = useGLTF("models/seperator.glb");
 
   scene.traverse((child) => {
     if (child.isMesh) {
-      child.material = meshMaterial
-      child.castShadow = true
-      child.receiveShadow = true
+      child.material = props.meshMaterial;
+      child.castShadow = true;
+      child.receiveShadow = true;
     }
-  })
+  });
+  var s = 0.5;
   return (
-    <mesh receiveShadow position={position}>
-      <primitive receiveShadow object={scene} rotation={[-Math.PI / 2, 0, Math.PI / 2]} />
+    <mesh receiveShadow rotation={[-Math.PI / 2, -Math.PI/2, Math.PI / 2]} position={[0.11, 1.7, 0.005]} scale={[s, s, s]}>
+      <primitive receiveShadow object={scene} />
+    </mesh>
+  )
+}
+
+function Electronics(props) {
+  let meshMaterial = new THREE.MeshStandardMaterial({
+    color: 0xbfbfbf,
+    transparent: false,   // keep opaque
+    opacity: 1,
+    roughness: 0.4,
+    metalness: 1,
+  });
+
+  return (
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0.08, 1, -0.15]} material={meshMaterial}>
+      <boxGeometry args={[0.35, 0.06, 0.8]} />
     </mesh>
   )
 }
@@ -94,8 +92,8 @@ function TwoWayMirror(props) {
   });
 
   return (
-    <mesh receiveShadow material={meshMaterial} rotation={[0, Math.PI / 2, 0]} position={[0.025, 0.95, 0]}>
-      <boxGeometry args={[0.9, 1.6, 0.0125]} />
+    <mesh receiveShadow material={meshMaterial} rotation={[0, Math.PI / 2, 0]} position={[0.0, 0.87, 0]}>
+      <boxGeometry args={[0.95, 1.62, 0.0125]} />
     </mesh>
   )
 }
@@ -139,8 +137,8 @@ function Monitor(props) {
 
 
   return (
-    <mesh receiveShadow material={props.displayToggled ? materialsArray : meshMaterial} rotation={[0, Math.PI / 2, 0]} position={[0.041, 0.95, 0]}>
-      <boxGeometry args={[0.9, 1.6, 0.0125]} />
+    <mesh receiveShadow material={props.displayToggled ? materialsArray : meshMaterial} rotation={[0, Math.PI / 2, 0]} position={[0.0385, 0.91, 0.01]}>
+      <boxGeometry args={[0.85, 1.53, 0.06]} />
     </mesh>
   )
 }
@@ -148,7 +146,7 @@ function Monitor(props) {
 function RaspberryPi(props) {
   var { nodes, materials, scene } = useGLTF("models/raspberry_pi/raspberry_pi_3.glb");
   var scaleFactor = 0.045
-  return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, 0, -Math.PI / 2]} position={[0.054, 1.53, 0.25]}>
+  return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, 0, -Math.PI / 2]} position={[0.072, 1.3, 0.25]}>
     <primitive object={scene} />
   </mesh>;
 }
@@ -156,7 +154,7 @@ function RaspberryPi(props) {
 function PiCamera(props) {
   var { nodes, materials, scene } = useGLTF("models/camera/camera.glb");
   var scaleFactor = 0.022
-  return <mesh receiveShadow scale={scaleFactor} rotation={[Math.PI, -Math.PI / 2, 0]} position={[0.04, 1.8625, 0]}>
+  return <mesh receiveShadow scale={scaleFactor} rotation={[0, -Math.PI / 2, 0]} position={[0.06, 1.84, 0]}>
     <primitive object={scene} />
   </mesh>;
 }
@@ -184,14 +182,29 @@ const Product = React.memo(function Product(props) {
     }
   })
 
+  var colorMap = useLoader(TextureLoader, 'media/frame_veneer/plywood_diff_1k.jpg')
+  colorMap.colorSpace = THREE.SRGBColorSpace;
+  colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
+  colorMap.repeat.set(8, 8);
+  
+  let meshMaterial = new THREE.MeshStandardMaterial({
+    map: colorMap,       // single color texture
+    metalness: 0.0,         // wood is not metallic
+    roughness: 0.5,         // adjust for shininess
+    envMapIntensity: 0.8,   // mild reflection if using HDRI
+  });
 
   return (
     <group position={props.position} scale={2} ref={ref}>
-      <TwoWayMirror />
-      <Monitor displayToggled={props.displayToggled} />
-      <Frame />
-      <BottomHolder />
-      <SideHolder position={[0.099, 0.9, 0]} />
+      <TwoWayMirror meshMaterial={meshMaterial} />
+      <Monitor displayToggled={props.displayToggled}/>
+      <Frame meshMaterial={meshMaterial} />
+      <BottomHolder meshMaterial={meshMaterial}/>
+      <Stabler meshMaterial={meshMaterial}/>
+      <SideHolder position={[0.11, 0.908, 0.46]}  meshMaterial={meshMaterial}/>
+      <SideHolder position={[0.11, 0.908, -0.444]} meshMaterial={meshMaterial}/>
+      <Seperator meshMaterial={meshMaterial}/>
+      <Electronics/>
       <RaspberryPi />
       <PiCamera />
 
