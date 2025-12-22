@@ -8,17 +8,17 @@ export default function OurTeamSection() {
   const profiles = [
     {
       name: "Aiden Wong",
-      role: "Lead Creativity",
+      role: "Creativity",
       blurb: "Brainstorms ideas and helps visualise them in a simple and concise manner.",
     },
     {
       name: "Felix Wang",
-      role: "Head of Management",
-      blurb: "Turns vision into action, directing our project from concept to reality.",
+      role: "Management",
+      blurb: "To guide, support, and encourage our group, directing our project from concept to reality",
     },
     {
       name: "Ho Yun Chen",
-      role: "Head of Software Development",
+      role: "Software Development",
       blurb: "Builds and maintains the software architecture that powers the project."
     },
   ];
