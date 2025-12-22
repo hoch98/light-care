@@ -96,7 +96,7 @@ function Starter() {
 
       {isMobile && (
         <div style={{
-          position: 'absolute', bottom: '40px', width: '100%',
+          position: 'absolute', bottom: '0', width: '100%',
           display: 'flex', justifyContent: 'center', pointerEvents: 'none'
         }}>
           <button 
