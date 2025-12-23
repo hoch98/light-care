@@ -57,7 +57,7 @@ export default function OurTeamSection() {
             </Box>
             
             <Box textAlign={isWide ? "left" : "center"}>
-              <Text fontSize="lg" color="gray.700">and shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.</Text>
+              <Text fontSize="lg" color="gray.700"><span style={{fontWeight:"bold"}}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.</Text>
             </Box>
           </VStack>
 
