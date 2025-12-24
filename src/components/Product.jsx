@@ -148,11 +148,11 @@ function TwoWayMirror(props) {
       onPointerOver={(e) => (e.stopPropagation(), props.setHovered("mirror"))}
       onPointerOut={() => props.setHovered("")}
     >
-      <meshStandardMaterial 
-        attach="material" 
-        {...mirrorMaterial} 
-        emissive={props.hovered=="mirror" ? "#ffbe5c" : "#000000"} 
-        emissiveIntensity={props.hovered=="mirror" ? 0.2 : 0} 
+      <meshStandardMaterial
+        attach="material"
+        {...mirrorMaterial}
+        emissive={props.hovered == "mirror" ? "#ffbe5c" : "#000000"}
+        emissiveIntensity={props.hovered == "mirror" ? 0.2 : 0}
       />
     </mesh>
   )
@@ -178,10 +178,10 @@ function Monitor(props) {
   // 2. Apply highlight via emissive property directly to the materials
   React.useLayoutEffect(() => {
     if (!meshRef.current) return
-    
+
     // If material is an array (which it is here), we loop through it
-    const activeMaterials = Array.isArray(meshRef.current.material) 
-      ? meshRef.current.material 
+    const activeMaterials = Array.isArray(meshRef.current.material)
+      ? meshRef.current.material
       : [meshRef.current.material]
 
     activeMaterials.forEach((mat) => {
@@ -218,8 +218,8 @@ function RaspberryPi(props) {
     cloned.traverse((obj) => {
       if (obj.isMesh) {
         // We ensure the material can handle emissive properties
-        obj.material.emissive = new THREE.Color(props.hovered=="pi" ? "#ffbe5c" : "#000000")
-        obj.material.emissiveIntensity = props.hovered=="pi" ? 0.2 : 0
+        obj.material.emissive = new THREE.Color(props.hovered == "pi" ? "#ffbe5c" : "#000000")
+        obj.material.emissiveIntensity = props.hovered == "pi" ? 0.2 : 0
       }
     })
   }, [props.hovered, cloned])
@@ -245,8 +245,8 @@ function PiCamera(props) {
     cloned.traverse((obj) => {
       if (obj.isMesh) {
         // We ensure the material can handle emissive properties
-        obj.material.emissive = new THREE.Color(props.hovered=="camera" ? "#ffbe5c" : "#000000")
-        obj.material.emissiveIntensity = props.hovered=="camera" ? 0.2 : 0
+        obj.material.emissive = new THREE.Color(props.hovered == "camera" ? "#ffbe5c" : "#000000")
+        obj.material.emissiveIntensity = props.hovered == "camera" ? 0.2 : 0
       }
     })
   }, [props.hovered, cloned])
@@ -300,33 +300,33 @@ const Product = React.memo(function Product(props) {
   return (
     <group ref={ref} position={props.position} scale={2}>
       {hovered && (
-      <Html
-        distanceFactor={10}
-        position={[0.5, 1.2, 0]}
-        style={{
-          pointerEvents: 'none',
-          transition: 'all 0.2s',
-          whiteSpace: 'nowrap'
-        }}
-      >
-        <div style={{
-          background: 'white',
-          color: 'black',
-          padding: '10px 15px',
-          borderRadius: '8px',
-          border: '1px solid #ffbe5c',
-          fontFamily: 'sans-serif',
-          boxShadow: '0px 4px 15px rgba(0,0,0,0.5)'
-        }}>
-          <strong style={{ color: '#ffbe5c', display: 'block', marginBottom: '4px' }}>
-            {DESCRIPTIONS[hovered][0]}
-          </strong>
-          <span style={{ fontSize: '12px' }}>{DESCRIPTIONS[hovered][1]}</span>
-        </div>
-      </Html>
-    )}
-      <TwoWayMirror hovered={hovered} setHovered={setHovered}/>
-      <Monitor displayToggled={props.displayToggled} hovered={hovered} setHovered={setHovered}/>
+        <Html
+          distanceFactor={10}
+          position={[0.5, 1.2, 0]}
+          style={{
+            pointerEvents: 'none',
+            transition: 'all 0.2s',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          <div style={{
+            background: 'white',
+            color: 'black',
+            padding: '10px 15px',
+            borderRadius: '8px',
+            border: '1px solid #ffbe5c',
+            fontFamily: 'sans-serif',
+            boxShadow: '0px 4px 15px rgba(0,0,0,0.5)'
+          }}>
+            <strong style={{ color: '#ffbe5c', display: 'block', marginBottom: '4px' }}>
+              {DESCRIPTIONS[hovered][0]}
+            </strong>
+            <span style={{ fontSize: '12px' }}>{DESCRIPTIONS[hovered][1]}</span>
+          </div>
+        </Html>
+      )}
+      <TwoWayMirror hovered={hovered} setHovered={setHovered} />
+      <Monitor displayToggled={props.displayToggled} hovered={hovered} setHovered={setHovered} />
       <Frame material={woodMaterial} />
       <BottomHolder material={woodMaterial} />
       <Stabler material={woodMaterial} />
@@ -334,8 +334,8 @@ const Product = React.memo(function Product(props) {
       <SideHolder material={woodMaterial} position={[0.11, 0.908, -0.444]} />
       <Seperator material={woodMaterial} />
       <Electronics />
-      <RaspberryPi hovered={hovered} setHovered={setHovered}/>
-      <PiCamera hovered={hovered} setHovered={setHovered}/>
+      <RaspberryPi hovered={hovered} setHovered={setHovered} />
+      <PiCamera hovered={hovered} setHovered={setHovered} />
     </group>
   )
 })

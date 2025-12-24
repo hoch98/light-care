@@ -1,4 +1,4 @@
-import { Grid, GridItem, Text, Box, Flex, Image, SimpleGrid, VStack, Heading } from "@chakra-ui/react";
+import { Grid, Text, Box, Image, SimpleGrid, VStack } from "@chakra-ui/react";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 
 export default function OurTeamSection() {
@@ -8,18 +8,18 @@ export default function OurTeamSection() {
   const profiles = [
     {
       name: "Aiden Wong",
-      role: "Creativity",
-      blurb: "Brainstorms ideas and helps visualise them in a simple and concise manner.",
+      imageSrc: "media/about/aiden.jpg",
+      blurb: "Responsible for creativity and ideation, contributing original concepts and helping visualize the innovation in a simple, user friendly way. His work shapes the design and communication of the project.",
     },
     {
       name: "Felix Wang",
-      role: "Management",
-      blurb: "To guide, support, and encourage our group, directing our project from concept to reality",
+      imageSrc: "media/about/felix.png",
+      blurb: "Serves as the team lead and manager, overseeing project direction coordinaiting responsibilities, managing deadlines. He also lead in decision making, and played a crucial role in the hardware designing area",
     },
     {
       name: "Ho Yun Chen",
-      role: "Software Development",
-      blurb: "Builds and maintains the software architecture that powers the project."
+      imageSrc: "media/about/hoyun.jpg",
+      blurb: "Leads the software development, building and maintaining the system's software architecture and implementing the core features of the design.  "
     },
   ];
 
@@ -32,7 +32,6 @@ export default function OurTeamSection() {
 
   return (
     <div className="content" style={{ marginBottom: "20px" }}>
-      {/* Heading */}
       <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
         <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"}>
           OUR TEAM
@@ -40,7 +39,6 @@ export default function OurTeamSection() {
         </Text>
       </Box>
 
-      {/* Mission & Vision Card */}
       <Box
         bg="whiteAlpha.700"
         backdropFilter="blur(6px) saturate(120%)"
@@ -50,41 +48,41 @@ export default function OurTeamSection() {
         mb={10}
         mx={isWide ? 20 : 4}
       >
-        <Grid templateColumns={isWide ? "1.5fr 1fr" : "1fr"} gap={12} alignItems="center">
-          <VStack align={isWide ? "left" : "center"} spacing={8}>
-            <Box textAlign={isWide ? "left" : "center"}>
-              <Text fontSize="lg" color="gray.700"><span style={{fontWeight:"bold"}}>Our Mission</span> is to make everyday wellness awareness simple, accessible, and effortless.</Text>
-            </Box>
-            
-            <Box textAlign={isWide ? "left" : "center"}>
-              <Text fontSize="lg" color="gray.700"><span style={{fontWeight:"bold"}}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.</Text>
-            </Box>
-          </VStack>
+        <VStack align="center" spacing={8} mx="auto" maxW="800px" mb={12}>
+          <Box textAlign="center">
+            <Text fontSize="lg" color="gray.700">
+              <span style={{ fontWeight: "bold" }}>Our Mission</span> is to make everyday wellness awareness simple, accessible, and effortless.
+            </Text>
+          </Box>
 
-          {isWide && (
-            <Box borderRadius="xl" overflow="hidden" boxShadow="inner">
-              <Image
-                src="media/about/team.jpg"
-                w="100%"
-                h="300px"
-                objectFit="cover"
-              />
-            </Box>
-          )}
-        </Grid>
+          <Box textAlign="center">
+            <Text fontSize="lg" color="gray.700">
+              <span style={{ fontWeight: "bold" }}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.
+            </Text>
+          </Box>
+        </VStack>
+
         {/* Team profiles */}
         <Grid templateColumns={isWide ? "repeat(3, 1fr)" : "1fr"} gap={10} px={isWide ? 0 : 4} mt={10}>
           {profiles.map((p) => (
             <Box key={p.name} bg="white" borderRadius="xl" boxShadow="md" p={8} textAlign="center">
-              <Text mt={4} fontWeight="semibold" fontSize="lg">{p.name}</Text>
-              <Text fontSize="sm" color="gray.500">{p.role}</Text>
+              {/* Added Image Component here */}
+              <Image
+                src={p.imageSrc}
+                alt={p.name}
+                borderRadius="full"
+                boxSize="120px"
+                objectFit="cover"
+                mx="auto"
+                mb={4}
+              />
+              <Text fontWeight="semibold" fontSize="lg">{p.name}</Text>
               <Text mt={3} fontSize="sm" color="gray.600" lineHeight="taller">{p.blurb}</Text>
             </Box>
           ))}
         </Grid>
       </Box>
 
-      {/* Our Values Section */}
       <Box mb={16} mx={isWide ? 20 : 4}>
         <Text textAlign="center" fontWeight="bold" fontSize="3xl" mb={8}>OUR VALUES</Text>
         <SimpleGrid columns={isWide ? 4 : 1} gap={6}>

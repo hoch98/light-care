@@ -34,7 +34,7 @@ function LoadingScreen() {
   if (!show) return null;
 
   return (
-    <Html center style={{maxHeight: "100vh"}}>
+    <Html center style={{ maxHeight: "100vh" }}>
       <Loader />
     </Html>
   );
@@ -43,7 +43,7 @@ function LoadingScreen() {
 function Starter() {
   const [displayToggled, setDisplayToggled] = React.useState(false);
   const [isRotated, setIsRotated] = React.useState(false);
-  
+
   function toggleDisplay() {
     setDisplayToggled(!displayToggled)
   }
@@ -55,7 +55,7 @@ function Starter() {
     rotation: isRotated ? [0, Math.PI * 1.5, 0] : [0, Math.PI / 2, 0],
     config: { mass: 1, tension: 170, friction: 26 }
   });
-  
+
   return (
     <div id="canvas-container" style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <Canvas shadows camera={{ fov: 80 }} style={{ backgroundColor: "transparent" }}>
@@ -71,7 +71,7 @@ function Starter() {
 
           {isMobile ? (
             <animated.group position={[0, -4, -1]} rotation={animatedRotation}>
-               <Product position={[0, 0, 0]} rotation={[0, 0, 0]} displayToggled={displayToggled} />
+              <Product position={[0, 0, 0]} rotation={[0, 0, 0]} displayToggled={displayToggled} />
             </animated.group>
           ) : (
             <Product position={[1.5, -1.8, 1.5]} rotation={[0, Math.PI / 4, -Math.PI / 36]} displayToggled={displayToggled} />
@@ -84,7 +84,7 @@ function Starter() {
               mouseButtons={{ LEFT: THREE.MOUSE.ROTATE, MIDDLE: null, RIGHT: null }}
             />
           )}
-          
+
           {!isMobile && (
             <ContactShadows resolution={512} position={[0, -2, 0]} opacity={1} scale={10} blur={2} far={5} />
           )}
@@ -99,7 +99,7 @@ function Starter() {
           position: 'absolute', bottom: '0', width: '100%',
           display: 'flex', justifyContent: 'center', pointerEvents: 'none'
         }}>
-          <button 
+          <button
             onClick={() => setIsRotated(!isRotated)}
             style={{
               pointerEvents: 'auto',

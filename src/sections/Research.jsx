@@ -1,7 +1,5 @@
 import { Grid, GridItem, Text, Box} from "@chakra-ui/react";
-import useWindowDimensions from '../hooks/useWindowDimensions.jsx'; // reuse your hook
-import { Link } from "react-router";
-import { Card } from "@chakra-ui/react";
+import useWindowDimensions from '../hooks/useWindowDimensions.jsx'
 
 function Research() {
   const { width } = useWindowDimensions();
