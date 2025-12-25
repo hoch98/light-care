@@ -6,7 +6,7 @@ import * as THREE from "three";
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { useProgress, Html, Environment, Text as Text3d, ContactShadows, OrbitControls, Preload } from '@react-three/drei';
+import { useProgress, Html, Environment, Text3D, ContactShadows, OrbitControls, Preload, Text } from '@react-three/drei';
 import { Loader } from "@/components/retroui/Loader";
 import { useSpring, animated } from '@react-spring/three';
 
@@ -62,11 +62,14 @@ function Starter() {
         <Suspense fallback={<LoadingScreen />}>
           <ambientLight intensity={1} />
           <group position={!isMobile ? [0, -0.3, 0] : [2.5, 2, -1]} rotation={!isMobile ? [0, 0, 0] : [0, -Math.PI / 6, 0]}>
-            <Switch position={[-2.25, 2.2, 1]} rotation={[0, Math.PI / 6, 0]} displayToggled={displayToggled} toggleDisplay={toggleDisplay} />
-            <Text3d font={"fonts/Poppins-Black.ttf"} color={"#FFA500"} position={[-2.25, 0.75, 1]} strokeColor={"black"} strokeWidth={0.002} rotation={[0, Math.PI / 6, 0]} lineHeight={1}>
+            <Switch position={[-2.2, 2.4, 1.1]} rotation={[0, Math.PI / 6, 0]} displayToggled={displayToggled} toggleDisplay={toggleDisplay} />
+            <Text font={"fonts/Poppins-Black.ttf"} color={"#FFA500"} position={[-2.25, 1, 1]} strokeColor={"black"} strokeWidth={0.002} rotation={[0, Math.PI / 6, 0]} lineHeight={0.95}>
               LIGHT {"\n"}CARE
-            </Text3d>
-            <Button position={[-2.25, -0.75, 1]} rotation={[0, Math.PI / 6, 0]} />
+            </Text>
+            <Text font={"fonts/Poppins-Black.ttf"} color={"#7FA99B"} strokeWidth={0.004} position={[-2.25, -0.25, 1]} rotation={[0, Math.PI / 6, 0]} lineHeight={1} fontSize={0.25}>
+              A Brighter Wellness
+            </Text>
+            <Button position={[-2.25, -0.95, 1]} rotation={[0, Math.PI / 6, 0]} />
           </group>
 
           {isMobile ? (

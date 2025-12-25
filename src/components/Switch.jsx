@@ -79,7 +79,7 @@ const Switch = React.memo(function Switch(props) {
     <mesh
       rotation={props.rotation}
       position={props.position}
-      scale={0.21}
+      scale={0.2}
     >
       <Body />
       <Knob toggled={toggled} toggleDisplay={toggleDisplay} />

@@ -71,7 +71,7 @@ export default function OurTeamSection() {
                 src={p.imageSrc}
                 alt={p.name}
                 borderRadius="full"
-                boxSize="120px"
+                boxSize="240px"
                 objectFit="cover"
                 mx="auto"
                 mb={4}
