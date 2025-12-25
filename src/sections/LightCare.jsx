@@ -28,11 +28,11 @@ function LightCare() {
             w={isDesktop ? "80%" : "100%"} 
             h="10px" 
           />
-          <Flex justify="center" w="100%" mb={6}>
+          <Flex justify={"center"} w="100%" mb={6}>
             <Image 
               src="media/logo.png" 
               alt="Light Care Logo" 
-              maxH="300px" 
+              maxH="200px" 
             />
           </Flex>
         </GridItem>

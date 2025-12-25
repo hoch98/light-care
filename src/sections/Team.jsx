@@ -18,7 +18,7 @@ export default function OurTeamSection() {
     },
     {
       name: "Ho Yun Chen",
-      imageSrc: "media/about/hoyun.jpg",
+      imageSrc: "media/about/hoyun.png",
       blurb: "Leads the software development, building and maintaining the system's software architecture and implementing the core features of the design.  "
     },
   ];
