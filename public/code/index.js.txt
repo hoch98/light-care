@@ -1,0 +1,199 @@
+import { Heartbeat } from "./heartbeat.js";
+
+const OPENCV_URI = "https://docs.opencv.org/master/opencv.js";
+const HAARCASCADE_URI = "/haarcascade_frontalface_alt.xml";
+
+let cvReady = false;
+
+async function loadOpenCv(uri) {
+    return new Promise((resolve, reject) => {
+        if (cvReady) return resolve();
+
+        const tag = document.createElement("script");
+        tag.src = uri;
+        tag.async = true;
+        tag.onload = () => {
+            cv.onRuntimeInitialized = () => {
+                cvReady = true;
+                console.log("OpenCV ready");
+                resolve();
+            };
+        };
+        tag.onerror = reject;
+        document.head.appendChild(tag);
+    });
+}
+
+let heartbeat;
+const bpmLabel = document.getElementById("bpm");
+
+async function initHeartbeat() {
+    if (heartbeat) return;
+
+    await loadOpenCv(OPENCV_URI);
+
+    heartbeat = new Heartbeat(
+        "video",
+        null,
+        HAARCASCADE_URI,
+        30, 
+        6,  
+        250,
+        bpm => {
+            bpmLabel.textContent = `BPM: ${bpm.toFixed(0)}`;
+        }
+    );
+
+    heartbeat.startStreaming = async function () {
+        this.webcamVideoElement = video;
+        this.streaming = true;
+
+        this.webcamVideoElement.width = video.videoWidth;
+        this.webcamVideoElement.height = video.videoHeight;
+        return Promise.resolve();
+    };
+
+    await heartbeat.init();
+}
+
+
+let useFront = false;
+let currentStream;
+const video = document.getElementById("video");
+
+async function startCamera() {
+    if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+    }
+
+    const constraints = {
+        video: {
+            facingMode: useFront ? "user" : { ideal: "environment" },
+            width: { ideal: 640 },
+            height: { ideal: 480 }
+        },
+        audio: false
+    };
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        currentStream = stream;
+        video.srcObject = stream;
+        await video.play();
+        console.log("Camera started:", useFront ? "front" : "back");
+        await initHeartbeat();
+    } catch (err) {
+        console.error("Camera error:", err);
+        alert("Could not access camera. Check permissions.");
+    }
+
+    findFaces()
+}
+
+flipButton.addEventListener("click", () => {
+    if (heartbeat) {
+        heartbeat.stop();
+        heartbeat = null;
+    }
+    useFront = !useFront;
+    startCamera();
+});
+startCamera()
+
+const inferButton = document.getElementById("inferButton");
+const ignoredLabels = ["Wrinkle"];
+
+async function detect() {
+    const frameBlob = await captureVideoFrame(video);
+
+    const result = await detectWithBackgroundRemoval(frameBlob, ["acne", "dark-circle"]);
+
+    drawImageAndBoxes(result.image, result.boxes);
+}
+
+inferButton.addEventListener("click", detect);
+
+async function captureVideoFrame(videoElement) {
+    const canvas = document.createElement("canvas");
+    canvas.width = videoElement.videoWidth;
+    canvas.height = videoElement.videoHeight;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+    return new Promise(resolve => canvas.toBlob(resolve, "image/jpeg"));
+}
+
+async function detectWithBackgroundRemoval(blob, modelNames) {
+    let allBoxes = [];
+    let processedImageBase64 = null;
+
+    for (const model of modelNames) {
+        const formData = new FormData();
+        formData.append("image_file", blob, "frame.jpg");
+        formData.append("model", model);
+
+        const response = await fetch("/detect", { method: "POST", body: formData });
+        const result = await response.json();
+
+        if (!processedImageBase64) processedImageBase64 = result.image;
+
+        allBoxes = allBoxes.concat(result.boxes);
+    }
+
+    return {
+        image: processedImageBase64,
+        boxes: allBoxes
+    };
+}
+
+async function findFaces() {
+    const frameBlob = await captureVideoFrame(video);
+
+
+    const formData = new FormData();
+    formData.append("image_file", frameBlob, "frame.jpg");
+
+    const response = await fetch("/face", { method: "POST", body: formData });
+    const result = await response.json();
+    if (result.faces != 0) {
+        await detect()
+    }
+    setTimeout(findFaces, 1000);
+}
+
+
+
+function drawImageAndBoxes(base64Image, boxes) {
+    const img = new Image();
+    img.src = "data:image/png;base64," + base64Image;
+    img.onload = () => {
+        const rawCanvas = document.getElementById("raw");
+        rawCanvas.width = img.width;
+        rawCanvas.height = img.height;
+        rawCanvas.getContext("2d").drawImage(img, 0, 0);
+
+        const resultCanvas = document.getElementById("result");
+        resultCanvas.width = img.width;
+        resultCanvas.height = img.height;
+        const ctx = resultCanvas.getContext("2d");
+
+        ctx.drawImage(img, 0, 0);
+        ctx.strokeStyle = "#00FF00";
+        ctx.lineWidth = 3;
+        ctx.font = "18px serif";
+
+        boxes.forEach(([x1, y1, x2, y2, label, confidence]) => {
+            if (!ignoredLabels.includes(label)) {
+                ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+
+                const text = `${label} ${(confidence * 100).toFixed(1)}%`;
+                const textWidth = ctx.measureText(text).width;
+
+                ctx.fillStyle = "#00FF00";
+                ctx.fillRect(x1, y1 - 20, textWidth + 10, 20);
+
+                ctx.fillStyle = "#000000";
+                ctx.fillText(text, x1 + 5, y1 - 5);
+            }
+        });
+    };
+}
