@@ -35,7 +35,7 @@ function Research() {
         <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />
       </Text>
       <br />
-      <Grid templateColumns={isWide ? "repeat(4, 1fr)" : "1fr"} gap={10}>
+      <Grid templateColumns={isWide ? "repeat(4, 1fr)" : "repeat(2, 1fr)"} gap={10}>
         {research.map((r) => (
           <Box key={r.title} bg="white" borderRadius="xl" boxShadow="md" p={8} textAlign="center">
             <Text mt={4} fontWeight="semibold" fontSize="lg" className="link">

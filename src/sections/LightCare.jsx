@@ -28,7 +28,7 @@ function LightCare() {
             w={isDesktop ? "80%" : "100%"} 
             h="10px" 
           />
-          <Flex justify={"center"} w="100%" mb={6}>
+          <Flex justify={isDesktop ? "left" : "center"} ml={isDesktop ? 10 : 0} w="100%" mb={6}>
             <Image 
               src="media/logo.png" 
               alt="Light Care Logo" 
