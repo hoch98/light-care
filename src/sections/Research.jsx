@@ -1,4 +1,4 @@
-import { Grid, GridItem, Text, Box} from "@chakra-ui/react";
+import { Grid, GridItem, Text, Box } from "@chakra-ui/react";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx'
 
 function Research() {
@@ -15,7 +15,7 @@ function Research() {
       "title": "A Comprehensive Review of Heart Rate Measurement using remote photoplethysmography and deep learning",
       "description": `This study indicates that MAE (mean absolute error) of about 3–5 BPM is typical for good rPPG methods under varying conditions, and that deep learning / signal-processing combined approaches (e.g., using color channel blind source separation, PCA/ICA, and robust preprocessing) improve accuracy.`,
       "link": "https://pubmed.ncbi.nlm.nih.gov/40542336/"
-    }, 
+    },
     {
       "title": "Shiseido Measurement System for Subsurface Scattering Light in Facial Skin",
       "description": `This study describes how optical scattering beneath skin surface (subsurface scattering) correlates strongly with skin moisture, melanin, collagen, and texture. These optical properties change with age and hydration.`,
@@ -29,13 +29,13 @@ function Research() {
   ]
 
   return (
-    <div className="content" style={{ marginBottom: "5%"}}>
-      <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "4xl"} style={{textAlign: "center", marginBottom: "2%"}}>
+    <div className="content" style={{ marginBottom: "5%" }}>
+      <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "4xl"} style={{ textAlign: "center", marginBottom: "2%" }}>
         RESEARCH
         <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />
       </Text>
       <br />
-      <Grid templateColumns={isWide ? "repeat(4, 1fr)" : "1fr"} gap={10}>
+      <Grid templateColumns={isWide ? "repeat(4, 1fr)" : "repeat(2, 1fr)"} gap={10}>
         {research.map((r) => (
           <Box key={r.title} bg="white" borderRadius="xl" boxShadow="md" p={8} textAlign="center">
             <Text mt={4} fontWeight="semibold" fontSize="lg" className="link">

@@ -18,7 +18,7 @@ export default function OurTeamSection() {
     },
     {
       name: "Ho Yun Chen",
-      imageSrc: "media/about/hoyun.png",
+      imageSrc: "media/about/hoyun.jpg",
       blurb: "Leads the software development, building and maintaining the system's software architecture and implementing the core features of the design.  "
     },
   ];
@@ -62,11 +62,9 @@ export default function OurTeamSection() {
           </Box>
         </VStack>
 
-        {/* Team profiles */}
         <Grid templateColumns={isWide ? "repeat(3, 1fr)" : "1fr"} gap={10} px={isWide ? 0 : 4} mt={10}>
           {profiles.map((p) => (
             <Box key={p.name} bg="white" borderRadius="xl" boxShadow="md" p={8} textAlign="center">
-              {/* Added Image Component here */}
               <Image
                 src={p.imageSrc}
                 alt={p.name}
@@ -85,7 +83,7 @@ export default function OurTeamSection() {
 
       <Box mb={16} mx={isWide ? 20 : 4}>
         <Text textAlign="center" fontWeight="bold" fontSize="3xl" mb={8}>OUR VALUES</Text>
-        <SimpleGrid columns={isWide ? 4 : 1} gap={6}>
+        <SimpleGrid columns={isWide ? 4 : 2} gap={6}>
           {values.map((v) => (
             <Box key={v.title} bg="whiteAlpha.700" border="1px solid" borderColor="gray.100" p={6} borderRadius="xl" textAlign="center">
               <Text fontWeight="bold" color="#ffbe5cff" mb={2}>{v.title}</Text>

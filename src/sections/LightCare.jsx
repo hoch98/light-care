@@ -20,19 +20,19 @@ function LightCare() {
           <Text fontWeight="bold" fontSize={isDesktop ? "5xl" : "4xl"}>
             WHAT IS <br /> LIGHT CARE?
           </Text>
-          
-          <Box 
-            mt="10px" 
-            mb="20px" 
-            bg="#ffbe5cff" 
-            w={isDesktop ? "80%" : "100%"} 
-            h="10px" 
+
+          <Box
+            mt="10px"
+            mb="20px"
+            bg="#ffbe5cff"
+            w={isDesktop ? "80%" : "100%"}
+            h="10px"
           />
-          <Flex justify={"center"} w="100%" mb={6}>
-            <Image 
-              src="media/logo.png" 
-              alt="Light Care Logo" 
-              maxH="200px" 
+          <Flex justify={isDesktop ? "left" : "center"} ml={isDesktop ? 10 : 0} w="100%" mb={6}>
+            <Image
+              src="media/logo.png"
+              alt="Light Care Logo"
+              maxH="200px"
             />
           </Flex>
         </GridItem>

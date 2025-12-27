@@ -34,7 +34,19 @@ const CodeContent = () => {
 
   return (
     <Stack spaceY={4} w="100%" textAlign="left">
-      <HStack spaceX={2} borderBottom="1px solid" borderColor="gray.100" pb={1}>
+      <HStack
+        spaceX={2}
+        borderBottom="1px solid"
+        borderColor="gray.100"
+        pb={2}
+        overflowX="auto"
+        whiteSpace="nowrap"
+        css={{
+          "&::-webkit-scrollbar": { display: "none" },
+          "scrollbarWidth": "none",
+          "-ms-overflow-style": "none",
+        }}
+      >
         {files.map((file) => (
           <Box
             key={file.name}
@@ -45,6 +57,7 @@ const CodeContent = () => {
             fontSize="sm"
             fontWeight="bold"
             borderRadius="md"
+            flexShrink={0}
             transition="all 0.2s"
             bg={activeFile === file.name ? "#ffbe5cff" : "transparent"}
             color={activeFile === file.name ? "white" : "gray.500"}
@@ -55,20 +68,20 @@ const CodeContent = () => {
         ))}
       </HStack>
 
-      <Box 
-        borderRadius="lg" 
+      <Box
+        borderRadius="lg"
         overflow="auto"
         boxShadow="inner"
-        bg="#1d1f21" 
-        maxH="400px"
+        bg="#1d1f21"
+        maxH="500px"
         minH="300px"
         css={{
           "&::-webkit-scrollbar": { width: "8px", height: "8px" },
           "&::-webkit-scrollbar-track": { background: "#1d1f21" },
-          "&::-webkit-scrollbar-thumb": { 
-            background: "#4A5568", 
+          "&::-webkit-scrollbar-thumb": {
+            background: "#4A5568",
             borderRadius: "10px",
-            border: "2px solid #1d1f21" 
+            border: "2px solid #1d1f21"
           },
           "&::-webkit-scrollbar-thumb:hover": { background: "#ffbe5cff" },
         }}
