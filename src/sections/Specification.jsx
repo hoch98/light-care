@@ -4,40 +4,25 @@ import {
   Text,
   Box,
   SimpleGrid,
-  Image,
-  Heading,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions.jsx";
 import CodeContent from "@/components/specification/CodeContent.jsx";
 import BriefContent from "@/components/specification/BriefContent.jsx";
-import VideoContent from "@/components/specification/VideoContent.jsx";
 
 function Specification() {
   const { width } = useWindowDimensions();
   const isWide = width > 1200;
 
   const items = [
-    { id: "brief", label: "Technology", content: <BriefContent /> },
-    { 
-      id: "sketch", 
-      label: "Sketch", 
-      content: (
-        <Image 
-          src="media/sketch.jpg" 
-          alt="Sketch" 
-          maxH="100%" 
-          maxW="100%" 
-          objectFit="contain" 
-          mx="auto"
-        />
-      ) 
-    },
-    { id: "demonstration", label: "Demonstration", content: <VideoContent/> },
-    { id: "code", label: "Code", content: <CodeContent /> },
+    { id: "brief", label: "How Does It Work?", content: <BriefContent/> },
+    { id: "sketch", label: "Sketch", content: "Sketches" },
+    { id: "models", label: "Models", content: "Trained models" },
+    { id: "code", label: "Code", content: <CodeContent/> },
   ];
 
-  const [selectedContent, setSelectedContent] = useState(items[0]);
+  // Initialize with the first item so the box has content on load
+  const [selectedContent, setSelectedContent] = useState(items[2]);
 
   const containerStyles = {
     bg: "white",
@@ -49,6 +34,7 @@ function Specification() {
 
   return (
     <Box className="content" mb="100px" px={isWide ? 40 : 10}>
+      {/* Header Section */}
       <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
         <Box>
           <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"}>
@@ -61,35 +47,29 @@ function Specification() {
       <Grid 
         templateColumns={isWide ? "1.2fr 0.8fr" : "1fr"} 
         gap={"50px"} 
-        alignItems="center"
+        alignItems="stretch"
       >
+        
         <GridItem>
           <Box 
             {...containerStyles} 
-            h={{ base: "auto", lg: "650px" }}
-            minH={{ base: "400px", lg: "650px" }}
+            h="100%" 
             display="flex" 
             flexDirection="column" 
             justifyContent="center"
-            alignItems="center"
             w={isWide ? "50vw" : "80vw"}
-            overflow={{ base: "visible", lg: "hidden" }} 
-            mb={{ base: 6, lg: 0 }}
           >
-            <Box w="100%" h="100%" display="flex" justifyContent="center" alignItems="center">
-              {typeof selectedContent.content === 'string' ? (
-                <Text color="gray.600" fontSize="md">
-                  {selectedContent.content}
-                </Text>
-              ) : (
-                selectedContent.content
-              )}
-            </Box>
+            <Text color="gray.600" fontSize="md">
+              {selectedContent.content}
+            </Text>
           </Box>
         </GridItem>
 
-        <GridItem display="flex" alignItems="center" justifyContent="center">
-          <SimpleGrid columns={isWide ? 1 : 2} gap={4} w="100%">
+        <GridItem>
+          <SimpleGrid 
+            columns={isWide ? 1 : 2} 
+            gap={4}
+          >
             {items.map((item) => {
               const isActive = selectedContent.id === item.id;
               return (
@@ -112,9 +92,9 @@ function Specification() {
                   }}
                   _active={{ transform: "scale(0.98)" }}
                 >
-                  <Heading fontSize={isWide ? "xl" : "md"} letterSpacing="wider" color="gray.800">
+                  <Text fontSize={isWide ? "xl" : "md"} fontWeight="bold">
                     {item.label}
-                  </Heading>
+                  </Text>
                 </Box>
               );
             })}

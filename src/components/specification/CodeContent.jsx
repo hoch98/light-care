@@ -34,19 +34,7 @@ const CodeContent = () => {
 
   return (
     <Stack spaceY={4} w="100%" textAlign="left">
-      <HStack 
-        spaceX={2} 
-        borderBottom="1px solid" 
-        borderColor="gray.100" 
-        pb={2}
-        overflowX="auto"
-        whiteSpace="nowrap"
-        css={{
-          "&::-webkit-scrollbar": { display: "none" }, 
-          "scrollbarWidth": "none",
-          "-ms-overflow-style": "none",
-        }}
-      >
+      <HStack spaceX={2} borderBottom="1px solid" borderColor="gray.100" pb={1}>
         {files.map((file) => (
           <Box
             key={file.name}
@@ -58,7 +46,6 @@ const CodeContent = () => {
             fontWeight="bold"
             borderRadius="md"
             transition="all 0.2s"
-            flexShrink={0}
             bg={activeFile === file.name ? "#ffbe5cff" : "transparent"}
             color={activeFile === file.name ? "white" : "gray.500"}
             _hover={{ bg: activeFile === file.name ? "#ffbe5cff" : "gray.100" }}
@@ -73,7 +60,7 @@ const CodeContent = () => {
         overflow="auto"
         boxShadow="inner"
         bg="#1d1f21" 
-        maxH="500px"
+        maxH="400px"
         minH="300px"
         css={{
           "&::-webkit-scrollbar": { width: "8px", height: "8px" },
