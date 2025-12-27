@@ -4,21 +4,21 @@ import {
   Text,
   Box,
   SimpleGrid,
-  Heading
 } from "@chakra-ui/react";
 import { useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions.jsx";
 import CodeContent from "@/components/specification/CodeContent.jsx";
+import BriefContent from "@/components/specification/BriefContent.jsx";
 
 function Specification() {
   const { width } = useWindowDimensions();
   const isWide = width > 1200;
 
   const items = [
-    { id: "brief", label: "Brief", content: "Design Brief" },
+    { id: "brief", label: "How Does It Work?", content: <BriefContent/> },
     { id: "sketch", label: "Sketch", content: "Sketches" },
-    { id: "code", label: "Code", content: <CodeContent/> },
     { id: "models", label: "Models", content: "Trained models" },
+    { id: "code", label: "Code", content: <CodeContent/> },
   ];
 
   // Initialize with the first item so the box has content on load
@@ -33,7 +33,7 @@ function Specification() {
   };
 
   return (
-    <Box className="content" mb="20px" px={isWide ? 40 : 10}>
+    <Box className="content" mb="100px" px={isWide ? 40 : 10}>
       {/* Header Section */}
       <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
         <Box>

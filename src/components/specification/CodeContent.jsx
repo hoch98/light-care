@@ -10,6 +10,7 @@ const CodeContent = () => {
 
   const files = [
     { name: "index.js", path: "code/index.js.txt", language: "javascript" },
+    { name: "heartbeat.js", path: "code/heartbeat.js.txt", language: "javascript" },
     { name: "server.js", path: "code/server.js.txt", language: "javascript" },
     { name: "background.py", path: "code/background.py.txt", language: "python" },
   ];
@@ -33,7 +34,7 @@ const CodeContent = () => {
 
   return (
     <Stack spaceY={4} w="100%" textAlign="left">
-      <HStack spaceX={2} borderBottom="1px solid" borderColor="gray.100" pb={2}>
+      <HStack spaceX={2} borderBottom="1px solid" borderColor="gray.100" pb={1}>
         {files.map((file) => (
           <Box
             key={file.name}
