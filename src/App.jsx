@@ -15,9 +15,9 @@ function App() {
         <div id='body' style={{ cursor: "default" }}>
           <Starter/>
           <LightCare />
+          <Specification />
           <Team />
           <Research />
-          <Specification />
         </div>
       </LightMode>
     </Provider>
