@@ -6,6 +6,7 @@ import Starter from './sections/Starter';
 import Research from './sections/Research';
 import Team from './sections/Team';
 import Specification from './sections/Specification';
+import LookingAhead from './sections/LookingAhead';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Specification />
           <Team />
           <Research />
+          <LookingAhead />
         </div>
       </LightMode>
     </Provider>
