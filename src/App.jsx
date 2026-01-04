@@ -1,12 +1,25 @@
 import './App.css';
+import React, { Suspense, lazy } from 'react';
 import { Provider } from './components/ui/provider';
 import { LightMode } from './components/ui/color-mode';
 import LightCare from './sections/LightCare';
-import Starter from './sections/Starter';
-import Research from './sections/Research';
-import Team from './sections/Team';
-import Specification from './sections/Specification';
+const Starter = lazy(() => import('./sections/Starter'));
 import LookingAhead from './sections/LookingAhead';
+import TopBar from './sections/Topbar';
+import { Box } from '@chakra-ui/react';
+import Footer from './sections/Footer';
+
+const SectionSeparator = () => (
+  <Box 
+    w="100%" 
+    h="100px"
+    bg="white" 
+    opacity="1"  
+    position="relative" 
+    zIndex="10"  
+    shadow="sm" 
+  />
+);
 
 function App() {
 
@@ -14,13 +27,17 @@ function App() {
     <Provider>
       <LightMode>
         <div id='body' style={{ cursor: "default" }}>
-          <Starter/>
+          <TopBar />
+          <Suspense fallback={<div style={{ height: '100vh', background: 'white' }} />}>
+            <Starter />
+          </Suspense>
+          <SectionSeparator />
           <LightCare />
-          <Specification />
-          <Team />
-          <Research />
           <LookingAhead />
         </div>
+        <footer>
+          <Footer />
+        </footer>
       </LightMode>
     </Provider>
   )

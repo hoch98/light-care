@@ -1,5 +1,8 @@
-import { Grid, GridItem, Text, Box } from "@chakra-ui/react";
-import useWindowDimensions from '../hooks/useWindowDimensions.jsx'
+import { Grid, Text, Box, Link, VStack } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+
+const MotionBox = motion(Box);
 
 function Research() {
   const { width } = useWindowDimensions();
@@ -8,45 +11,87 @@ function Research() {
   const research = [
     {
       "title": "Quantitative Skin Surface Hydration Measurement by Visible Optical Image Processing",
-      "description": `This study shows that skin surface hydration can be estimated from visible-light images by computing reflectance indices (for example, their "GVR" index), which correlate well with established electrical measurement devices.`,
+      "description": `This study shows that skin surface hydration can be estimated from visible-light images by computing reflectance indices, which correlate well with established electrical measurement devices.`,
       "link": "https://keio.elsevierpure.com/en/publications/quantitative-skin-surface-hydration-measurement-by-visible-optica/"
     },
     {
       "title": "A Comprehensive Review of Heart Rate Measurement using remote photoplethysmography and deep learning",
-      "description": `This study indicates that MAE (mean absolute error) of about 3–5 BPM is typical for good rPPG methods under varying conditions, and that deep learning / signal-processing combined approaches (e.g., using color channel blind source separation, PCA/ICA, and robust preprocessing) improve accuracy.`,
+      "description": `This study indicates that MAE of about 3–5 BPM is typical for good rPPG methods under varying conditions, and that combined deep learning approaches improve accuracy.`,
       "link": "https://pubmed.ncbi.nlm.nih.gov/40542336/"
     },
     {
       "title": "Shiseido Measurement System for Subsurface Scattering Light in Facial Skin",
-      "description": `This study describes how optical scattering beneath skin surface (subsurface scattering) correlates strongly with skin moisture, melanin, collagen, and texture. These optical properties change with age and hydration.`,
+      "description": `This study describes how optical scattering beneath skin surface correlates strongly with skin moisture, melanin, collagen, and texture.`,
       "link": "https://www.specialchem.com/cosmetics/news/shiseido-develops-measurement-system-000229681"
     },
     {
       "title": "Evaluation of Remote Photoplethysmography (rPPG) Measurement Conditions toward Telemedicine Applications (Sensors, 2021)",
-      "description": `This study showed that for accurate HRV and heart rate estimation, lighting of 500-700 lux from the front, and camera frame rates above 30 fps, are very important. Body/head motion must be minimized.`,
+      "description": `This study showed that for accurate HRV and heart rate estimation, lighting of 500-700 lux and camera frame rates above 30 fps are very important.`,
       "link": "https://www.mdpi.com/1424-8220/21/24/8357"
     }
-  ]
+  ];
 
   return (
-    <div className="content" style={{ marginBottom: "5%" }}>
-      <Text fontWeight="bold" fontSize={width > 1200 ? "5xl" : "4xl"} style={{ textAlign: "center", marginBottom: "2%" }}>
-        RESEARCH
-        <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px" }} />
-      </Text>
-      <br />
-      <Grid templateColumns={isWide ? "repeat(4, 1fr)" : "1fr"} gap={10}>
-        {research.map((r) => (
-          <Box key={r.title} bg="white" borderRadius="xl" boxShadow="md" p={8} textAlign="center">
-            <Text mt={4} fontWeight="semibold" fontSize="lg" className="link">
-              <a href={r.link}>{r.title}</a>
-            </Text>
-            <br />
-            <Text mt={3} fontSize="sm" color="gray.600" lineHeight="taller">{r.description}</Text>
-          </Box>
+    <Box 
+      mx="auto" 
+      w={isWide ? "80vw" : "95vw"} 
+      pb="100px" 
+      position="relative"
+    >
+      <Box textAlign="center" mb={10} display="flex" flexDirection="column" alignItems="center">
+        <Box>
+          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"} color="gray.800">
+            RESEARCH
+          </Text>
+          <Box mt="10px" bg="#ffbe5cff" w="100%" h="6px" borderRadius="full" />
+        </Box>
+      </Box>
+
+      <Grid templateColumns={isWide ? "repeat(2, 1fr)" : "1fr"} gap={10}>
+        {research.map((r, index) => (
+          <MotionBox 
+            key={r.title} 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: index * 0.15 }}
+            bg="rgba(255, 255, 255, 0.6)" 
+            backdropFilter="blur(10px)"
+            borderRadius="2xl" 
+            border="1px solid rgba(255, 255, 255, 0.3)"
+            boxShadow="xl" 
+            p={8} 
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            _hover={{ transform: "translateY(-8px)", bg: "rgba(255, 255, 255, 0.75)", boxShadow: "2xl" }}
+          >
+            <Box>
+              <Text fontWeight="bold" fontSize="lg" color="gray.800" mb={4}>
+                {r.title}
+              </Text>
+              <Text fontSize="sm" color="gray.600" lineHeight="relaxed">
+                {r.description}
+              </Text>
+            </Box>
+            
+            <Box textAlign="right" mt={6}>
+              <Link 
+                href={r.link} 
+                isExternal 
+                fontSize="xs" 
+                fontWeight="900" 
+                color="#ffbe5cff" 
+                letterSpacing="widest"
+                _hover={{ color: "orange.500", textDecoration: "none" }}
+              >
+                READ FULL STUDY →
+              </Link>
+            </Box>
+          </MotionBox>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 }
 

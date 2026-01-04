@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* 1. Global Reset & Base Gradient */
 #root,
 #body,
 body,
@@ -8,26 +9,52 @@ html {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  width: 100%;
   overflow-x: hidden;
-  background: linear-gradient(to top, rgb(227, 238, 255) 0%, rgb(255, 236, 236) 90%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* Soft futuristic gradient base */
+  background: linear-gradient(to top, rgb(237, 237, 237) 0%, rgb(237, 252, 255) 90%);
+  background-attachment: fixed;
+  color: #000;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
+/* 2. Futuristic Circuit Pattern */
+/* We use body::before to keep the image separate from content interactions */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Ensure the path to your image_031346.png is correct relative to this CSS file */
+  background-image: url('/media/bg.jpg'); 
+  background-size: 500px; /* Adjust size for pattern density */
+  background-repeat: repeat;
+  
+  /* SUBTLETY SETTINGS */
+  opacity: 0.08; /* Very low opacity for a watermark effect */
+  filter: saturate(0); /* Grey-scale to keep it neutral */
+  mix-blend-mode: multiply; /* Blends pattern into the gradient */
+  
+  pointer-events: none; /* Crucial: allows clicks to pass through to the 3D canvas */
+  z-index: 0; /* Behind everything */
+}
+
+/* 3. Layout Containers */
 #canvas-container {
   width: 100%;
   height: 100vh;
   position: relative;
+  z-index: 10; /* Above the background pattern */
 }
 
-
+/* 4. Responsive Canvas Height */
 @media (max-width: 1200px) {
   #canvas-container {
-    height: 150vh;
+    height: 120vh; /* Slightly taller for mobile/tablet layouts */
   }
 }
-
-
 
 #canvas-container canvas {
   display: block;
@@ -36,28 +63,23 @@ html {
   touch-action: pan-y;
 }
 
+/* 5. UI Content Styling */
 .content {
-  padding: 5%;
-  padding-bottom: 0;
-  padding-top: 2%;
+  position: relative;
+  z-index: 20; /* Ensures UI is on the top layer */
+  padding: 2% 5% 0 5%;
   background-color: transparent;
-  color: #272727ff;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.card {
-  min-height: 60vh;
-  background-color: #fffde2;
-  display: flex;
-  flex-direction: column;
-}
 
 .link:hover {
   text-decoration: underline;
 }
 
+/* 6. Tailwind Theme Variables */
 @theme {
   --font-head: 'Archivo Black', sans-serif;
   --font-sans: 'Space Grotesk', sans-serif;
@@ -110,7 +132,6 @@ html {
 }
 
 .dark {
-  --radius: 0;
   --background: #1a1a1a;
   --foreground: #f5f5f5;
   --card: #242424;

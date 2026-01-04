@@ -1,5 +1,8 @@
 import { Grid, GridItem, Text, Box, SimpleGrid, Icon, VStack } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+
+const MotionBox = motion(Box);
 
 function LookingAhead() {
   const { width } = useWindowDimensions();
@@ -25,23 +28,41 @@ function LookingAhead() {
   ];
 
   return (
-    <Box className="content" mb="100px" px={isWide ? 20 : 6}>
+    <Box className="content" pb="100px" px={isWide ? 20 : 6} position="relative" display="flex" flexDirection="column" alignItems="center">
+      {/* Background Overlay */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+        backdropFilter: 'blur(2px)',
+        pointerEvents: 'none',
+        zIndex: -1,
+      }} />
+
+      {/* Header */}
       <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
-        <Box>
-          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"}>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"} color="gray.800">
             LOOKING AHEAD
           </Text>
-          <Box mt="10px" mb="20px" bg="#ffbe5cff" w="100%" h="10px" />
-        </Box>
+          <Box mt="10px" mb="20px" bg="#ffbe5cff" w="100%" h="6px" borderRadius="full" />
+        </motion.div>
       </Box>
 
+      {/* Intro Box */}
       <Box 
-        bg="white" 
+        bg="rgba(255, 255, 255, 0.6)" 
         borderRadius="2xl" 
-        boxShadow="md" 
+        border="1px solid rgba(255, 255, 255, 0.4)" 
+        boxShadow="xl" 
         p={6} 
         mb={12} 
-        w={isWide? "70vw" : "90vw"}
+        w={isWide ? "60vw" : "90vw"}
         textAlign="center"
       >
         <Text fontSize={"lg"} fontWeight="medium" color="gray.700" lineHeight="tall">
@@ -50,35 +71,60 @@ function LookingAhead() {
         </Text>
       </Box>
 
-      <SimpleGrid columns={isWide ? 4 : 1} gap={8} mb={16}>
+      {/* Milestones Grid */}
+      <SimpleGrid 
+        columns={isWide ? 4 : 1} 
+        gap={6} 
+        mb={16} 
+        maxW="80%" 
+        w="100%"
+      >
         {milestones.map((item, index) => (
-          <Box 
+          <MotionBox 
             key={index} 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -3 }} // Subtle lift
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.4, 
+              delay: index * 0.1,
+              y: { duration: 0.2, ease: "easeOut" } 
+            }}
             p={6} 
-            bg="whiteAlpha.700" 
+            bg="rgba(255, 255, 255, 0.5)" 
+            backdropFilter="blur(5px)"
             borderRadius="xl" 
             borderTop="4px solid #ffbe5cff" 
-            boxShadow="sm"
+            borderLeft="1px solid rgba(255, 255, 255, 0.3)"
+            boxShadow="lg"
+            _hover={{ 
+              boxShadow: "xl", 
+              bg: "white" 
+            }}
           >
-            <Text fontWeight="bold" fontSize="lg" mb={3} color="gray.800">
+            <Text fontWeight="bold" fontSize="md" mb={2} color="gray.800">
               {item.title}
             </Text>
-            <Text fontSize="sm" color="gray.600" lineHeight="relaxed">
+            <Text fontSize="xs" color="gray.600" lineHeight="relaxed">
               {item.desc}
             </Text>
-          </Box>
+          </MotionBox>
         ))}
       </SimpleGrid>
 
+      {/* Footer Statement */}
       <Box 
         border="2px dashed" 
-        borderColor="#ffbe5cff" 
+        borderColor="#ffbe5c88" 
+        bg="rgba(255, 255, 255, 0.2)"
         borderRadius="2xl" 
         p={isWide ? 10 : 6} 
         textAlign="center"
+        w={isWide ? "60vw" : "90vw"}
       >
         <VStack spacing={4}>
-          <Text fontSize={isWide ? "xl" : "md"} maxW="900px" color="gray.600">
+          <Text fontSize={isWide ? "xl" : "md"} maxW="900px" color="gray.600" fontWeight="medium">
             Our goal is not to replace medical tools, but to empower people with better daily awareness, 
             starting with the mirror they already use.
           </Text>
