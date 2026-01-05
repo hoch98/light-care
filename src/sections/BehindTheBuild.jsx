@@ -53,7 +53,7 @@ function BehindTheBuild() {
     <Box className="content" mt="120px" px={5} display="flex" flexDirection="column" alignItems="center" w="100%" mb="50px">
       <VStack spacing={0} mb={12}>
         <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} letterSpacing="-2px">
-          BEHIND THE BUILD
+          FROM IDEA TO IMPLEMENTATION
         </Text>
         <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
       </VStack>

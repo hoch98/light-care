@@ -2,23 +2,26 @@ import {
   Text,
   Box,
   SimpleGrid,
-  Image,
   Heading,
   VStack,
   Flex
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Canvas } from "@react-three/fiber";
+import { Environment, ContactShadows, Preload, OrbitControls } from "@react-three/drei";
+
 import useWindowDimensions from "../hooks/useWindowDimensions.jsx";
-import CodeContent from "@/components/specification/CodeContent.jsx";
 import BriefContent from "@/components/specification/BriefContent.jsx";
 import VideoContent from "@/components/specification/VideoContent.jsx";
+import Product from "@/components/Product.jsx";
 
 const MotionBox = motion(Box);
 
 function Specification() {
   const { width } = useWindowDimensions();
-  const isWide = width > 1200;
+  // Adjusted content width to be wider since we are going side-by-side
+  const sectionWidth = { base: "95%", md: "90%", xl: "85%" };
 
   const items = [
     { id: "brief", label: "Technology", content: <BriefContent /> },
@@ -26,7 +29,6 @@ function Specification() {
   ];
 
   const [selectedContent, setSelectedContent] = useState(items[0]);
-  const contentWidth = { base: "95%", md: "85%", lg: "70%", xl: "60%" };
 
   const containerStyles = {
     bg: "white",
@@ -34,97 +36,143 @@ function Specification() {
     boxShadow: "xl",
     textAlign: "center",
     border: "1px solid",
-    borderColor: "gray.100"
+    borderColor: "gray.100",
   };
 
   return (
-    <Box 
-      className="content" 
-      mt="100px"
-      px={5} 
-      display="flex" 
-      flexDirection="column" 
+    <Box
+      className="content"
+      mt="50px"
+      px={5}
+      display="flex"
+      flexDirection="column"
       alignItems="center"
       w="100%"
     >
+      {/* HEADER SECTION */}
       <VStack spacing={0} mb={12}>
         <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} letterSpacing="-2px">
-          TECHNOLOGIES
+          TECHNOLOGY
         </Text>
         <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
       </VStack>
 
-      {/* Main Content Area */}
-      <Box
-        {...containerStyles}
-        h={{ base: "auto", lg: "650px" }}
-        minH={{ base: "400px", lg: "650px" }}
-        w={contentWidth}
-        mb={6}
-        position="relative"
-        overflow="hidden"
+      {/* MAIN INLINE WRAPPER */}
+      <SimpleGrid 
+        columns={{ base: 1, lg: 2 }} 
+        spacing={10} 
+        w={sectionWidth} 
+        alignItems="start"
       >
-        <AnimatePresence mode="wait">
-          <MotionBox
-            key={selectedContent.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+        
+        {/* LEFT COLUMN: Content + Tabs */}
+        <VStack spacing={6} w="100%">
+          <Box
+            {...containerStyles}
+            h={{ base: "auto", lg: "550px" }}
+            minH={{ base: "400px", lg: "550px" }}
             w="100%"
-            h="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            p={{ base: 6, md: 10 }}
+            position="relative"
+            overflow="hidden"
           >
-            {selectedContent.content}
-          </MotionBox>
-        </AnimatePresence>
-      </Box>
-
-      {/* Navigation Tabs - Centered using Flex */}
-      <Flex 
-        gap={4} 
-        w={contentWidth} 
-        justify="center" 
-        wrap="wrap"
-      >
-        {items.map((item) => {
-          const isActive = selectedContent.id === item.id;
-          return (
-            <Box
-              key={item.id}
-              as="button"
-              onClick={() => setSelectedContent(item)}
-              {...containerStyles}
-              p={{ base: 4, lg: 6 }}
-              // Controls the button size so they stay centered and neat
-              w={{ base: "47%", md: "220px" }} 
-              transition="all 0.3s cubic-bezier(.4,0,.2,1)"
-              cursor="pointer"
-              border="2px solid"
-              borderColor={isActive ? "#ffbe5cff" : "transparent"}
-              bg={isActive ? "orange.50" : "white"}
-              _hover={{
-                boxShadow: "2xl",
-                transform: "translateY(-4px)",
-                bg: isActive ? "orange.50" : "gray.50"
-              }}
-              _active={{ transform: "scale(0.97)" }}
-            >
-              <Heading 
-                fontSize={{ base: "xs", md: "sm", lg: "md" }} 
-                letterSpacing="widest" 
-                textTransform="uppercase"
-                color={isActive ? "gray.800" : "gray.500"}
+            <AnimatePresence mode="wait">
+              <MotionBox
+                key={selectedContent.id}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.3 }}
+                w="100%"
+                h="100%"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                p={{ base: 6, md: 10 }}
               >
-                {item.label}
-              </Heading>
-            </Box>
-          );
-        })}
-      </Flex>
+                {selectedContent.content}
+              </MotionBox>
+            </AnimatePresence>
+          </Box>
+
+          {/* Navigation Tabs */}
+          <Flex gap={4} w="100%" justify="center" wrap="wrap">
+            {items.map((item) => {
+              const isActive = selectedContent.id === item.id;
+              return (
+                <Box
+                  key={item.id}
+                  as="button"
+                  onClick={() => setSelectedContent(item)}
+                  {...containerStyles}
+                  p={{ base: 4, lg: 6 }}
+                  w={{ base: "47%", md: "200px" }}
+                  transition="all 0.3s cubic-bezier(.4,0,.2,1)"
+                  cursor="pointer"
+                  border="2px solid"
+                  borderColor={isActive ? "#ffbe5cff" : "transparent"}
+                  bg={isActive ? "orange.50" : "white"}
+                  _hover={{
+                    boxShadow: "2xl",
+                    transform: "translateY(-4px)",
+                  }}
+                >
+                  <Heading
+                    fontSize={{ base: "xs", md: "sm" }}
+                    letterSpacing="widest"
+                    textTransform="uppercase"
+                    color={isActive ? "gray.800" : "gray.500"}
+                  >
+                    {item.label}
+                  </Heading>
+                </Box>
+              );
+            })}
+          </Flex>
+        </VStack>
+
+        {/* RIGHT COLUMN: 3D Canvas */}
+        <Box
+          w="100%"
+          h={{ base: "400px", md: "500px", lg: "650px" }} // Increased height to match container
+          borderRadius="2xl"
+          bg="rgba(255,255,255,0.6)"
+          backdropFilter="blur(10px)"
+          boxShadow="xl"
+          border="1px solid"
+          borderColor="gray.100"
+        >
+          <Canvas camera={{ fov: 45, position: [0, 2, 6] }}>
+            <Suspense fallback={null}>
+              <ambientLight intensity={0.7} />
+              <directionalLight position={[5, 5, 5]} intensity={1.2} />
+
+              <Product
+                position={[0, -1.2, 0]}
+                rotation={[0, Math.PI / 4, 0]}
+                displayToggled={false}
+              />
+
+              <OrbitControls
+                enablePan={false}
+                enableZoom={false}
+                enableDamping
+                dampingFactor={0.08}
+                target={[0, 0.6, 0]}
+              />
+
+              <ContactShadows
+                position={[0, -2.2, 0]}
+                opacity={0.35}
+                blur={2.5}
+                scale={8}
+              />
+
+              <Environment preset="city" />
+              <Preload all />
+            </Suspense>
+          </Canvas>
+        </Box>
+      </SimpleGrid>
     </Box>
   );
 }

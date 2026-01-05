@@ -17,10 +17,9 @@ const TopBar = () => {
 
   const tabs = {
     "Home": "/",
-    "Technologies": "/technologies",
-    "Behind The Build": "/build",
+    "Technology": "/technologies",
+    "Design & Development": "/build",
     "Our Team": "/team",
-    "Contact Us": "/contact"
   };
 
   return (
@@ -132,6 +131,17 @@ const TopBar = () => {
                 {label}
               </Button>
             ))}
+            <Button 
+              as={RouterLink}
+              to={"/contact"}
+              key={"Contact Us"} 
+              variant="ghost" 
+              justifyContent="start" 
+              w="100%"
+              onClick={onToggle} // Close menu on click
+            >
+              Cpntact Us
+            </Button>
           </Stack>
         </Box>
       )}

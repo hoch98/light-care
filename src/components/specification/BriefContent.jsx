@@ -1,54 +1,110 @@
-import { 
-  Box, 
-  Text, 
-  Stack, 
-  Heading, 
-  Separator,
+import {
+  Box,
+  Text,
+  Stack,
+  Heading,
   HStack,
-  Circle
+  Icon,
+  VStack,
 } from "@chakra-ui/react";
+// Importing relevant icons
+import { MdFace, MdVisibility, MdFavorite } from "react-icons/md";
 
 const BriefContent = () => {
+  // Custom Bullet Point Component
+  const BulletPoint = () => (
+    <Box
+      minW="8px"
+      h="8px"
+      bg="#ffbe5cff"
+      borderRadius="full"
+      mt="10px"
+    />
+  );
+
   return (
-    <Stack spaceY={10} textAlign="left" w="100%" py={2}>
-      
-      <Box position="relative" pl={6}>
-        <Box position="absolute" left={0} top={0} bottom={0} w="2px" bg="#ffbe5cff" />
-        <Heading size="md" mb={3} letterSpacing="wider" color="gray.800">
-          1. FACIAL IMAGE PROCESSING
-        </Heading>
-        <Text fontSize="lg" color="gray.600" lineHeight="relaxed">
-          The system captures images via a built-in webcam and performs preprocessing to isolate the face. 
-          A segmentation model removes the background and non-relevant regions, ensuring that background 
-          objects do not interfere with the analysis.
-        </Text>
-      </Box>
+    <HStack
+      align="start"
+      spacing={16}
+      w="100%"
+      flexDir={{ base: "column", lg: "row" }}
+    >
+      <Stack spacing={10} textAlign="left" w="100%" py={2}>
+        
+        {/* SECTION 1 */}
+        <Box>
+          <HStack spacing={3} mb={4}>
+            <Icon as={MdFace} boxSize={6} color="#ffbe5cff" />
+            <Heading size="md" letterSpacing="wider" color="gray.800" textTransform="uppercase">
+              Facial Image Processing
+            </Heading>
+          </HStack>
+          <VStack align="start" spacing={3} pl={9}> {/* Increased padding to align with text under icon */}
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                The camera captures a live facial image and automatically isolates the face.
+              </Text>
+            </HStack>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                AI segmentation removes the background to ensure consistent and accurate analysis.
+              </Text>
+            </HStack>
+          </VStack>
+        </Box>
+        <br />
+        {/* SECTION 2 */}
+        <Box>
+          <HStack spacing={3} mb={4}>
+            <Icon as={MdVisibility} boxSize={6} color="#ffbe5cff" />
+            <Heading size="md" letterSpacing="wider" color="gray.800" textTransform="uppercase">
+              Symptom Detection
+            </Heading>
+          </HStack>
+          <VStack align="start" spacing={3} pl={9}>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                Trained AI models analyze facial skin and eye regions.
+              </Text>
+            </HStack>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                Identifies visible indicators such as acne, dark circles, and eye redness to inform wellness feedback.
+              </Text>
+            </HStack>
+          </VStack>
+        </Box>
+        <br />
+        {/* SECTION 3 */}
+        <Box>
+          <HStack spacing={3} mb={4}>
+            <Icon as={MdFavorite} boxSize={6} color="#ffbe5cff" />
+            <Heading size="md" letterSpacing="wider" color="gray.800" textTransform="uppercase">
+              Heart Rate Estimation
+            </Heading>
+          </HStack>
+          <VStack align="start" spacing={3} pl={9}>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                Uses remote photoplethysmography (rPPG) to detect subtle blood-flow-related color changes in the skin.
+              </Text>
+            </HStack>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                Estimates heart rate trends through continuous, contactless monitoring.
+              </Text>
+            </HStack>
+          </VStack>
+        </Box>
 
-      <Box position="relative" pl={6}>
-        <Box position="absolute" left={0} top={0} bottom={0} w="2px" bg="#ffbe5cff" opacity={0.6} />
-        <Heading size="md" mb={3} letterSpacing="wider" color="gray.800">
-          2. SYMPTOM DETECTION
-        </Heading>
-        <Text fontSize="lg" color="gray.600" lineHeight="relaxed">
-          The processed image passes through custom-tuned object detection models trained on public datasets. 
-          These models specifically identify visual skin and eye-related symptoms, such as <strong>acne, 
-          dark circles, and eye redness</strong>, providing feedback on skin condition.
-        </Text>
-      </Box>
-
-      <Box position="relative" pl={6}>
-        <Box position="absolute" left={0} top={0} bottom={0} w="2px" bg="#ffbe5cff" opacity={0.3} />
-        <Heading size="md" mb={3} letterSpacing="wider" color="gray.800">
-          3. MEASURING HEART RATE
-        </Heading>
-        <Text fontSize="lg" color="gray.600" lineHeight="relaxed">
-          Using remote photoplethysmography (rPPG), the system analyzes subtle color changes in the skin 
-          caused by blood flow. By tracking these fluctuations in colour over time, the system estimates the 
-          user's heart rate remotely.
-        </Text>
-      </Box>
-
-    </Stack>
+      </Stack>
+    </HStack>
   );
 };
 

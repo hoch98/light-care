@@ -1,6 +1,7 @@
 import { Text, Box, VStack, SimpleGrid, Icon, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaSearchLocation } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 
 const MotionBox = motion(Box);
@@ -16,14 +17,19 @@ export default function ContactSection() {
       icon: FaEnvelope,
     },
     {
+      label: "Location",
+      value: "Singapore",
+      icon: MdLocationOn,
+    },
+    {
       label: "Call Us",
       value: "+65 83994178",
       icon: FaPhone,
-    }
+    },
   ];
 
   return (
-    <Box className="content" pb="150px" pt="80px">
+    <Box className="content" pb="150px" pt="80px" minH={"70vh"}>
       {/* Header */}
       <VStack spacing={4} mb={20} textAlign="center">
         <motion.div
@@ -45,7 +51,7 @@ export default function ContactSection() {
       {/* Centered Container for the Grid */}
       <Box maxW="1200px" mx="auto" px={isWide ? 20 : 6}>
         <SimpleGrid 
-          columns={isWide ? 2 : 1} 
+          columns={isWide ? 3 : 1} 
           // We use a large gap here, and ensuring the columns take up equal space
           gap={isWide ? "100px" : "40px"} 
         >
@@ -85,7 +91,7 @@ export default function ContactSection() {
                 <Text fontWeight="black" fontSize="xs" color="#ffbe5cff" textTransform="uppercase" letterSpacing="widest">
                   {method.label}
                 </Text>
-                <Text fontWeight="bold" fontSize={isWide ? "2xl" : "xl"} color="gray.800">
+                <Text fontWeight="bold" fontSize={isWide ? "1xl" : "xl"} color="gray.800">
                   {method.value}
                 </Text>
               </VStack>

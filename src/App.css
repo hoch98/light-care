@@ -27,13 +27,12 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Ensure the path to your image_031346.png is correct relative to this CSS file */
-  background-image: url('/media/bg.jpg'); 
-  background-size: 500px; /* Adjust size for pattern density */
+  background-image: url('/media/other.png'); 
+  background-size: 600px;
   background-repeat: repeat;
   
   /* SUBTLETY SETTINGS */
-  opacity: 0.08; /* Very low opacity for a watermark effect */
+  opacity: 0.3; /* Very low opacity for a watermark effect */
   filter: saturate(0); /* Grey-scale to keep it neutral */
   mix-blend-mode: multiply; /* Blends pattern into the gradient */
   

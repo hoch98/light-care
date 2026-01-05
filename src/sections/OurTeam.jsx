@@ -69,14 +69,14 @@ export default function OurTeamSection() {
             transition={{ duration: 1 }}
           >
             <Box textAlign="center" mb={4}>
-              <Text fontSize="lg" color="gray.700">
-                <span style={{ fontWeight: "bold", color: "#2D3748" }}>Our Mission</span> is to make everyday wellness awareness simple, accessible, and effortless.
+              <Text fontSize="25px" color="gray.700">
+                <span style={{ fontWeight: "bold", color: "#416D9F" }}>Our Mission</span> is to make everyday wellness awareness simple, accessible, and effortless.
               </Text>
             </Box>
 
             <Box textAlign="center">
-              <Text fontSize="lg" color="gray.700">
-                <span style={{ fontWeight: "bold", color: "#2D3748" }}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.
+              <Text fontSize="25px" color="gray.700">
+                <span style={{ fontWeight: "bold", color: "#ffb700ff" }}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.
               </Text>
             </Box>
           </motion.div>

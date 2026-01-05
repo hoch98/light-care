@@ -48,6 +48,7 @@ const Technologies = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
+            <TitleCard color={"#336298ff"} textColor={"white"} text={"Behind the"} lastword={"Mirror"} lastwordColour={"#FFBE5C"} slogan={"The technology that quietly turns everyday moments into wellness insights."}/>
             <Specification />
 
             <Container maxW="container.xl" py={20}>

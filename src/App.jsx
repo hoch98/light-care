@@ -7,6 +7,7 @@ const Starter = lazy(() => import('./sections/Starter'));
 import LookingAhead from './sections/LookingAhead';
 import TopBar from './sections/Topbar';
 import { Box } from '@chakra-ui/react';
+import TimelineSection from './sections/Timeline';
 import Footer from './sections/Footer';
 
 const SectionSeparator = () => (
@@ -33,6 +34,7 @@ function App() {
           </Suspense>
           <SectionSeparator />
           <LightCare />
+          <TimelineSection />
           <LookingAhead />
         </div>
         <footer>
