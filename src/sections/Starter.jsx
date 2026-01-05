@@ -127,7 +127,7 @@ function Starter() {
               <Product position={[0, 0, 0]} rotation={[0, 0, 0]} displayToggled={displayToggled} />
             </animated.group>
           ) : (
-            <Product position={[1.5, -1.8, 1.5]} rotation={[0, Math.PI / 4, -Math.PI / 36]} displayToggled={displayToggled} />
+            <Product position={[1.5, -1.8, 1.5]} rotation={[0, Math.PI / 4, -Math.PI / 36]} displayToggled={displayToggled} hoverEnabled={true} />
           )}
 
           {!isMobile && (

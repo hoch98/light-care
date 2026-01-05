@@ -299,7 +299,7 @@ const Product = React.memo(function Product(props) {
 
   return (
     <group ref={ref} position={props.position} scale={2}>
-      {hovered && (
+      {(hovered && props.hoverenabled) && (
         <Html
           distanceFactor={10}
           position={[0.5, 1.2, 0]}

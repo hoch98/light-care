@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 
 // Use lazy loading for the main pages
 const App = lazy(() => import('./App.jsx'));
-const Technologies = lazy(() => import('./pages/TechnologiesPage.jsx'));
+const Technologies = lazy(() => import('./pages/TechnologyPage.jsx'));
 const Team = lazy(() => import('./pages/TeamPage.jsx'));
 const Contact = lazy(() => import('./pages/ContactPage.jsx'));
 const Build = lazy(() => import('./pages/BuildPage.jsx'));
