@@ -7,6 +7,7 @@ const App = lazy(() => import('./App.jsx'));
 const Technologies = lazy(() => import('./pages/TechnologiesPage.jsx'));
 const Team = lazy(() => import('./pages/TeamPage.jsx'));
 const Contact = lazy(() => import('./pages/ContactPage.jsx'));
+const Build = lazy(() => import('./pages/BuildPage.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/technologies" element={<Technologies />} />
         <Route path="/team" element={<Team />} />
+        <Route path="/build" element={<Build />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Suspense>

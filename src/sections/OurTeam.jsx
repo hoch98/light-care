@@ -34,7 +34,7 @@ export default function OurTeamSection() {
   ];
 
   return (
-    <div className="content" style={{ marginBottom: "20px" }}>
+    <div className="content" style={{ marginBottom: "20px", marginTop: "120px" }}>
       {/* Header with Fade-in */}
       <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
         <motion.div

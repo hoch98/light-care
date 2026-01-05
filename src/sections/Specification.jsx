@@ -4,7 +4,8 @@ import {
   SimpleGrid,
   Image,
   Heading,
-  VStack
+  VStack,
+  Flex
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,22 +22,7 @@ function Specification() {
 
   const items = [
     { id: "brief", label: "Technology", content: <BriefContent /> },
-    {
-      id: "sketch",
-      label: "Sketch",
-      content: (
-        <Image
-          src="media/sketch.jpg"
-          alt="Sketch"
-          maxH="100%"
-          maxW="100%"
-          objectFit="contain"
-          mx="auto"
-        />
-      )
-    },
     { id: "demonstration", label: "Demonstration", content: <VideoContent /> },
-    { id: "code", label: "Code", content: <CodeContent /> },
   ];
 
   const [selectedContent, setSelectedContent] = useState(items[0]);
@@ -68,7 +54,7 @@ function Specification() {
         <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
       </VStack>
 
-      {/* Main Content Area with Cross-fade Transition */}
+      {/* Main Content Area */}
       <Box
         {...containerStyles}
         h={{ base: "auto", lg: "650px" }}
@@ -97,11 +83,12 @@ function Specification() {
         </AnimatePresence>
       </Box>
 
-      {/* Navigation Buttons with Hover Transitions */}
-      <SimpleGrid 
-        columns={{ base: 2, md: 4 }} 
+      {/* Navigation Tabs - Centered using Flex */}
+      <Flex 
         gap={4} 
-        w={contentWidth}
+        w={contentWidth} 
+        justify="center" 
+        wrap="wrap"
       >
         {items.map((item) => {
           const isActive = selectedContent.id === item.id;
@@ -112,7 +99,8 @@ function Specification() {
               onClick={() => setSelectedContent(item)}
               {...containerStyles}
               p={{ base: 4, lg: 6 }}
-              w="100%"
+              // Controls the button size so they stay centered and neat
+              w={{ base: "47%", md: "220px" }} 
               transition="all 0.3s cubic-bezier(.4,0,.2,1)"
               cursor="pointer"
               border="2px solid"
@@ -136,7 +124,7 @@ function Specification() {
             </Box>
           );
         })}
-      </SimpleGrid>
+      </Flex>
     </Box>
   );
 }

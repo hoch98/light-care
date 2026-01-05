@@ -8,6 +8,7 @@ import Specification from '@/sections/Specification';
 import Research from '@/sections/Research';
 import PartsShowoff from '@/sections/PartsShowoff';
 import Footer from '@/sections/Footer';
+import TitleCard from '@/sections/TitleCard';
 
 const MotionGridItem = motion(Box);
 

@@ -18,6 +18,7 @@ const TopBar = () => {
   const tabs = {
     "Home": "/",
     "Technologies": "/technologies",
+    "Behind The Build": "/build",
     "Our Team": "/team",
     "Contact Us": "/contact"
   };
