@@ -26,11 +26,10 @@ function ChallengeSection() {
     },
     {
       title: "Our Approach",
-      // Changed to orange/amber theme
       color: "orange.50", 
-      borderColor: "#ffbe5cff", // Matching your research highlight color
+      borderColor: "#ffbe5cff", 
       icon: FaCheckCircle,
-      iconColor: "orange.500",
+      iconColor: "green.400", // Changed icon color to green
       points: ["Passive & non-invasive", "24/7 consistency", "Seamless daily routine"]
     }
   ];
@@ -53,7 +52,6 @@ function ChallengeSection() {
           <Box>
             <Text fontSize={isWide ? "5xl" : "4xl"} fontWeight="bold" lineHeight="1.1" color="gray.800" whiteSpace="nowrap">
               Wellness Feedback <br />
-              {/* Changed span to your brand orange */}
               <Text as="span" color="#ffbe5cff">Comes Too Late</Text>
             </Text>
             <Text mt={6} color="gray.600" fontSize="lg" whiteSpace="nowrap">
@@ -72,7 +70,6 @@ function ChallengeSection() {
                 <Text 
                   fontSize="3xl" 
                   fontWeight="bold" 
-                  // Changed stats to orange
                   color="#ffbe5cff" 
                   minW="110px" 
                   whiteSpace="nowrap"
@@ -106,7 +103,6 @@ function ChallengeSection() {
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
                transition={{ delay: idx * 0.1 }}
-               // Subtle hover lift to match your research cards
                _hover={{ transform: "translateY(-4px)", boxShadow: "lg" }}
              >
                <Text fontWeight="bold" fontSize="md" mb={3} color="gray.800" whiteSpace="nowrap">
