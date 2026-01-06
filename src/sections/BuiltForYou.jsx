@@ -70,13 +70,14 @@ function BuiltForYou() {
 
         {/* ALTERNATIVE LAYOUT: Split List Design */}
         <Flex
-          direction={{ base: "column", lg: "row" }}
+          // Changed "row" to "row-reverse" to flip the visual order
+          direction={{ base: "column", lg: "row-reverse" }}
           w="100%"
           gap={12}
           align="center"
           mt={"20px"}
         >
-          {/* LEFT SIDE: Visual Placeholder or Brand Statement */}
+          {/* THIS IS NOW VISUALLY ON THE RIGHT */}
           <Box
             flex="1"
             bg="white"
@@ -91,8 +92,6 @@ function BuiltForYou() {
             <Text color="gray.500" mb={8}>
               We believe wellness shouldn't be a chore. LightCare transforms your reflection into a partner in health.
             </Text>
-            {/* You could put a smaller 3D model, an image, or a graphic here */}
-            {/* Image */}
             <Image
               src="/media/hero.png"
               alt="LightCare product visual"
@@ -103,19 +102,19 @@ function BuiltForYou() {
             />
           </Box>
 
-          {/* RIGHT SIDE: Vertical Feature Stack */}
+          {/* THIS IS NOW VISUALLY ON THE LEFT */}
           <VStack flex="1.2" spacing={0} align="stretch" position="relative" mt={"20px"}>
             {features.map((item, index) => (
               <MotionFlex
                 key={index}
-                initial={{ opacity: 0, x: 30 }}
+                // Swapped initial x: 30 to x: -30 so they slide in from the left instead
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 mb={8}
                 align="start"
               >
-                {/* Connector Line Logic */}
                 <VStack mr={6} spacing={0}>
                   <Circle size="48px" bg="white" border="2px solid" borderColor="#ffbe5cff" color="#ffbe5cff" shadow="md">
                     <Icon as={item.icon} boxSize={5} />
