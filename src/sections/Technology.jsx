@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 
 const MotionGridItem = motion(Box);
 
-function Specification() {
+function Technology() {
 
   const parts = [
     {
@@ -42,7 +42,7 @@ function Specification() {
   ];
   // Constrained width for a more focused, centered look
   const sectionWidth = { base: "95%", md: "85%", lg: "75%", xl: "65%" };
-  const maxWidth = "1100px";
+  const maxWidth = "1300px";
 
   return (
     <Box
@@ -53,7 +53,7 @@ function Specification() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      py={20}
+      py={10}
       bg="gray.50"
     >
       {/* HEADER SECTION */}
@@ -157,4 +157,4 @@ function Specification() {
   );
 }
 
-export default Specification;
+export default Technology;

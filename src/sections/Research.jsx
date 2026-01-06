@@ -1,6 +1,8 @@
 import { Grid, Text, Box, Link, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+import { Button } from "@chakra-ui/react";
+import { Link as LinkReact } from "react-router";
 
 const MotionBox = motion(Box);
 
@@ -37,6 +39,7 @@ function Research() {
       w={isWide ? "80vw" : "95vw"} 
       pb="100px" 
       position="relative"
+      pt={"40px"}
     >
       <Box textAlign="center" mb={10} display="flex" flexDirection="column" alignItems="center">
         <Box>
@@ -91,6 +94,24 @@ function Research() {
           </MotionBox>
         ))}
       </Grid>
+      <br />
+      <MotionBox
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0.2 }} // Slightly more delay so it follows the cards
+      >
+        <VStack mt={16} w="100%" align="center">
+          <Button 
+            as={LinkReact} 
+            to="/build" 
+            colorPalette="yellow" 
+            variant="solid"
+          >
+            Learn About Our Design & Development →
+          </Button>
+        </VStack>
+      </MotionBox>
     </Box>
   );
 }

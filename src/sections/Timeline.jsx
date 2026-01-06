@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
-// Importing semantic icons for each phase
 import { 
   MdLightbulbOutline, 
   MdSearch, 
@@ -28,37 +27,44 @@ const timelineData = [
   {
     title: "1. Idea",
     icon: MdLightbulbOutline,
-    description: "Identified a common problem: people often ignore early wellness signs. Goal: make daily wellness awareness simple, contactless, and accessible.",
+    description:
+      "Identified a common problem: people often ignore early wellness signs. Goal: make daily wellness awareness simple, contactless, and accessible.",
   },
   {
     title: "2. Research",
     icon: MdSearch,
-    description: "Studied rPPG and camera-based wellness sensing. Confirmed feasibility using standard cameras and controlled lighting.",
+    description:
+      "Studied rPPG and camera-based wellness sensing. Confirmed feasibility using standard cameras and controlled lighting.",
   },
   {
     title: "3. Design",
     icon: MdBrush,
-    description: "Sketched early mirror concepts and user interactions. Planned system flow: camera → AI analysis → simple feedback.",
+    description:
+      "Sketched early mirror concepts and user interactions. Planned system flow: camera → AI analysis → simple feedback.",
   },
   {
     title: "4. Build",
     icon: MdBuild,
-    description: "Developed initial software for face detection and signal extraction. Built first mirror prototype using Raspberry Pi and Pi Camera.",
+    description:
+      "Developed initial software for face detection and signal extraction. Built first mirror prototype using Raspberry Pi and Pi Camera.",
   },
   {
     title: "5. Test & Improve",
     icon: MdCheckCircleOutline,
-    description: "Gathered peer and mentor feedback. Refined usability, messaging, and system stability.",
+    description:
+      "Gathered peer and mentor feedback. Refined usability, messaging, and system stability.",
   },
   {
     title: "6. Pilot",
     icon: MdGroups,
-    description: "Prepared for small-scale testing in schools and shared spaces. Defined success metrics (usability, engagement, trust).",
+    description:
+      "Prepared for small-scale testing in schools and shared spaces. Defined success metrics (usability, engagement, trust).",
   },
   {
     title: "7. Scale",
     icon: MdTrendingUp,
-    description: "Plan to expand through institutional partnerships. Improve features while staying non-diagnostic.",
+    description:
+      "Plan to expand through institutional partnerships. Improve features while staying non-diagnostic.",
   },
 ];
 
@@ -68,22 +74,16 @@ function TimelineSection() {
   const isWide = width > 1200;
 
   return (
-    <Box 
-      position="relative" 
-      bg="white" 
+    <Box
+      position="relative"
       py={24}
       overflow="hidden"
-      _before={{
-        content: '""',
-        position: "absolute",
-        inset: 0,
-        backgroundImage: `linear-gradient(#edf2f7 1px, transparent 1px), linear-gradient(90deg, #edf2f7 1px, transparent 1px)`,
-        backgroundSize: "40px 40px",
-        opacity: 0.4,
-        zIndex: 0,
-      }}
+      bg="rgba(224, 224, 224, 0.2)"   // gray overlay
+      backdropFilter="blur(3px)"     // translucency
     >
-      {/* HEADER SECTION */}
+
+
+      {/* HEADER */}
       <Container maxW="container.lg" mb={20} textAlign="center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -91,13 +91,13 @@ function TimelineSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <VStack spacing={2} align="center">
-             <Text 
-                fontWeight="900" 
-                fontSize={isWide ? "5xl" : "4xl"} 
-                color="gray.800"
-                letterSpacing="tight"
-             >
+          <VStack spacing={2}>
+            <Text
+              fontWeight="900"
+              fontSize={isWide ? "5xl" : "4xl"}
+              color="gray.800"
+              letterSpacing="tight"
+            >
               TIMELINE
             </Text>
             <Box bg="#ffbe5cff" w="80px" h="6px" borderRadius="full" />
@@ -106,7 +106,7 @@ function TimelineSection() {
       </Container>
 
       <Container maxW="container.xl" position="relative" zIndex={1}>
-        {/* VERTICAL CENTER LINE */}
+        {/* CENTER LINE */}
         <Box
           position="absolute"
           left={{ base: "31px", md: "50%" }}
@@ -117,86 +117,95 @@ function TimelineSection() {
           transform={{ md: "translateX(-50%)" }}
         />
 
-        <VStack spacing={16} align="stretch" w="100%">
+        <VStack spacing={16} align="stretch">
           {timelineData.map((item, index) => {
             const isEven = index % 2 === 0;
 
             return (
               <MotionFlex
                 key={index}
-                initial={{ opacity: 0, x: isDesktop ? (isEven ? -40 : 40) : 20 }}
+                initial={{
+                  opacity: 0,
+                  x: isDesktop ? (isEven ? -40 : 40) : 20,
+                }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                w="100%"
-                justifyContent="center"
-                alignItems="center"
+                transition={{ duration: 0.6 }}
+                justify="center"
                 position="relative"
               >
-                {/* NODE DOT */}
+                {/* NODE */}
                 <Circle
                   size="16px"
                   bg="#FFBE5C"
-                  border="4px solid"
-                  borderColor="#10172fff"
+                  border="4px solid #10172fff"
                   position="absolute"
                   left={{ base: "31px", md: "50%" }}
                   transform="translateX(-50%)"
                   zIndex={2}
                 />
 
-                {/* CARD WRAPPER */}
-                <Flex 
-                  w="100%" 
-                  justifyContent={isEven ? "flex-start" : "flex-end"}
-                  paddingLeft={{ base: "60px", md: "0" }}
+                {/* CARD */}
+                <Flex
+                  w="100%"
+                  justify={isEven ? "flex-start" : "flex-end"}
+                  pl={{ base: "60px", md: 0 }}
                 >
-                  <Box 
-                    w={{ base: "100%", md: "44%" }} 
-                    bg="white" 
-                    p={8} 
-                    borderRadius="2xl" 
-                    boxShadow="2xl"
+                  <Box
+                    w={{ base: "100%", md: "44%" }}
+                    p={8}
+                    borderRadius="2xl"
+                    bg="rgba(255,255,255,0.7)"
+                    backdropFilter="blur(10px)"
                     border="1px solid"
-                    borderColor="gray.50"
+                    borderColor="gray.200"
+                    boxShadow="lg"
                     textAlign={isDesktop && isEven ? "right" : "left"}
                     position="relative"
                   >
-                    {/* ICON CIRCLE */}
-                    <Flex justify={isDesktop && isEven ? "flex-end" : "flex-start"} mb={4}>
-                        <Circle size="48px" bg="orange.50" color="#ffbe5cff">
-                            <Icon as={item.icon} boxSize={6} />
-                        </Circle>
+                    {/* TITLE + ICON INLINE */}
+                    <Flex
+                      align="center"
+                      gap={3}
+                      justify={isDesktop && isEven ? "flex-end" : "flex-start"}
+                      mb={3}
+                    >
+                      <Circle size="36px" bg="orange.100" color="#ffbe5cff">
+                        <Icon as={item.icon} boxSize={5} />
+                      </Circle>
+
+                      <Heading
+                        size="sm"
+                        color="#FFBE5C"
+                        textTransform="uppercase"
+                        letterSpacing="2px"
+                      >
+                        {item.title}
+                      </Heading>
                     </Flex>
 
-                    <Heading 
-                      size="sm" 
-                      color="#FFBE5C" 
-                      mb={3} 
-                      textTransform="uppercase" 
-                      letterSpacing="2px"
+                    <Text
+                      fontSize="md"
+                      color="gray.700"
+                      lineHeight="tall"
+                      fontWeight="medium"
                     >
-                      {item.title}
-                    </Heading>
-                    <Text fontSize="md" color="gray.600" lineHeight="tall" fontWeight="medium">
                       {item.description}
                     </Text>
 
-                    {/* SPEECH BUBBLE ARROW */}
+                    {/* ARROW */}
                     {isDesktop && (
-                      <Box 
+                      <Box
                         position="absolute"
                         top="50%"
                         {...(isEven ? { right: "-10px" } : { left: "-10px" })}
                         transform="translateY(-50%) rotate(45deg)"
                         w="20px"
                         h="20px"
-                        bg="white"
-                        borderRight={isEven ? "1px solid" : "none"}
-                        borderTop={isEven ? "1px solid" : "none"}
-                        borderLeft={!isEven ? "1px solid" : "none"}
-                        borderBottom={!isEven ? "1px solid" : "none"}
-                        borderColor="gray.50"
+                        bg="rgba(255,255,255,0.7)"
+                        backdropFilter="blur(10px)"
+                        border="1px solid"
+                        borderColor="gray.200"
                       />
                     )}
                   </Box>

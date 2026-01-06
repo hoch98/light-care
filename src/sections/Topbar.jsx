@@ -17,7 +17,7 @@ const TopBar = () => {
 
   const tabs = {
     "Home": "/",
-    "Technology": "/technologies",
+    "Technology": "/technology",
     "Design & Development": "/build",
     "Our Team": "/team",
   };

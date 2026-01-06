@@ -4,7 +4,7 @@ import { Provider } from '../components/ui/provider';
 import { LightMode } from '../components/ui/color-mode';
 import { SimpleGrid, Container, Box } from '@chakra-ui/react';
 import TopBar from '../sections/Topbar';
-import Specification from '@/sections/Specification';
+import Technology from '@/sections/Technology';
 import Research from '@/sections/Research';
 import PartsShowoff from '@/sections/PartsShowoff';
 import Footer from '@/sections/Footer';
@@ -25,9 +25,7 @@ const Technologies = () => {
             transition={{ duration: 1 }}
           >
             <TitleCard color={"#336298ff"} textColor={"white"} text={"Behind the"} lastword={"Mirror"} lastwordColour={"#FFBE5C"} slogan={"The technology that quietly turns everyday moments into wellness insights."}/>
-            <Specification />
-
-            <Demonstration />
+            <Technology />
 
             <Research />
           </motion.div>

@@ -24,7 +24,7 @@ function Demonstration() {
       alignItems="center"
       py={"40px"}
       position="relative"
-      mb={"100px"}
+      pb={"100px"}
       // 1. CLEAR THE BACKGROUND: Set to transparent so body shows
       bg="transparent" 
       // 2. OPTIONAL FROST: Blurs the body content slightly for readability
@@ -45,9 +45,6 @@ function Demonstration() {
           </Text>
           <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
           <br />
-          <Heading color="gray.700" fontSize="xl" fontWeight="bold">
-                See the technology in action.
-            </Heading>
         </VStack>
 
         <br />

@@ -9,6 +9,10 @@ import TopBar from './sections/Topbar';
 import { Box } from '@chakra-ui/react';
 import TimelineSection from './sections/Timeline';
 import Footer from './sections/Footer';
+import Demonstration from './sections/Demonstration';
+import BusinessPlan from './sections/BusinessPlan';
+import BuiltForYou from './sections/BuiltForYou';
+import ChallengeSection from './sections/ChallengeSection';
 
 const SectionSeparator = () => (
   <Box 
@@ -27,13 +31,17 @@ function App() {
   return (
     <Provider>
       <LightMode>
-        <div id='body' style={{ cursor: "default" }}>
+        <div id='body' style={{ cursor: "default"}}>
           <TopBar />
           <Suspense fallback={<div style={{ height: '100vh', background: 'white' }} />}>
             <Starter />
           </Suspense>
           <SectionSeparator />
-          <LightCare />
+          {/* <LightCare /> */}
+          <ChallengeSection/ >
+          <BusinessPlan />
+          <BuiltForYou />
+          <Demonstration />
           <TimelineSection />
           <LookingAhead />
         </div>

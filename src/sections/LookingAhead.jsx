@@ -1,6 +1,8 @@
 import { Grid, GridItem, Text, Box, SimpleGrid, Icon, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+import { Button } from "@chakra-ui/react";
+import { Link } from "react-router";
 
 const MotionBox = motion(Box);
 
@@ -130,6 +132,19 @@ function LookingAhead() {
           </Text>
         </VStack>
       </Box>
+      
+      <br />
+      <MotionBox
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0.2 }} // Slightly more delay so it follows the cards
+      >
+        <Button colorPalette="blue" variant="solid">
+          <Link to={"/technology"}>
+          Explore Our Technology →</Link>
+        </Button>
+      </MotionBox>
     </Box>
   );
 }

@@ -44,7 +44,9 @@ export default function ContactSection() {
         </motion.div>
         
         <Text fontSize="xl" color="gray.600" maxW="600px" mt={4} px={6}>
-          Have questions about our technology? We'd love to hear from you.
+          Interested or got any questions about LightCare?
+          <br />
+          We'd love to hear from you. 
         </Text>
       </VStack>
 
