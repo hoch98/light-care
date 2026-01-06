@@ -40,6 +40,7 @@ function ChallengeSection() {
       w={isWide ? "85vw" : "95vw"} 
       maxW="1200px" 
       py="100px"
+      id="mainContent"
     >
       <Grid 
         templateColumns={isWide ? "1.4fr 1fr" : "1fr"} 

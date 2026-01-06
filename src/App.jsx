@@ -2,8 +2,7 @@ import './App.css';
 import React, { Suspense, lazy } from 'react';
 import { Provider } from './components/ui/provider';
 import { LightMode } from './components/ui/color-mode';
-import LightCare from './sections/LightCare';
-const Starter = lazy(() => import('./sections/Starter'));
+import Starter from './sections/Starter';
 import LookingAhead from './sections/LookingAhead';
 import TopBar from './sections/Topbar';
 import { Box } from '@chakra-ui/react';
@@ -37,7 +36,6 @@ function App() {
             <Starter />
           </Suspense>
           <SectionSeparator />
-          {/* <LightCare /> */}
           <ChallengeSection/ >
           <BusinessPlan />
           <BuiltForYou />
