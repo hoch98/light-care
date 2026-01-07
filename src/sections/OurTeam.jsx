@@ -10,7 +10,7 @@ export default function OurTeamSection() {
 
   const profiles = [
     {
-      name: "Aiden Wong",
+      name: "Yin Hoi Aiden Wong",
       imageSrc: "media/about/aiden.jpg",
       blurb: "Responsible for creativity and ideation, contributing original concepts and helping visualize the innovation in a simple, user friendly way. His work shapes the design and communication of the project.",
     },
