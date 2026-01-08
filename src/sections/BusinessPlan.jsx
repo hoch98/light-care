@@ -18,24 +18,24 @@ function BusinessPlan() {
 
   const pillars = [
     {
-      title: "Flexible Offering",
+      title: "Phased Growth Strategy",
       icon: Layout,
-      desc: "Smart wellness mirrors can be sold or leased to homes, schools, offices, and wellness spaces.",
+      desc: "Starting with Prototype Development (USD 5k-10k) via grants, scaling to a 100-unit Pilot Phase funded by angel investors to test market demand.",
     },
     {
-      title: "Recurring Revenue",
+      title: "Lean Cost Management",
+      icon: ShieldCheck, 
+      desc: "Utilizing off-the-shelf hardware like Raspberry Pi and Pi Cameras to keep per-unit costs at SGD $370, focusing on a minimal MVP to reduce upfront capital.",
+    },
+    {
+      title: "Sustainable Revenue",
       icon: RefreshCw,
-      desc: "Optional software subscriptions provide updates, maintenance, and feature enhancements.",
+      desc: "Revenue is driven by hardware sales (USD $400) and an optional $5/month subscription for premium AI features, ensuring 5% projected monthly growth.",
     },
     {
-      title: "Institutional Partnerships",
-      icon: Users,
-      desc: "Schools and organisations enable shared access while reducing per-user costs.",
-    },
-    {
-      title: "Low Regulatory Barrier",
-      icon: ShieldCheck,
-      desc: "Positioned as a preventive wellness tool, avoiding medical device classification.",
+      title: "Strategic Partnerships",
+      icon: Users, 
+      desc: "Scaling through hardware suppliers and smart-home ecosystem integration, targeting the 50% of smart home users who now adopt smart mirrors.",
     },
   ];
 

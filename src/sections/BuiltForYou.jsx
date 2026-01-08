@@ -22,23 +22,24 @@ function BuiltForYou() {
     {
       title: "Effortless Use",
       icon: Zap,
-      desc: "Operates during daily routines, such as brushing teeth, with no interaction required.",
+      desc: "Can operate during daily routines, such as brushing teeth, with little to no interaction required, allowing for seemless integration into user's everyday life",
     },
     {
-      title: "Personalised Over Time",
+      title: "Daily Health Insights",
       icon: BrainCircuit,
-      desc: "Learns individual baselines to adapt to different users, skin tones, and environments.",
+      desc: "Analyses visible facial indicators such as eye bags, dark circles, acne, and eye redness to surface early signs of fatigue, stress, or lifestyle imbalance.",
     },
     {
       title: "Privacy by Design",
       icon: ShieldCheck,
-      desc: "All processing is performed locally, ensuring personal data stays private.",
+      desc: "While the mirror is connected to the internet, in order to fetch weather data, all processing and inference is done locally within the mirror's software, ensuring no threat to privacy due to a third party",
     },
     {
       title: "Wellness-Focused",
       icon: HeartPulse,
-      desc: "Provides awareness and lifestyle guidance rather than medical diagnoses.",
+      desc: "Designed to support everyday wellbeing by highlighting potential lifestyle factors such as sleep, stress, and hydration, while avoiding medical diagnoses or treatment claims.",
     },
+
   ];
 
   return (

@@ -28,7 +28,7 @@ function Demonstration() {
       // 1. CLEAR THE BACKGROUND: Set to transparent so body shows
       bg="transparent" 
       // 2. OPTIONAL FROST: Blurs the body content slightly for readability
-      backdropFilter="blur(8px)" 
+      backdropFilter="blur(1px)" 
     >
       <VStack spacing={12} w="100%" alignItems="center" zIndex={1}>
         

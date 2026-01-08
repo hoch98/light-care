@@ -37,9 +37,9 @@ function App() {
           </Suspense>
           <SectionSeparator />
           <ChallengeSection/ >
+          <Demonstration />
           <BusinessPlan />
           <BuiltForYou />
-          <Demonstration />
           <TimelineSection />
           <LookingAhead />
         </div>

@@ -1,11 +1,8 @@
-import { Box, Grid, Text, VStack, Heading, Icon, Circle, Image, AspectRatio, SimpleGrid, HStack, Badge } from "@chakra-ui/react";
-import { FaCamera, FaBrain, FaLightbulb, FaChartLine } from "react-icons/fa";
+import { Box, Grid, Text, VStack, Heading, Icon, Circle, Image, SimpleGrid, HStack, Badge } from "@chakra-ui/react";
+import { FaChartLine, FaBullseye, FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const MotionBox = motion(Box);
-
-// A more reliable Metric Card using standard Text components
-const TrainingMetricCard = ({ label, value, helpText, color }) => (
+const TrainingMetricCard = ({ label, value, helpText, color, icon }) => (
   <VStack 
     align="start" 
     p={5} 
@@ -15,11 +12,16 @@ const TrainingMetricCard = ({ label, value, helpText, color }) => (
     borderColor="gray.100" 
     boxShadow="sm" 
     spacing={1}
+    position="relative"
+    overflow="hidden"
   >
-    <Text color="gray.500" fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
-      {label}
-    </Text>
-    <Heading size="lg" color={color}>
+    <HStack w="100%" justifyContent="space-between">
+      <Text color="gray.500" fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
+        {label}
+      </Text>
+      <Icon as={icon} color={`${color}.400`} opacity={0.6} />
+    </HStack>
+    <Heading size="lg" color={`${color}.500`}>
       {value}
     </Heading>
     <Text fontSize="xs" color="gray.400">
@@ -29,7 +31,6 @@ const TrainingMetricCard = ({ label, value, helpText, color }) => (
 );
 
 function TechnologySection() {
-
   return (
     <Box pb={"100px"} px={4} bg="gray.50" id="technology">
       <Box maxW="1200px" mx="auto" pt={0}>
@@ -37,34 +38,36 @@ function TechnologySection() {
           
           <VStack align="start" spacing={6}>
             <HStack spacing={3}>
-              <Circle size="40px" bg="green.50">
-                <Icon as={FaChartLine} color="green.500" boxSize={5} />
+              <Circle size="40px" bg="blue.50">
+                <Icon as={FaChartLine} color="blue.500" boxSize={5} />
               </Circle>
-              <Heading size="lg" color="gray.800">Training Benchmarks</Heading>
+              <Heading size="lg" color="gray.800">Training Performance</Heading>
             </HStack>
             
             <Text color="gray.600" fontSize="lg" lineHeight="tall">
-              Our models undergo rigorous training cycles. The results show consistent convergence across box, class, and distribution focal loss.
+              Our model achieved stable convergence over <b>100 epochs</b>. By utilizing Distribution Focal Loss (DFL), we’ve optimized the network for high-precision spatial localization in complex environments.
             </Text>
             
             <SimpleGrid columns={2} spacing={4} w="100%">
-              {/* Data points derived from your uploaded training results */}
+              {/* Highlighted high-quality metric */}
               <TrainingMetricCard 
-                label="mAP50 (B)" 
-                value="~0.37" 
-                helpText="Mean Average Precision" 
-                color="green.500" 
+                label="mAP50-95 (B)" 
+                value="~0.12" 
+                helpText="Strict COCO Evaluation" 
+                color="purple" 
+                icon={FaBullseye}
               />
               <TrainingMetricCard 
-                label="Box Loss" 
-                value="2.42" 
-                helpText="Final Validation Loss" 
-                color="blue.500" 
+                label="Precision" 
+                value="~44.1%" 
+                helpText="Detection Accuracy" 
+                color="green" 
+                icon={FaCheckCircle}
               />
             </SimpleGrid>
             
-            <Badge colorScheme="gray" variant="subtle" px={3} py={1} borderRadius="full">
-              YOLOv11-seg Architecture
+            <Badge colorScheme="blue" variant="subtle" px={3} py={1} borderRadius="full">
+              YOLOv11 Architecture • 100 Epochs
             </Badge>
           </VStack>
 
@@ -80,12 +83,12 @@ function TechnologySection() {
             <VStack spacing={3}>
                 <Image 
                   src="media/how/training_results.png" 
-                  alt="YOLOv11 Training Metrics"
+                  alt="YOLOv11 100 Epoch Training Metrics"
                   w="100%"
                   borderRadius="lg"
                 />
                 <Text fontSize="xs" color="gray.400" textAlign="center">
-                  Training vs Validation Loss Convergence over 50 Epochs
+                  Full 100-Epoch Training Cycle: Loss Minimization & Metric Improvement
                 </Text>
             </VStack>
           </Box>

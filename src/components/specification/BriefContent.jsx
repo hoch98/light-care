@@ -205,7 +205,7 @@ const BriefContent = () => {
             <HStack align="start" spacing={4}>
               <BulletPoint />
               <Text fontSize="lg" color="gray.600">
-                Custom-trained <strong>YOLOv11</strong> models detect dermatological features with <strong>87.4% mAP</strong> on test data.
+                Custom-trained <strong>YOLOv11</strong> models detect dermatological features real-time
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
@@ -237,7 +237,7 @@ const BriefContent = () => {
             <HStack align="start" spacing={4}>
               <BulletPoint />
               <Text fontSize="lg" color="gray.600">
-                Processes raw signals through <strong>detrending</strong> and frequency masking to derive heart rate variability.
+                Processes raw signals through detrending, moving average smoothing, and frequency masking to derive heart rate variability.
               </Text>
             </HStack>
           </VStack>

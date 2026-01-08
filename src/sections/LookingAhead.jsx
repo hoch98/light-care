@@ -12,8 +12,8 @@ function LookingAhead() {
 
   const milestones = [
     {
-      title: "Refining Accuracy",
-      desc: "Optimizing our AI models to detect symptoms with lower error occurence."
+      title: "Refining Accuracy and Speed",
+      desc: "Optimizing our AI models to detect symptoms with greater accuracy, as well as looking to combine the several models into 1, reducing overlap in detected symptoms as well as allowing for faster backend response."
     },
     {
       title: "Trend Tracking",
