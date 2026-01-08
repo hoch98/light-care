@@ -1,123 +1,96 @@
-import { Box, Grid, Text, VStack, Heading, Icon, Circle, Image, AspectRatio } from "@chakra-ui/react";
-import { FaCamera, FaBrain, FaLightbulb } from "react-icons/fa";
+import { Box, Grid, Text, VStack, Heading, Icon, Circle, Image, AspectRatio, SimpleGrid, HStack, Badge } from "@chakra-ui/react";
+import { FaCamera, FaBrain, FaLightbulb, FaChartLine } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 
+// A more reliable Metric Card using standard Text components
+const TrainingMetricCard = ({ label, value, helpText, color }) => (
+  <VStack 
+    align="start" 
+    p={5} 
+    bg="white" 
+    borderRadius="2xl" 
+    border="1px solid" 
+    borderColor="gray.100" 
+    boxShadow="sm" 
+    spacing={1}
+  >
+    <Text color="gray.500" fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
+      {label}
+    </Text>
+    <Heading size="lg" color={color}>
+      {value}
+    </Heading>
+    <Text fontSize="xs" color="gray.400">
+      {helpText}
+    </Text>
+  </VStack>
+);
+
 function TechnologySection() {
-  const techData = [
-    {
-      title: "Remote Photoplethysmography (rPPG)",
-      icon: FaCamera,
-      color: "blue.500",
-      image: "/media/how/rppg.png", 
-      description: "Detects subtle color changes in facial skin caused by blood flow using a standard RGB camera.",
-      points: [
-        "Tracks micro-changes in light absorption with each heartbeat",
-        "Estimates heart rate trends without wearables or contact",
-        "Ideal for tracking daily stress and fatigue indicators"
-      ]
-    },
-    {
-      title: "Computer Vision & AI Models",
-      icon: FaBrain,
-      color: "purple.500",
-      image: "/media/how/ai.png",
-      description: "Advanced face segmentation and AI analysis focused on long-term wellness baselines.",
-      points: [
-        "Isolates stable regions (forehead, cheeks) from background",
-        "Detects visual indicators like dark circles and eye redness",
-        "Learns 'normal' for each user to provide personalized feedback"
-      ]
-    },
-    {
-      title: "Controlled Lighting Principles",
-      icon: FaLightbulb,
-      color: "orange.400",
-      image: "/media/how/structured-light.png",
-      description: "Integrated illumination inspired by structured-light principles for medical-grade reliability.",
-      points: [
-        "Eliminates environmental shadows and variation",
-        "Stabilizes skin reflectance for accurate color analysis",
-        "Ensures consistency in bedrooms or low-light environments"
-      ]
-    }
-  ];
 
   return (
     <Box pb={"100px"} px={4} bg="gray.50" id="technology">
-      <VStack spacing={4} mb={16} textAlign="center">
-        <Heading size="2xl" color="gray.800">The Technology Inside</Heading>
-        <Box w="60px" h="4px" bg="#ffbe5cff" borderRadius="full" />
-      </VStack>
-
-      <Grid 
-        templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }} 
-        gap={10} 
-        maxW="1200px" 
-        mx="auto"
-      >
-        {techData.map((tech, idx) => (
-          <MotionBox
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.2 }}
-            bg="white"
-            p={8}
-            borderRadius="3xl"
-            boxShadow="sm"
-            border="1px solid"
-            borderColor="gray.100"
-            display="flex"
-            flexDirection="column"
-            _hover={{ boxShadow: "xl", transform: "translateY(-5px)" }}
-          >
-            <Circle size="60px" bg={`${tech.color}10`} color={tech.color} mb={6}>
-              <Icon as={tech.icon} boxSize={6} />
-            </Circle>
+      <Box maxW="1200px" mx="auto" pt={0}>
+        <Grid templateColumns={{ base: "1fr", lg: "1fr 1.5fr" }} gap={12} alignItems="center">
+          
+          <VStack align="start" spacing={6}>
+            <HStack spacing={3}>
+              <Circle size="40px" bg="green.50">
+                <Icon as={FaChartLine} color="green.500" boxSize={5} />
+              </Circle>
+              <Heading size="lg" color="gray.800">Training Benchmarks</Heading>
+            </HStack>
             
-            <Heading size="md" mb={4} color="gray.800">
-              {tech.title}
-            </Heading>
-            
-            <Text color="gray.600" mb={6} fontSize="md" lineHeight="tall" minH="72px">
-              {tech.description}
+            <Text color="gray.600" fontSize="lg" lineHeight="tall">
+              Our models undergo rigorous training cycles. The results show consistent convergence across box, class, and distribution focal loss.
             </Text>
-
-            {/* Image Space */}
             
-            <AspectRatio ratio={16 / 9} mb={8}>
-              <Box 
-                bg="gray.100" 
-                borderRadius="xl" 
-                overflow="hidden"
-                border="1px solid"
-                borderColor="gray.50"
-              >
+            <SimpleGrid columns={2} spacing={4} w="100%">
+              {/* Data points derived from your uploaded training results */}
+              <TrainingMetricCard 
+                label="mAP50 (B)" 
+                value="~0.37" 
+                helpText="Mean Average Precision" 
+                color="green.500" 
+              />
+              <TrainingMetricCard 
+                label="Box Loss" 
+                value="2.42" 
+                helpText="Final Validation Loss" 
+                color="blue.500" 
+              />
+            </SimpleGrid>
+            
+            <Badge colorScheme="gray" variant="subtle" px={3} py={1} borderRadius="full">
+              YOLOv11-seg Architecture
+            </Badge>
+          </VStack>
+
+          <Box 
+            borderRadius="2xl" 
+            overflow="hidden" 
+            border="1px solid" 
+            borderColor="gray.200" 
+            bg="white" 
+            p={4} 
+            boxShadow="xl"
+          >
+            <VStack spacing={3}>
                 <Image 
-                  src={tech.image} 
-                  alt={tech.title}
-                  objectFit="cover"
-                  transition="0.3s ease-in-out"
-                  _hover={{ transform: "scale(1.05)" }}
+                  src="media/how/training_results.png" 
+                  alt="YOLOv11 Training Metrics"
+                  w="100%"
+                  borderRadius="lg"
                 />
-              </Box>
-            </AspectRatio>
-
-            
-            <VStack align="start" spacing={3} mt="auto">
-              {tech.points.map((point, pIdx) => (
-                <Text key={pIdx} fontSize="sm" color="gray.500" display="flex" alignItems="start">
-                  <Box as="span" color={tech.color} mr={2} mt="1px">•</Box>
-                  {point}
+                <Text fontSize="xs" color="gray.400" textAlign="center">
+                  Training vs Validation Loss Convergence over 50 Epochs
                 </Text>
-              ))}
             </VStack>
-          </MotionBox>
-        ))}
-      </Grid>
+          </Box>
+        </Grid>
+      </Box>
     </Box>
   );
 }
