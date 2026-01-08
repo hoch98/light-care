@@ -3,20 +3,24 @@ import {
   Box,
   VStack,
   Flex,
+  SimpleGrid,
+  Container,
 } from "@chakra-ui/react";
-import { Suspense } from "react";
+// 1. Import 'lazy' from React
+import { Suspense, lazy } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, ContactShadows, Preload, OrbitControls } from "@react-three/drei";
-import { SimpleGrid, Container } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+
 import PartsShowoff from "./PartsShowoff";
 import BriefContent from "@/components/specification/BriefContent.jsx";
-import Product from "@/components/Product.jsx";
-import { motion } from 'framer-motion';
+
+// 2. Replace the direct import with React.lazy
+const Product = lazy(() => import("@/components/Product.jsx"));
 
 const MotionGridItem = motion(Box);
 
 function Technology() {
-
   const parts = [
     {
       id: 1,
@@ -28,19 +32,19 @@ function Technology() {
     {
       id: 2,
       name: "Pi Camera Module",
-      description: "High-definition optics for precise facial symptom detection and biometric analysis.",
+      description: "High-definition camera for precise facial symptom detection.",
       image: "/media/technologies/picamera.png",
       stats: { "RES": "12.3MP", "SENSOR": "IMX477" }
     },
     {
       id: 3,
       name: "Monitor",
-      description: "Ultra-slim display unit integrated behind two-way glass for seamless UI projection.",
+      description: "Slim display unit integrated behind two-way glass for UI projection.",
       image: "/media/technologies/monitor.png",
       stats: { "RES": "1080p", "TYPE": "IPS" }
     }
   ];
-  // Constrained width for a more focused, centered look
+
   const sectionWidth = { base: "95%", md: "85%", lg: "75%", xl: "65%" };
   const maxWidth = "1300px";
 
@@ -56,7 +60,6 @@ function Technology() {
       py={10}
       bg="gray.50"
     >
-      {/* HEADER SECTION */}
       <VStack spacing={0} mb={12}>
         <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} letterSpacing="-2px">
           TECHNOLOGY
@@ -64,7 +67,6 @@ function Technology() {
         <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
       </VStack>
 
-      {/* MAIN INTEGRATED CONTAINER */}
       <Flex
         w={sectionWidth}
         maxW={maxWidth}
@@ -77,7 +79,6 @@ function Technology() {
         overflow="hidden"
         minH={{ base: "auto", lg: "550px" }}
       >
-        {/* LEFT SIDE: Brief Content (60% split) */}
         <Box 
           flex={{ base: "1", lg: "0.6" }} 
           p={{ base: 8, md: 12, xl: 16 }}
@@ -95,14 +96,14 @@ function Technology() {
           <BriefContent />
         </Box>
 
-        {/* RIGHT SIDE: 3D Canvas (40% split) */}
         <Box 
           flex={{ base: "1", lg: "0.4" }} 
           bg="white" 
           h={{ base: "400px", lg: "auto" }}
           position="relative"
         >
-          <Canvas camera={{ fov: 45, position: [-1, 2.5, 8] }}>
+          <Canvas camera={{ fov: 45, position: [-1, 3, 8] }}>
+            {/* 3. The Suspense boundary here handles the lazy loading state */}
             <Suspense fallback={null}>
               <ambientLight intensity={0.7} />
               <directionalLight position={[5, 5, 5]} intensity={1.2} />
@@ -119,7 +120,7 @@ function Technology() {
                 enableZoom={false}
                 enableDamping
                 dampingFactor={0.08}
-                target={[0, 0.6, 0]}
+                target={[0.2, 1, 0]}
               />
 
               <ContactShadows
@@ -135,6 +136,7 @@ function Technology() {
           </Canvas>
         </Box>
       </Flex>
+
       <Container maxW="container.xl" py={20}>
         <SimpleGrid columns={{ md: 3, sm: 1 }} gap={10}>
           {parts.map((item, index) => (
