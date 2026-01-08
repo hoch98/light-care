@@ -76,9 +76,13 @@ function CodeSection() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <Button colorPalette="blue" variant="solid">
-          <Link to={"/team"}>
-            Explore Our Team →</Link>
+        <Button 
+          colorPalette="blue" 
+          variant="solid" 
+        >
+          <Link to={"/team"} style={{ textDecoration: 'none', color: 'inherit' }}>
+            Explore Our Team →
+          </Link>
         </Button>
       </MotionBox>
     </Box>

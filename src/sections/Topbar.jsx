@@ -20,8 +20,9 @@ const TopBar = () => {
   const tabs = {
     "Home": "/",
     "Technology": "/technology",
-    "Design & Development": "/build",
+    "Design & Development": "/design",
     "Our Team": "/team",
+    "Finance": "/finance",
   };
 
   return (

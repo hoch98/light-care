@@ -104,7 +104,7 @@ function Research() {
         <VStack mt={16} w="100%" align="center">
           <Button
             as={LinkReact}
-            to="/build"
+            to="/design"
             colorPalette="yellow"
             variant="solid"
           >

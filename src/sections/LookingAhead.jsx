@@ -129,17 +129,23 @@ function LookingAhead() {
       </Box>
 
       <br />
-      <MotionBox
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <Button colorPalette="blue" variant="solid">
-          <Link to={"/technology"}>
-            Explore Our Technology →</Link>
-        </Button>
-      </MotionBox>
+      <VStack w="100%" mt={8}>
+        <MotionBox
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Button 
+            colorPalette="blue" 
+            variant="solid"
+          >
+            <Link to={"/technology"} style={{ textDecoration: 'none', color: 'inherit' }}>
+              Explore Our Technology →
+            </Link>
+          </Button>
+        </MotionBox>
+      </VStack>
     </Box>
   );
 }

@@ -1,6 +1,8 @@
 import { Grid, Text, Box, Image, SimpleGrid, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+import { Button } from "@chakra-ui/react";
+import { Link } from "react-router";
 
 const MotionBox = motion(Box);
 
@@ -140,6 +142,24 @@ export default function OurTeamSection() {
             </MotionBox>
           ))}
         </SimpleGrid>
+        <br />
+        <VStack w="100%" mt={8}>
+          <MotionBox
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Button 
+              colorPalette="green" 
+              variant="solid" 
+            >
+              <Link to={"/finance"} style={{ textDecoration: 'none', color: 'inherit' }}>
+                Explore Our Finances →
+              </Link>
+            </Button>
+          </MotionBox>
+        </VStack>
       </Box>
     </div>
   );

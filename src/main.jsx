@@ -9,6 +9,7 @@ const Technology = lazy(() => import('./pages/TechnologyPage.jsx'));
 const Team = lazy(() => import('./pages/TeamPage.jsx'));
 const Contact = lazy(() => import('./pages/ContactPage.jsx'));
 const Build = lazy(() => import('./pages/BuildPage.jsx'));
+const Finance = lazy(() => import('./pages/FinancePage.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -18,8 +19,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/technology" element={<Technology />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/build" element={<Build />} />
+        <Route path="/design" element={<Build />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/finance" element={<Finance />} />
       </Routes>
     </Suspense>
   </BrowserRouter>
