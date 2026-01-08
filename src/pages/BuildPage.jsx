@@ -12,7 +12,7 @@ const ContactPage = () => {
     <Provider>
       <LightMode>
         <TopBar />
-        <TitleCard color={"#ffbe5cff"} textColor={"#336298ff"} text={"The Architecture of"} lastword={"Insight"} lastwordColour={"#62daffff"} slogan={"From CAD designs to neural networks: a look at the system's core."}/>
+        <TitleCard color={"#ffbe5cff"} textColor={"#336298ff"} text={"The Architecture of"} lastword={"Insight"} lastwordColour={"#62daffff"} slogan={"From CAD designs to neural networks: a look at the system's core."} />
         <BehindTheBuild />
         <CodeSection />
       </LightMode>

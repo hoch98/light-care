@@ -31,7 +31,7 @@ function BuiltForYou() {
     },
     {
       title: "Pattern-Based Insight",
-      icon: Activity, // You can replace this with 'Activity' or 'LineChart' from lucide-react
+      icon: Activity,
       desc: "LightCare builds a personalized baseline by observing wellness indicators across repeated daily use. Instead of reacting to what users can already see, the system detects trends over time, focusing on persistent changes. When indicators remain consistent over time, LightCare highlights this pattern and suggests appropriate next steps, supporting earlier awareness and more informed decisions.",
     },
     {
@@ -50,7 +50,7 @@ function BuiltForYou() {
       justifyContent="center"
       alignItems="center"
       py={24}
-      bg="gray.50" // Alternating background color from the white Business section
+      bg="gray.50"
     >
       <VStack spacing={16} w={sectionWidth} maxW={maxWidth}>
 
@@ -68,16 +68,13 @@ function BuiltForYou() {
           </Text>
         </VStack>
 
-        {/* ALTERNATIVE LAYOUT: Split List Design */}
         <Flex
-          // Changed "row" to "row-reverse" to flip the visual order
           direction={{ base: "column", lg: "row-reverse" }}
           w="100%"
           gap={12}
           align="center"
           mt={"20px"}
         >
-          {/* THIS IS NOW VISUALLY ON THE RIGHT */}
           <Box
             flex="1"
             bg="white"
@@ -102,12 +99,10 @@ function BuiltForYou() {
             />
           </Box>
 
-          {/* THIS IS NOW VISUALLY ON THE LEFT */}
           <VStack flex="1.2" spacing={0} align="stretch" position="relative" mt={"20px"}>
             {features.map((item, index) => (
               <MotionFlex
                 key={index}
-                // Swapped initial x: 30 to x: -30 so they slide in from the left instead
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

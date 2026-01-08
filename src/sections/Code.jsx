@@ -27,12 +27,12 @@ function CodeSection() {
   };
 
   return (
-    <Box 
+    <Box
       className="content"
       mb={"100px"}
-      px={5} 
-      display="flex" 
-      flexDirection="column" 
+      px={5}
+      display="flex"
+      flexDirection="column"
       alignItems="center"
       w="100%"
     >
@@ -69,18 +69,18 @@ function CodeSection() {
           </MotionBox>
         </AnimatePresence>
       </Box>
-    <br />
-    <MotionBox
+      <br />
+      <MotionBox
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, delay: 0.2 }} // Slightly more delay so it follows the cards
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
-      <Button colorPalette="blue" variant="solid">
-        <Link to={"/team"}>
-        Explore Our Team →</Link>
-      </Button>
-    </MotionBox>
+        <Button colorPalette="blue" variant="solid">
+          <Link to={"/team"}>
+            Explore Our Team →</Link>
+        </Button>
+      </MotionBox>
     </Box>
   );
 }

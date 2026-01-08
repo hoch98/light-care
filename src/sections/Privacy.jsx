@@ -48,15 +48,15 @@ const PrivacySection = () => {
   ];
 
   return (
-    <Box 
-      w="100%" 
-      py={24} 
+    <Box
+      w="100%"
+      py={24}
       bg="white"
     >
-      <VStack 
-        spacing={20} 
-        maxW="1200px" 
-        mx="auto" 
+      <VStack
+        spacing={20}
+        maxW="1200px"
+        mx="auto"
         px={{ base: 6, md: 10 }}
       >
         {/* Header */}
@@ -74,11 +74,9 @@ const PrivacySection = () => {
           <br />
         </VStack>
 
-        {/* The Grid Fix: Added explicit 'gap' and 'columns' */}
-        <SimpleGrid 
-          columns={{ base: 1, lg: 3 }} 
-          // Use 'gap' to force a 40px margin between all cards
-          gap={10} 
+        <SimpleGrid
+          columns={{ base: 1, lg: 3 }}
+          gap={10}
           w="100%"
         >
           {layers.map((layer, index) => (
@@ -88,8 +86,7 @@ const PrivacySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              
-              // Internal Card Styling
+
               p={10}
               bg="gray.50"
               borderRadius="3xl"
@@ -97,22 +94,21 @@ const PrivacySection = () => {
               border="1px solid"
               borderColor={layer.isMostImportant ? "orange.100" : "gray.100"}
               boxShadow={layer.isMostImportant ? "xl" : "sm"}
-              
-              // Ensuring the card respects the grid gap
+
               display="flex"
               flexDirection="column"
               flex="1"
             >
               {layer.isMostImportant && (
-                <Badge 
-                  position="absolute" 
-                  top="-12px" 
-                  left="50%" 
-                  transform="translateX(-50%)" 
-                  bg="#ffbe5cff" 
-                  color="white" 
-                  px={4} 
-                  py={1} 
+                <Badge
+                  position="absolute"
+                  top="-12px"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  bg="#ffbe5cff"
+                  color="white"
+                  px={4}
+                  py={1}
                   borderRadius="full"
                   zIndex={1}
                 >

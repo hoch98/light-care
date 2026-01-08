@@ -34,10 +34,10 @@ function Research() {
   ];
 
   return (
-    <Box 
-      mx="auto" 
-      w={isWide ? "80vw" : "95vw"} 
-      pb="100px" 
+    <Box
+      mx="auto"
+      w={isWide ? "80vw" : "95vw"}
+      pb="100px"
       position="relative"
       pt={"40px"}
     >
@@ -52,18 +52,18 @@ function Research() {
 
       <Grid templateColumns={isWide ? "repeat(2, 1fr)" : "1fr"} gap={10}>
         {research.map((r, index) => (
-          <MotionBox 
-            key={r.title} 
+          <MotionBox
+            key={r.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: index * 0.15 }}
-            bg="rgba(255, 255, 255, 0.6)" 
+            bg="rgba(255, 255, 255, 0.6)"
             backdropFilter="blur(10px)"
-            borderRadius="2xl" 
+            borderRadius="2xl"
             border="1px solid rgba(255, 255, 255, 0.3)"
-            boxShadow="xl" 
-            p={8} 
+            boxShadow="xl"
+            p={8}
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
@@ -77,14 +77,14 @@ function Research() {
                 {r.description}
               </Text>
             </Box>
-            
+
             <Box textAlign="right" mt={6}>
-              <Link 
-                href={r.link} 
-                isExternal 
-                fontSize="xs" 
-                fontWeight="900" 
-                color="#ffbe5cff" 
+              <Link
+                href={r.link}
+                isExternal
+                fontSize="xs"
+                fontWeight="900"
+                color="#ffbe5cff"
                 letterSpacing="widest"
                 _hover={{ color: "orange.500", textDecoration: "none" }}
               >
@@ -99,13 +99,13 @@ function Research() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, delay: 0.2 }} // Slightly more delay so it follows the cards
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         <VStack mt={16} w="100%" align="center">
-          <Button 
-            as={LinkReact} 
-            to="/build" 
-            colorPalette="yellow" 
+          <Button
+            as={LinkReact}
+            to="/build"
+            colorPalette="yellow"
             variant="solid"
           >
             Learn About Our Design & Development →

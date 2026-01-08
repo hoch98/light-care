@@ -11,7 +11,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const MotionBox = motion(Box);
 
-// Animation configuration for that "smooth" spring feel
 const overlayVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
@@ -19,9 +18,9 @@ const overlayVariants = {
 
 const modalVariants = {
   hidden: { opacity: 0, scale: 0.9, y: 20 },
-  visible: { 
-    opacity: 1, 
-    scale: 1, 
+  visible: {
+    opacity: 1,
+    scale: 1,
     y: 0,
     transition: {
       type: "spring",
@@ -29,11 +28,11 @@ const modalVariants = {
       stiffness: 300
     }
   },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95, 
+  exit: {
+    opacity: 0,
+    scale: 0.95,
     y: 10,
-    transition: { duration: 0.2 } 
+    transition: { duration: 0.2 }
   }
 };
 
@@ -68,7 +67,7 @@ function BehindTheBuild() {
             boxShadow="xl"
             cursor="pointer"
             whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }} // Visual feedback on click
+            whileTap={{ scale: 0.98 }}
             onClick={() => setSelectedImg(img)}
           >
             <Image src={img.src} alt={img.caption} objectFit="cover" w="100%" h="100%" />
@@ -94,7 +93,7 @@ function BehindTheBuild() {
               w="100vw"
               h="100vh"
               bg="rgba(0,0,0,0.85)"
-              style={{ backdropFilter: "blur(10px)" }} // Smooth background blur
+              style={{ backdropFilter: "blur(10px)" }}
               zIndex={9999}
               display="flex"
               alignItems="center"
@@ -122,12 +121,12 @@ function BehindTheBuild() {
                 <Text color="white" mt={6} fontSize="2xl" fontWeight="bold" letterSpacing="tight">
                   {selectedImg.caption}
                 </Text>
-                <Text 
-                  color="rgba(255,255,255,0.5)" 
-                  mt={2} 
-                  fontSize="sm" 
-                  cursor="pointer" 
-                  _hover={{ color: "white" }} 
+                <Text
+                  color="rgba(255,255,255,0.5)"
+                  mt={2}
+                  fontSize="sm"
+                  cursor="pointer"
+                  _hover={{ color: "white" }}
                   onClick={() => setSelectedImg(null)}
                 >
                   Click anywhere to close

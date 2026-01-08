@@ -35,7 +35,6 @@ export default function OurTeamSection() {
 
   return (
     <div className="content" style={{ marginBottom: "20px", marginTop: "120px" }}>
-      {/* Header with Fade-in */}
       <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -49,7 +48,6 @@ export default function OurTeamSection() {
         </motion.div>
       </Box>
 
-      {/* Main Container with original width/position + Glass Effect */}
       <Box
         bg="whiteAlpha.700"
         backdropFilter="blur(10px) saturate(120%)"
@@ -84,16 +82,16 @@ export default function OurTeamSection() {
 
         <Grid templateColumns={isWide ? "repeat(3, 1fr)" : "1fr"} gap={10} px={isWide ? 0 : 4} mt={10}>
           {profiles.map((p, index) => (
-            <MotionBox 
-              key={p.name} 
+            <MotionBox
+              key={p.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              bg="white" 
-              borderRadius="xl" 
-              boxShadow="md" 
-              p={8} 
+              bg="white"
+              borderRadius="xl"
+              boxShadow="md"
+              p={8}
               textAlign="center"
               _hover={{ transform: "translateY(-5px)", boxShadow: "2xl" }}
             >
@@ -115,23 +113,22 @@ export default function OurTeamSection() {
         </Grid>
       </Box>
 
-      {/* Values Section with Staggered Reveal */}
       <Box mb={16} mx={isWide ? 20 : 4}>
         <Text textAlign="center" fontWeight="bold" fontSize="3xl" mb={8}>OUR VALUES</Text>
         <SimpleGrid columns={isWide ? 4 : 2} gap={6}>
           {values.map((v, index) => (
-            <MotionBox 
-              key={v.title} 
+            <MotionBox
+              key={v.title}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              bg="whiteAlpha.800" 
+              bg="whiteAlpha.800"
               backdropFilter="blur(5px)"
-              border="1px solid" 
-              borderColor="gray.100" 
-              p={6} 
-              borderRadius="xl" 
+              border="1px solid"
+              borderColor="gray.100"
+              p={6}
+              borderRadius="xl"
               textAlign="center"
               boxShadow="sm"
               _hover={{ bg: "white", boxShadow: "md", transform: "translateY(-2px)" }}

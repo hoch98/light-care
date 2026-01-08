@@ -18,7 +18,6 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
-  // Track container width to keep the "Before" image size constant
   useEffect(() => {
     if (containerRef.current) {
       setContainerWidth(containerRef.current.offsetWidth);
@@ -42,7 +41,6 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
       borderColor="gray.200"
       userSelect="none"
     >
-      {/* 1. BOTTOM LAYER: Processed Image (After) */}
       <Image
         src={afterImg}
         alt="Background Removed"
@@ -52,13 +50,12 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
         display="block"
       />
 
-      {/* 2. TOP LAYER: Raw Image (Before) */}
       <Box
         position="absolute"
         top={0}
         left={0}
         bottom={0}
-        w={`${sliderPos}%`} // This moves the "clip" line
+        w={`${sliderPos}%`}
         overflow="hidden"
         borderRight="3px solid white"
         boxShadow="2px 0 10px rgba(0,0,0,0.2)"
@@ -67,16 +64,12 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
           src={beforeImg}
           alt="Raw Image"
           objectFit="cover"
-          /* CRITICAL: Set width to the FIXED container width 
-             so it doesn't squash when the parent div shrinks.
-          */
-          w={`${containerWidth}px`} 
+          w={`${containerWidth}px`}
           h="100%"
           maxW="none"
         />
       </Box>
 
-      {/* 3. INTERACTIVE SLIDER INPUT */}
       <input
         type="range"
         min="0"
@@ -95,7 +88,6 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
         }}
       />
 
-      {/* 4. VISUAL HANDLE */}
       <Box
         position="absolute"
         top="50%"
@@ -134,13 +126,11 @@ const BriefContent = () => {
   );
 
   return (
-    /* Increased spacing from 24 to 32 for better breathing room between sections */
     <VStack spacing={{ base: 32, md: 24 }} w="100%" align="stretch">
-      
-      {/* SECTION 1: COMPUTER VISION */}
-      <SimpleGrid 
-        columns={{ base: 1, md: 10 }} 
-        spacing={{ base: 12, md: 10 }} 
+
+      <SimpleGrid
+        columns={{ base: 1, md: 10 }}
+        spacing={{ base: 12, md: 10 }}
         alignItems="center"
         py={{ base: 4, md: 0 }}
       >
@@ -162,10 +152,10 @@ const BriefContent = () => {
           </VStack>
         </Stack>
         <Box gridColumn={{ md: "span 4" }} maxW="400px" mx="auto" w="100%">
-          <AspectRatio ratio={4/3}>
-            <ComparisonSlider 
-              beforeImg="media/brief/yolo.jpg"  // Path to your raw image
-              afterImg="media/brief/yolo2.png"        // Path to your processed image
+          <AspectRatio ratio={4 / 3}>
+            <ComparisonSlider
+              beforeImg="media/brief/yolo.jpg" 
+              afterImg="media/brief/yolo2.png"
             />
           </AspectRatio>
           <Text fontSize="xs" color="gray.400" mt={2} textAlign="center">
@@ -174,27 +164,26 @@ const BriefContent = () => {
         </Box>
       </SimpleGrid>
 
-      {/* SECTION 2: NEURAL INFERENCE */}
-      <SimpleGrid 
-        columns={{ base: 1, md: 10 }} 
-        spacing={{ base: 12, md: 10 }} 
+      <SimpleGrid
+        columns={{ base: 1, md: 10 }}
+        spacing={{ base: 12, md: 10 }}
         alignItems="center"
         py={{ base: 4, md: 0 }}
       >
-        <Box 
-          gridColumn={{ md: "span 4" }} 
-          maxW="400px" 
-          mx="auto" 
-          w="100%" 
+        <Box
+          gridColumn={{ md: "span 4" }}
+          maxW="400px"
+          mx="auto"
+          w="100%"
           order={{ base: 2, md: 1 }}
         >
-          <AspectRatio ratio={4/3}>
-            <Image 
-              src="media/brief/model.png" 
-              borderRadius="xl" 
-              border="1px solid" 
-              borderColor="gray.200" 
-              objectFit="cover" 
+          <AspectRatio ratio={4 / 3}>
+            <Image
+              src="media/brief/model.png"
+              borderRadius="xl"
+              border="1px solid"
+              borderColor="gray.200"
+              objectFit="cover"
               alt="Neural Network Performance"
             />
           </AspectRatio>
@@ -205,7 +194,13 @@ const BriefContent = () => {
             <HStack align="start" spacing={4}>
               <BulletPoint />
               <Text fontSize="lg" color="gray.600">
-                Custom-trained <strong>YOLOv11</strong> models detect dermatological features real-time
+                Custom-tuned <strong>YOLOv11</strong> models to detect dermatological features real-time
+              </Text>
+            </HStack>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                Models are trained 1.6k images from public datasets for 100 epochs.
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
@@ -218,10 +213,9 @@ const BriefContent = () => {
         </Stack>
       </SimpleGrid>
 
-      {/* SECTION 3: SIGNAL PROCESSING */}
-      <SimpleGrid 
-        columns={{ base: 1, md: 10 }} 
-        spacing={{ base: 12, md: 10 }} 
+      <SimpleGrid
+        columns={{ base: 1, md: 10 }}
+        spacing={{ base: 12, md: 10 }}
         alignItems="center"
         py={{ base: 4, md: 0 }}
       >
@@ -243,13 +237,13 @@ const BriefContent = () => {
           </VStack>
         </Stack>
         <Box gridColumn={{ md: "span 4" }} maxW="400px" mx="auto" w="100%">
-          <AspectRatio ratio={4/3}>
-            <Image 
-              src="media/brief/rppg.png" 
-              borderRadius="xl" 
-              border="1px solid" 
-              borderColor="gray.200" 
-              objectFit="cover" 
+          <AspectRatio ratio={4 / 3}>
+            <Image
+              src="media/brief/rppg.png"
+              borderRadius="xl"
+              border="1px solid"
+              borderColor="gray.200"
+              objectFit="cover"
               alt="rPPG Waveform Analysis"
             />
           </AspectRatio>

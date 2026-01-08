@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* 1. Global Reset & Base Gradient */
 #root,
 #body,
 body,
@@ -11,15 +10,12 @@ html {
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
-  /* Soft futuristic gradient base */
   background: linear-gradient(to top, rgb(237, 237, 237) 0%, rgb(237, 252, 255) 90%);
   background-attachment: fixed;
   color: #000;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-/* 2. Futuristic Circuit Pattern */
-/* We use body::before to keep the image separate from content interactions */
 body::before {
   content: "";
   position: fixed;
@@ -27,31 +23,28 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/media/other.png'); 
+  background-image: url('/media/other.png');
   background-size: 600px;
   background-repeat: repeat;
-  
-  /* SUBTLETY SETTINGS */
-  opacity: 0.3; /* Very low opacity for a watermark effect */
-  filter: saturate(0); /* Grey-scale to keep it neutral */
-  mix-blend-mode: multiply; /* Blends pattern into the gradient */
-  
-  pointer-events: none; /* Crucial: allows clicks to pass through to the 3D canvas */
-  z-index: 0; /* Behind everything */
+
+  opacity: 0.3;
+  filter: saturate(0);
+  mix-blend-mode: multiply;
+
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* 3. Layout Containers */
 #canvas-container {
   width: 100%;
   height: 100vh;
   position: relative;
-  z-index: 10; /* Above the background pattern */
+  z-index: 10;
 }
 
-/* 4. Responsive Canvas Height */
 @media (max-width: 1200px) {
   #canvas-container {
-    height: 120vh; /* Slightly taller for mobile/tablet layouts */
+    height: 120vh;
   }
 }
 
@@ -62,10 +55,9 @@ body::before {
   touch-action: pan-y;
 }
 
-/* 5. UI Content Styling */
 .content {
   position: relative;
-  z-index: 20; /* Ensures UI is on the top layer */
+  z-index: 20;
   padding: 2% 5% 0 5%;
   background-color: transparent;
   display: flex;
@@ -78,7 +70,6 @@ body::before {
   text-decoration: underline;
 }
 
-/* 6. Tailwind Theme Variables */
 @theme {
   --font-head: 'Archivo Black', sans-serif;
   --font-sans: 'Space Grotesk', sans-serif;

@@ -1,14 +1,27 @@
-import { Box, Flex, Text, VStack, Heading, Image, Badge, HStack } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import {
+  Box,
+  Flex,
+  Text,
+  VStack,
+  Heading,
+  Image,
+  HStack
+} from '@chakra-ui/react';
+import { ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
 
-function PartsShowoff({ part, isSmall }) {
-  // Destructure with default values to prevent crashes if data is missing
-  const { name, description, stats, image } = part || {};
+const MotionBox = motion(Box);
+
+function PartsShowoff({ part }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { name, description, stats, image, longDescription } = part || {};
 
   return (
-    <Box 
-      w="100%" 
-      bg="white" 
-      borderRadius="3xl" 
+    <Box
+      w="100%"
+      bg="white"
+      borderRadius="3xl"
       overflow="hidden"
       boxShadow="0 10px 30px rgba(0,0,0,0.05)"
       border="1px solid"
@@ -17,40 +30,87 @@ function PartsShowoff({ part, isSmall }) {
       _hover={{ transform: "translateY(-5px)" }}
     >
       <Flex direction="column">
-        {/* Top Section: Image Area */}
-        <Box 
-          bg="#fcfcfc" 
-          p={6} 
-          h="240px" 
-          display="flex" 
-          alignItems="center" 
-          justifyContent="center"
-        >
-          <Image 
-            // If part has an image use it, otherwise fallback to your default
-            src={image || "/media/technologies/raspberrypi.png"} 
-            alt={name} 
-            maxH="160px" 
+        <Box bg="#fcfcfc" p={6} h="240px" display="flex" alignItems="center" justifyContent="center">
+          <Image
+            src={image || "/media/technologies/raspberrypi.png"}
+            alt={name}
+            maxH="160px"
             objectFit="contain"
           />
         </Box>
 
-        {/* Bottom Section: Content */}
         <Box p={6}>
           <VStack align="flex-start" spacing={3}>
 
-            <Box>
-              <Heading size="md" fontWeight="800" letterSpacing="-0.5px">
-                {name || "Unknown Component"}
-              </Heading>
-              <Box w="30px" h="3px" bg="#ffbe5cff" mt={1} />
-            </Box>
+            <Flex w="100%" justify="space-between" align="center">
+              <Box>
+                <Heading size="md" fontWeight="800" letterSpacing="-0.5px">
+                  {name || "Unknown Component"}
+                </Heading>
+                <Box w="30px" h="3px" bg="#ffbe5cff" mt={1} />
+              </Box>
 
-            <Text color="gray.500" fontSize="sm" noOfLines={3} minH="60px">
+              {
+                longDescription ? (
+                  <Box
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    cursor="pointer"
+                    p={2}
+                    borderRadius="full"
+                    bg={isExpanded ? "orange.50" : "transparent"}
+                    transition="all 0.2s"
+                    _hover={{ bg: "gray.100" }}
+                    zIndex={10}
+                  >
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+                    >
+                      <ChevronDown size={24} color={isExpanded ? "#ffbe5cff" : "#A0AEC0"} />
+                    </motion.div>
+                  </Box>
+                )
+                  :
+                  ""
+              }
+            </Flex>
+
+            <Text color="gray.500" fontSize="sm" noOfLines={isExpanded ? undefined : 3}>
               {description}
             </Text>
 
-            {/* Dynamic Stats Row */}
+
+            {
+              longDescription ?
+                (
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <MotionBox
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        overflow="hidden"
+                        w="100%"
+                      >
+                        <Box pt={4} pb={2} borderTop="1px solid" borderColor="gray.50" mt={2}>
+                          <Text fontSize="xs" fontWeight="bold" color="gray.400" mb={2} textTransform="uppercase">
+                            Extended Details
+                          </Text>
+                          <Text fontSize="sm" color="gray.600">
+                            {longDescription || "High-performance integration optimized for LightCare's local processing requirements."}
+                          </Text>
+                        </Box>
+                      </MotionBox>
+                    )}
+                  </AnimatePresence>
+                )
+                :
+                ""
+            }
+
             <HStack w="100%" pt={3} borderTop="1px solid" borderColor="gray.50" justify="space-between">
               {stats && Object.entries(stats).map(([key, value]) => (
                 <VStack align="flex-start" key={key} spacing={0}>
@@ -63,6 +123,7 @@ function PartsShowoff({ part, isSmall }) {
                 </VStack>
               ))}
             </HStack>
+
           </VStack>
         </Box>
       </Flex>

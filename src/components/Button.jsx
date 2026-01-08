@@ -30,10 +30,8 @@ function Button(props) {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
 
-    // --- Hover pulse (base scale) ---
     const pulse = hovered ? 1 + Math.sin(t * 5) * 0.02 : 1;
 
-    // --- Press logic ---
     if (pressed) {
       targetScale.current.set(pulse, pulse, pulse * 0.5);
       setTimeout(() => {

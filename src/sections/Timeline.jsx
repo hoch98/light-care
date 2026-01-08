@@ -11,14 +11,14 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
-import { 
-  MdLightbulbOutline, 
-  MdSearch, 
-  MdBrush, 
-  MdBuild, 
-  MdCheckCircleOutline, 
-  MdGroups, 
-  MdTrendingUp 
+import {
+  MdLightbulbOutline,
+  MdSearch,
+  MdBrush,
+  MdBuild,
+  MdCheckCircleOutline,
+  MdGroups,
+  MdTrendingUp
 } from "react-icons/md";
 
 const MotionFlex = motion(Flex);
@@ -78,12 +78,10 @@ function TimelineSection() {
       position="relative"
       py={24}
       overflow="hidden"
-      bg="rgba(224, 224, 224, 0.2)"   // gray overlay
-      backdropFilter="blur(3px)"     // translucency
+      bg="rgba(224, 224, 224, 0.2)" 
+      backdropFilter="blur(3px)" 
     >
 
-
-      {/* HEADER */}
       <Container maxW="container.lg" mb={20} textAlign="center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -106,7 +104,6 @@ function TimelineSection() {
       </Container>
 
       <Container maxW="container.xl" position="relative" zIndex={1}>
-        {/* CENTER LINE */}
         <Box
           position="absolute"
           left={{ base: "31px", md: "50%" }}
@@ -134,7 +131,6 @@ function TimelineSection() {
                 justify="center"
                 position="relative"
               >
-                {/* NODE */}
                 <Circle
                   size="16px"
                   bg="#FFBE5C"
@@ -145,7 +141,6 @@ function TimelineSection() {
                   zIndex={2}
                 />
 
-                {/* CARD */}
                 <Flex
                   w="100%"
                   justify={isEven ? "flex-start" : "flex-end"}
@@ -163,7 +158,6 @@ function TimelineSection() {
                     textAlign={isDesktop && isEven ? "right" : "left"}
                     position="relative"
                   >
-                    {/* TITLE + ICON INLINE */}
                     <Flex
                       align="center"
                       gap={3}
@@ -193,7 +187,6 @@ function TimelineSection() {
                       {item.description}
                     </Text>
 
-                    {/* ARROW */}
                     {isDesktop && (
                       <Box
                         position="absolute"

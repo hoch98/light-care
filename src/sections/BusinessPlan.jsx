@@ -24,7 +24,7 @@ function BusinessPlan() {
     },
     {
       title: "Lean Cost Management",
-      icon: ShieldCheck, 
+      icon: ShieldCheck,
       desc: "Utilizing off-the-shelf hardware like Raspberry Pi and Pi Cameras to keep per-unit costs at SGD $370, focusing on a minimal MVP to reduce upfront capital.",
     },
     {
@@ -34,7 +34,7 @@ function BusinessPlan() {
     },
     {
       title: "Strategic Partnerships",
-      icon: Users, 
+      icon: Users,
       desc: "Scaling through hardware suppliers and smart-home ecosystem integration, targeting the 50% of smart home users who now adopt smart mirrors.",
     },
   ];
@@ -51,7 +51,6 @@ function BusinessPlan() {
       bg="white"
     >
       <VStack spacing={16} w={sectionWidth} maxW={maxWidth}>
-        {/* HEADER */}
         <VStack spacing={5} textAlign="center">
           <VStack spacing={2}>
             <Text
@@ -70,7 +69,6 @@ function BusinessPlan() {
           </Text>
         </VStack>
 
-        {/* CARDS */}
         <SimpleGrid
           columns={{ base: 1, md: 2 }}
           columnGap={10}
@@ -99,7 +97,6 @@ function BusinessPlan() {
               }}
             >
               <Flex align="flex-start" gap={6}>
-                {/* ICON */}
                 <Box
                   p={4}
                   bg="white"
@@ -111,7 +108,6 @@ function BusinessPlan() {
                   <Icon as={pillar.icon} boxSize={6} />
                 </Box>
 
-                {/* TEXT */}
                 <VStack align="start" spacing={2}>
                   <Heading
                     fontSize="md"

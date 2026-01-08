@@ -15,14 +15,14 @@ import ChallengeSection from './sections/ChallengeSection';
 import PrivacySection from './sections/Privacy';
 
 const SectionSeparator = () => (
-  <Box 
-    w="100%" 
+  <Box
+    w="100%"
     h="100px"
-    bg="white" 
-    opacity="1"  
-    position="relative" 
-    zIndex="10"  
-    shadow="sm" 
+    bg="white"
+    opacity="1"
+    position="relative"
+    zIndex="10"
+    shadow="sm"
   />
 );
 
@@ -31,13 +31,13 @@ function App() {
   return (
     <Provider>
       <LightMode>
-        <div id='body' style={{ cursor: "default"}}>
+        <div id='body' style={{ cursor: "default" }}>
           <TopBar />
           <Suspense fallback={<div style={{ height: '100vh', background: 'white' }} />}>
             <Starter />
           </Suspense>
           <SectionSeparator />
-          <ChallengeSection/ >
+          <ChallengeSection />
           <Demonstration />
           <BusinessPlan />
           <BuiltForYou />

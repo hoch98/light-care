@@ -30,7 +30,6 @@ export default function ContactSection() {
 
   return (
     <Box className="content" pb="150px" pt="80px" minH={"70vh"}>
-      {/* Header */}
       <VStack spacing={4} mb={20} textAlign="center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -42,20 +41,18 @@ export default function ContactSection() {
           </Text>
           <Box mt="10px" bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
         </motion.div>
-        
+
         <Text fontSize="xl" color="gray.600" maxW="600px" mt={4} px={6}>
           Interested or got any questions about LightCare?
           <br />
-          We'd love to hear from you. 
+          We'd love to hear from you.
         </Text>
       </VStack>
 
-      {/* Centered Container for the Grid */}
       <Box maxW="1200px" mx="auto" px={isWide ? 20 : 6}>
-        <SimpleGrid 
-          columns={isWide ? 3 : 1} 
-          // We use a large gap here, and ensuring the columns take up equal space
-          gap={isWide ? "100px" : "40px"} 
+        <SimpleGrid
+          columns={isWide ? 3 : 1}
+          gap={isWide ? "100px" : "40px"}
         >
           {contactMethods.map((method, index) => (
             <MotionBox
@@ -67,7 +64,7 @@ export default function ContactSection() {
               bg="whiteAlpha.700"
               backdropFilter="blur(12px) saturate(150%)"
               borderRadius="3xl"
-              p={12} // Increased internal padding
+              p={12}
               boxShadow="2xl"
               border="1px solid"
               borderColor="whiteAlpha.500"
@@ -75,20 +72,19 @@ export default function ContactSection() {
               flexDirection="column"
               alignItems="center"
               textAlign="center"
-              // Adding width control to prevent stretching if necessary
               width="100%"
             >
-              <Flex 
-                bg="#ffbe5c22" 
-                p={6} 
-                borderRadius="2xl" 
-                mb={6} 
-                alignItems="center" 
+              <Flex
+                bg="#ffbe5c22"
+                p={6}
+                borderRadius="2xl"
+                mb={6}
+                alignItems="center"
                 justifyContent="center"
               >
                 <Icon as={method.icon} w={8} h={8} color="#ffbe5cff" />
               </Flex>
-              
+
               <VStack spacing={3}>
                 <Text fontWeight="black" fontSize="xs" color="#ffbe5cff" textTransform="uppercase" letterSpacing="widest">
                   {method.label}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const MotionVStack = motion(VStack);
 
-function TitleCard({color, text, textColor, lastword, lastwordColour, slogan}) {
+function TitleCard({ color, text, textColor, lastword, lastwordColour, slogan }) {
   return (
     <Box
       w="100%"
@@ -19,14 +19,10 @@ function TitleCard({color, text, textColor, lastword, lastwordColour, slogan}) {
         right: 0,
         bottom: 0,
         backgroundImage: "url('/media/bg.jpg')",
-        
-        /* REPEAT SETTINGS */
-        backgroundSize: "800px", // Adjust this value to make the pattern smaller or larger
+        backgroundSize: "800px", 
         backgroundRepeat: "repeat",
         backgroundPosition: "center",
-        
-        /* BLENDING & OPACITY */
-        opacity: 0.07, // Lowered slightly so a dense repeating pattern isn't distracting
+        opacity: 0.07,
         zIndex: 0,
       }}
     >
@@ -43,11 +39,11 @@ function TitleCard({color, text, textColor, lastword, lastwordColour, slogan}) {
             <Text
               fontSize={{ base: "4xl", md: "6xl", lg: "7xl" }}
               fontWeight="800"
-              color={textColor} 
+              color={textColor}
               letterSpacing="-0.04em"
               lineHeight="1.1"
             >
-              {text} <span style={{color: lastwordColour}}>
+              {text} <span style={{ color: lastwordColour }}>
                 {lastword}
               </span>
             </Text>
@@ -55,7 +51,7 @@ function TitleCard({color, text, textColor, lastword, lastwordColour, slogan}) {
 
           <Text
             fontSize={{ base: "md", md: "xl" }}
-            color={"whiteAlpha.800" }
+            color={"whiteAlpha.800"}
             maxW="600px"
             fontWeight="medium"
             lineHeight="tall"

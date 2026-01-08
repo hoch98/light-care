@@ -77,7 +77,7 @@ function Seperator({ material }) {
 
 function TwoWayMirror({ hovered, setHovered, hoverEnabled }) {
   const isHighlighted = hoverEnabled && hovered === "mirror";
-  
+
   return (
     <mesh
       geometry={geoMirror}
@@ -264,11 +264,11 @@ const Product = React.memo(function Product(props) {
 
       {/* Interactive Parts */}
       <TwoWayMirror hovered={hovered} setHovered={setHovered} hoverEnabled={props.hoverEnabled} />
-      <Monitor 
-        displayToggled={props.displayToggled} 
-        hovered={hovered} 
-        setHovered={setHovered} 
-        hoverEnabled={props.hoverEnabled} 
+      <Monitor
+        displayToggled={props.displayToggled}
+        hovered={hovered}
+        setHovered={setHovered}
+        hoverEnabled={props.hoverEnabled}
       />
       <RaspberryPi hovered={hovered} setHovered={setHovered} hoverEnabled={props.hoverEnabled} />
       <PiCamera hovered={hovered} setHovered={setHovered} hoverEnabled={props.hoverEnabled} />

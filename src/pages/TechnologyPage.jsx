@@ -8,7 +8,6 @@ import Technology from '@/sections/Technology';
 import Research from '@/sections/Research';
 import Footer from '@/sections/Footer';
 import TitleCard from '@/sections/TitleCard';
-import TechnologySection from '@/sections/How';
 
 const Technologies = () => {
 
@@ -23,9 +22,8 @@ const Technologies = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <TitleCard color={"#336298ff"} textColor={"white"} text={"Behind the"} lastword={"Mirror"} lastwordColour={"#FFBE5C"} slogan={"The technology that quietly turns everyday moments into wellness insights."}/>
+            <TitleCard color={"#336298ff"} textColor={"white"} text={"Behind the"} lastword={"Mirror"} lastwordColour={"#FFBE5C"} slogan={"The technology that quietly turns everyday moments into wellness insights."} />
             <Technology />
-            {/* <TechnologySection /> */}
             <Research />
           </motion.div>
         </Box>
