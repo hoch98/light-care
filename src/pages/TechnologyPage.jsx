@@ -6,10 +6,9 @@ import { SimpleGrid, Container, Box } from '@chakra-ui/react';
 import TopBar from '../sections/Topbar';
 import Technology from '@/sections/Technology';
 import Research from '@/sections/Research';
-import PartsShowoff from '@/sections/PartsShowoff';
 import Footer from '@/sections/Footer';
 import TitleCard from '@/sections/TitleCard';
-import Demonstration from '@/sections/Demonstration';
+import TechnologySection from '@/sections/How';
 
 const Technologies = () => {
 
@@ -26,7 +25,7 @@ const Technologies = () => {
           >
             <TitleCard color={"#336298ff"} textColor={"white"} text={"Behind the"} lastword={"Mirror"} lastwordColour={"#FFBE5C"} slogan={"The technology that quietly turns everyday moments into wellness insights."}/>
             <Technology />
-
+            <TechnologySection />
             <Research />
           </motion.div>
         </Box>
