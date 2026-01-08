@@ -10,10 +10,13 @@ import {
   Image
 } from "@chakra-ui/react";
 import { Menu, X, User } from "lucide-react";
-import { Link as RouterLink } from "react-router"; // Import the Link component
+// Import useLocation alongside RouterLink
+import { Link as RouterLink, useLocation } from "react-router"; 
 
 const TopBar = () => {
   const { open, onToggle } = useDisclosure();
+  // 1. Get the current location object
+  const location = useLocation();
 
   const tabs = {
     "Home": "/",
@@ -62,29 +65,36 @@ const TopBar = () => {
         {/* Center: Desktop Navigation */}
         <HStack 
           display={{ base: "none", lg: "flex" }}
-          spacing={0} // Reset spacing to avoid conflicts
-          gap="60px"  // Use a hard 'gap' property for modern flex spacing
-          flex="1"    // Allows the container to grow
-          justify="center" // Ensures it stays centered between brand and actions
+          gap="60px"
+          flex="1"
+          justify="center"
         >
-          {Object.entries(tabs).map(([label, path]) => (
-            <Text 
-              as={RouterLink}
-              to={path}
-              key={label}
-              fontSize="lg" 
-              fontWeight="bold" 
-              color="gray.500"
-              cursor="pointer"
-              transition="all 0.2s"
-              whiteSpace="nowrap"
-              textDecoration="none"
-              px={2} // Adds a small internal padding buffer
-              _hover={{ color: "#ffbe5cff", transform: "translateY(-1px)", textDecoration: "none" }}
-            >
-              {label}
-            </Text>
-          ))}
+          {Object.entries(tabs).map(([label, path]) => {
+            // 2. Determine if this tab is active
+            const isActive = location.pathname === path;
+
+            return (
+              <Text 
+                as={RouterLink}
+                to={path}
+                key={label}
+                fontSize="lg" 
+                fontWeight="bold" 
+                // 3. Conditional styling based on active state
+                color={isActive ? "#ffbe5cff" : "gray.500"}
+                borderBottom={isActive ? "2px solid #ffbe5cff" : "2px solid transparent"}
+                cursor="pointer"
+                transition="all 0.2s"
+                whiteSpace="nowrap"
+                textDecoration="none"
+                px={2}
+                pb={1} // Add padding for the border
+                _hover={{ color: "#ffbe5cff", textDecoration: "none" }}
+              >
+                {label}
+              </Text>
+            );
+          })}
         </HStack>
 
         <HStack spacing={4}>
@@ -123,25 +133,15 @@ const TopBar = () => {
                 as={RouterLink}
                 to={path}
                 key={label} 
-                variant="ghost" 
+                variant={location.pathname === path ? "subtle" : "ghost"} // Highlight active in mobile
+                colorScheme={location.pathname === path ? "orange" : "gray"}
                 justifyContent="start" 
                 w="100%"
-                onClick={onToggle} // Close menu on click
+                onClick={onToggle}
               >
                 {label}
               </Button>
             ))}
-            <Button 
-              as={RouterLink}
-              to={"/contact"}
-              key={"Contact Us"} 
-              variant="ghost" 
-              justifyContent="start" 
-              w="100%"
-              onClick={onToggle} // Close menu on click
-            >
-              Cpntact Us
-            </Button>
           </Stack>
         </Box>
       )}
