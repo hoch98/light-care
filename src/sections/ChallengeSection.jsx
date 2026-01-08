@@ -74,9 +74,9 @@ function ChallengeSection() {
 
           <VStack align="start" spacing={6} mt={4} w="100%">
             {[
-              { label: "70%+", desc: "of people experience daily stress or fatigue" },
-              { label: "Passive", desc: "The missing link in health monitoring" },
-              { label: "Early", desc: "Detection before symptoms get serious" }
+              { label: "73%", desc: "of people report regular stress or burnout" },
+              { label: "1 in 3", desc: "adults get insufficient sleep on a regular basis" },
+              { label: "60%+", desc: "of health issues are linked to lifestyle factors" }
             ].map((item, i) => (
               <HStack key={i} align="center" spacing={6} w="100%">
                 <Text 

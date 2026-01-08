@@ -12,6 +12,7 @@ import Demonstration from './sections/Demonstration';
 import BusinessPlan from './sections/BusinessPlan';
 import BuiltForYou from './sections/BuiltForYou';
 import ChallengeSection from './sections/ChallengeSection';
+import PrivacySection from './sections/Privacy';
 
 const SectionSeparator = () => (
   <Box 
@@ -40,6 +41,7 @@ function App() {
           <Demonstration />
           <BusinessPlan />
           <BuiltForYou />
+          <PrivacySection />
           <TimelineSection />
           <LookingAhead />
         </div>

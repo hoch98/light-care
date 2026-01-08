@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 import { motion } from "framer-motion";
-import { Zap, BrainCircuit, ShieldCheck, HeartPulse } from "lucide-react";
+import { Zap, BrainCircuit, ShieldCheck, HeartPulse, Activity } from "lucide-react";
 
 const MotionFlex = motion(Flex);
 
@@ -30,9 +30,9 @@ function BuiltForYou() {
       desc: "A one-time hardware investment designed for multi-year use. ROI improves over time as the system learns user baselines, supported by continuous software updates.",
     },
     {
-      title: "Privacy by Design",
-      icon: ShieldCheck,
-      desc: "While the mirror is connected to the internet to fetch weather data, all processing and inference is done locally, ensuring no threat to privacy from third parties.",
+      title: "Pattern-Based Insight",
+      icon: Activity, // You can replace this with 'Activity' or 'LineChart' from lucide-react
+      desc: "LightCare builds a personalized baseline by observing wellness indicators across repeated daily use. Instead of reacting to what users can already see, the system detects trends over time, focusing on persistent changes. When indicators remain consistent over time, LightCare highlights this pattern and suggests appropriate next steps, supporting earlier awareness and more informed decisions.",
     },
     {
       title: "Wellness-Focused",
