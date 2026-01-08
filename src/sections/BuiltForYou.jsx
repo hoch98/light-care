@@ -22,24 +22,23 @@ function BuiltForYou() {
     {
       title: "Effortless Use",
       icon: Zap,
-      desc: "Can operate during daily routines, such as brushing teeth, with little to no interaction required, allowing for seemless integration into user's everyday life",
+      desc: "Can operate during daily routines, such as brushing teeth, with little to no interaction required, allowing for seamless integration into user's everyday life.",
     },
     {
-      title: "Daily Health Insights",
+      title: "Long-Term Return",
       icon: BrainCircuit,
-      desc: "Analyses visible facial indicators such as eye bags, dark circles, acne, and eye redness to surface early signs of fatigue, stress, or lifestyle imbalance.",
+      desc: "A one-time hardware investment designed for multi-year use. ROI improves over time as the system learns user baselines, supported by continuous software updates.",
     },
     {
       title: "Privacy by Design",
       icon: ShieldCheck,
-      desc: "While the mirror is connected to the internet, in order to fetch weather data, all processing and inference is done locally within the mirror's software, ensuring no threat to privacy due to a third party",
+      desc: "While the mirror is connected to the internet to fetch weather data, all processing and inference is done locally, ensuring no threat to privacy from third parties.",
     },
     {
       title: "Wellness-Focused",
       icon: HeartPulse,
-      desc: "Designed to support everyday wellbeing by highlighting potential lifestyle factors such as sleep, stress, and hydration, while avoiding medical diagnoses or treatment claims.",
+      desc: "Designed to support everyday wellbeing by highlighting potential lifestyle factors such as sleep, stress, and hydration, while avoiding medical diagnoses.",
     },
-
   ];
 
   return (
