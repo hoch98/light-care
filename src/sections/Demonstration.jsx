@@ -41,7 +41,7 @@ function Demonstration() {
             // Ensure color contrasts with your body background
             color="gray.800" 
           >
-            DEMONSTRATION
+            SEE IT IN ACTION
           </Text>
           <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
           <br />
