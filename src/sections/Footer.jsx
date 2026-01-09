@@ -56,9 +56,9 @@ export default function Footer() {
 
           <Stack align={isWide ? 'flex-start' : 'center'} spacing={3}>
             <Text fontWeight={'bold'} fontSize={'lg'} mb={2} color="gray.800">Technologies</Text>
-            <Link href={'/technologies'} {...linkStyles}>Sketches</Link>
-            <Link href={'/technologies'} {...linkStyles}>Code</Link>
-            <Link href={'/technologies'} {...linkStyles}>Demonstration</Link>
+            <Link href={'/technology'} {...linkStyles}>Neural Networks</Link>
+            <Link href={'/technology'} {...linkStyles}>Components</Link>
+            <Link href={'/technology'} {...linkStyles}>Research</Link>
           </Stack>
 
           <Stack align={isWide ? 'flex-start' : 'center'} spacing={3}>
