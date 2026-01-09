@@ -21,8 +21,8 @@ const TopBar = () => {
     "Home": "/",
     "Technology": "/technology",
     "Design & Development": "/design",
-    "Finance": "/finance",
     "Our Team": "/team",
+    "Finance": "/finance",
   };
 
   return (
