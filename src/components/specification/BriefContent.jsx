@@ -163,6 +163,7 @@ const BriefContent = () => {
           </Text>
         </Box>
       </SimpleGrid>
+      <br />
 
       <SimpleGrid
         columns={{ base: 1, md: 10 }}
@@ -212,7 +213,7 @@ const BriefContent = () => {
           </VStack>
         </Stack>
       </SimpleGrid>
-
+      <br />
       <SimpleGrid
         columns={{ base: 1, md: 10 }}
         spacing={{ base: 12, md: 10 }}
@@ -232,6 +233,12 @@ const BriefContent = () => {
               <BulletPoint />
               <Text fontSize="lg" color="gray.600">
                 Processes raw signals through detrending, moving average smoothing, and frequency masking to derive heart rate variability.
+              </Text>
+            </HStack>
+            <HStack align="start" spacing={4}>
+              <BulletPoint />
+              <Text fontSize="lg" color="gray.600">
+                Makes use of principles of <strong>structured light</strong>, projecting a patterned light grid onto the face, creating distortions. These distortions can be analyzed to compensate for unpredictable ambient lighting, allowing for reliable signal detection for remote photoplethysmography. 
               </Text>
             </HStack>
           </VStack>
