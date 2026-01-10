@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 
 import PartsShowoff from "./PartsShowoff";
 import BriefContent from "@/components/specification/BriefContent.jsx";
+import { Image } from "@chakra-ui/react";
 
 const MotionGridItem = motion(Box);
 
@@ -74,7 +75,44 @@ function Technology() {
         <BriefContent />
       </Box>
 
-      <Container maxW="container.xl" py={20}>
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={0} mb={8}>
+          <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} letterSpacing="-2px">
+            Dataset
+          </Text>
+        </VStack>
+        <Box
+          display="flex"
+          justifyContent="center"
+        >
+          <Box
+            bg="white"
+            borderRadius="3xl"
+            boxShadow="0 10px 30px rgba(0,0,0,0.05)"
+            border="1px solid"
+            borderColor="gray.100"
+            p={{ base: 6, md: 10 }}
+          >
+            <Image
+              src="/media/technologies/dataset.png"
+              maxW="900px"
+              w="100%"
+              borderRadius="xl"
+              objectFit="contain"
+            />
+          </Box>
+        </Box>
+
+
+
+      </Container>
+
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={0} mb={16}>
+          <Text fontWeight="black" fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} letterSpacing="-2px">
+            Components
+          </Text>
+        </VStack>
         <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
           {parts.map((item, index) => (
             <MotionGridItem
