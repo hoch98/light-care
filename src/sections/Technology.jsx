@@ -100,10 +100,9 @@ function Technology() {
               borderRadius="xl"
               objectFit="contain"
             />
+            <p style={{textAlign: "center", color: "gray"}}>https://universe.roboflow.com/redness/acne-l6cao</p>
           </Box>
         </Box>
-
-
 
       </Container>
 
