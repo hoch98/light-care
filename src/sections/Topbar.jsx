@@ -22,7 +22,7 @@ const TopBar = () => {
     "Technology": "/technology",
     "Design & Development": "/design",
     "Our Team": "/team",
-    "Finance": "/finance",
+    // "Finance": "/finance",
   };
 
   return (
