@@ -1,154 +1,52 @@
 import React from "react";
-import {
-  Box,
-  VStack,
-  HStack,
-  Text,
-  SimpleGrid,
-  Icon,
-  Circle,
-  Heading,
-  Badge,
-} from "@chakra-ui/react";
-import { ShieldAlert, Cpu, Power, UserMinus } from "lucide-react";
+import { Box, VStack, Text, Flex, Icon } from "@chakra-ui/react";
+import { Cpu, Power, UserMinus } from "lucide-react";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
+const GOLD = "#FFB200";
 
 const PrivacySection = () => {
   const layers = [
-    {
-      number: "01",
-      title: "Local-Only Processing",
-      subtitle: "The Foundation",
-      icon: Cpu,
-      color: "orange.400",
-      isMostImportant: true,
-      points: ["No cloud by default", "No video storage", "Frames processed in memory, then discarded"],
-      quote: "All image processing is performed locally on-device. No raw images or videos are stored or transmitted.",
-    },
-    {
-      number: "02",
-      title: "Explicit User Control",
-      subtitle: "Manual Activation",
-      icon: Power,
-      color: "blue.400",
-      points: ["Manual activation (voice/gesture)", "Camera off by default", "Physical LED indicator when active"],
-      quote: "The system only activates during explicit user interaction, with a visible indicator when the camera is on.",
-    },
-    {
-      number: "03",
-      title: "Non-Identifying Output",
-      subtitle: "Identity Protection",
-      icon: UserMinus,
-      color: "green.400",
-      points: ["No face recognition", "No identity tracking", "No personal data linked to individuals"],
-      quote: "LightCare does not identify users or store personal identities. It operates purely on transient visual signals.",
-    },
+    { title: "Local-only processing", icon: Cpu, points: "No cloud by default. Frames processed in memory, then immediately discarded." },
+    { title: "Explicit user control", icon: Power, points: "Manual activation only. Camera off by default with visible active indicators." },
+    { title: "Non-identifying output", icon: UserMinus, points: "No face recognition or identity tracking. Zero personal data linked." },
   ];
 
   return (
-    <Box
-      w="100%"
-      py={24}
-      bg="white"
-    >
-      <VStack
-        spacing={20}
-        maxW="1200px"
-        mx="auto"
-        px={{ base: 6, md: 10 }}
-      >
-        {/* Header */}
-        <VStack spacing={6} textAlign="center">
-          <Badge colorScheme="orange" px={4} py={1} borderRadius="full">
-            Security First
-          </Badge>
-          <Heading size="2xl" color="gray.800" letterSpacing="-1px">
-            Privacy Built Into the Hardware
-          </Heading>
-          <Text color="gray.600" fontSize="xl" maxW="800px">
-            Wellness shouldn't come at the cost of your personal data.
-            Our architecture ensures your reflection stays in your home.
+    <Box w="100%" bg="#050507" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+      
+      {/* Scaled-down Background Flair */}
+      {[...Array(5)].map((_, i) => (
+        <MotionBox
+          key={i} position="absolute" top="-20%" left={`${i * 25}%`} w="10px" h="150%" bg="rgba(255, 178, 0, 0.15)"
+          transform="rotate(45deg)" boxShadow={`0 0 20px rgba(255,178,0,0.2)`}
+          animate={{ opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 3 + i, repeat: Infinity, ease: "easeInOut" }} zIndex="0"
+        />
+      ))}
+
+      <VStack spacing={12} maxW="800px" mx="auto" px={6} position="relative" zIndex={1}>
+        <VStack align="center" textAlign="center" spacing={3} bg="rgba(0,0,0,0.6)" p={6} borderRadius="full" border={`2px solid ${GOLD}`}>
+          <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="800" color="white" textTransform="uppercase">
+            Hardware Level Privacy
           </Text>
-          <br />
         </VStack>
 
-        <SimpleGrid
-          columns={{ base: 1, lg: 3 }}
-          gap={10}
-          w="100%"
-        >
+        <VStack spacing={6} align="stretch" w="100%">
           {layers.map((layer, index) => (
-            <MotionBox
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-
-              p={10}
-              bg="gray.50"
-              borderRadius="3xl"
-              position="relative"
-              border="1px solid"
-              borderColor={layer.isMostImportant ? "orange.100" : "gray.100"}
-              boxShadow={layer.isMostImportant ? "xl" : "sm"}
-
-              display="flex"
-              flexDirection="column"
-              flex="1"
-            >
-              {layer.isMostImportant && (
-                <Badge
-                  position="absolute"
-                  top="-12px"
-                  left="50%"
-                  transform="translateX(-50%)"
-                  bg="#ffbe5cff"
-                  color="white"
-                  px={4}
-                  py={1}
-                  borderRadius="full"
-                  zIndex={1}
-                >
-                  MOST IMPORTANT
-                </Badge>
-              )}
-
-              <VStack align="start" spacing={6} h="100%">
-                <HStack w="100%" justify="space-between">
-                  <Circle size="60px" bg="white" color={layer.color} shadow="md">
-                    <Icon as={layer.icon} boxSize={8} />
-                  </Circle>
-                  <Text fontWeight="black" fontSize="4xl" opacity={0.1}>
-                    {layer.number}
-                  </Text>
-                </HStack>
-
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="xs" fontWeight="bold" color={layer.color} textTransform="uppercase" letterSpacing="1px">
-                    {layer.subtitle}
-                  </Text>
-                  <Heading size="md" color="gray.800">
-                    {layer.title}
-                  </Heading>
-                </VStack>
-
-                <VStack align="start" spacing={4} flex="1">
-                  {layer.points.map((point, pIndex) => (
-                    <HStack key={pIndex} align="start" spacing={3}>
-                      <Icon as={ShieldAlert} boxSize={4} color={layer.color} mt={1} />
-                      <Text color="gray.600" fontSize="sm" lineHeight="tall">
-                        {point}
-                      </Text>
-                    </HStack>
-                  ))}
-                </VStack>
-              </VStack>
+            <MotionBox key={layer.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+              <Flex align="center" gap={6} p={6} bg="#12131A" borderLeft={`6px solid ${GOLD}`} borderRadius="0 16px 16px 0" boxShadow="0 10px 20px rgba(0,0,0,0.5)">
+                <Box w="50px" h="50px" borderRadius="12px" bg="rgba(255,178,0,0.15)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
+                  <Icon as={layer.icon} boxSize={6} color={GOLD} />
+                </Box>
+                <Box>
+                  <Text fontWeight="800" fontSize="lg" color="white" mb={1}>{layer.title}</Text>
+                  <Text fontSize="sm" color="#A1A1AA" fontWeight="500">{layer.points}</Text>
+                </Box>
+              </Flex>
             </MotionBox>
           ))}
-        </SimpleGrid>
+        </VStack>
       </VStack>
     </Box>
   );

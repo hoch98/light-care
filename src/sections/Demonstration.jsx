@@ -1,74 +1,46 @@
-import {
-  Text,
-  Box,
-  VStack,
-  Flex,
-  Heading,
-} from "@chakra-ui/react";
+import { Text, Box, VStack, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import VideoContent from "@/components/specification/VideoContent.jsx";
 
 const MotionBox = motion(Box);
+const GOLD = "#FFB200";
 
 function Demonstration() {
-  const sectionWidth = { base: "95%", md: "85%", lg: "75%", xl: "65%" };
-  const maxWidth = "1100px";
-
   return (
-    <Box
-      className="demonstration-section-wrapper"
-      w="100%"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      py={"40px"}
-      position="relative"
-      pb={"100px"}
-      bg="transparent"
-      backdropFilter="blur(1px)"
-    >
-      <VStack spacing={12} w="100%" alignItems="center" zIndex={1}>
+    <Box w="100%" bg="#06070A" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+      
+      <Box
+        position="absolute" inset="0" zIndex="0" opacity="0.05"
+        backgroundImage="repeating-linear-gradient(45deg, transparent, transparent 15px, #FFB200 15px, #FFB200 30px)"
+      />
 
-        <VStack spacing={0}>
-          <Text
-            fontWeight="black"
-            fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
-            letterSpacing="-2px"
-            color="gray.800"
-          >
-            SEE IT IN ACTION
-          </Text>
-          <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
-          <br />
+      <MotionBox
+        position="absolute" top="50%" left="50%" w="500px" h="500px"
+        border="4px solid rgba(255,178,0,0.15)" borderRadius="full" transform="translate(-50%, -50%)"
+        animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        zIndex="0"
+      />
+      <Box position="absolute" top="50%" left="0" w="100%" h="1px" bg="rgba(255,178,0,0.2)" zIndex="0" />
+      <Box position="absolute" top="0" left="50%" w="1px" h="100%" bg="rgba(255,178,0,0.2)" zIndex="0" />
+
+      <Box maxW="1000px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
+        <VStack spacing={8} align="center">
+          
+          <VStack align="center" spacing={2} textAlign="center" bg="#06070A" p={4} borderRadius="12px" border="1px solid rgba(255,178,0,0.5)">
+            <Text fontSize="xs" fontWeight="800" letterSpacing="0.2em" textTransform="uppercase" color={GOLD}>
+              [ Live System Feed ]
+            </Text>
+            <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="800" color="white">
+              A morning routine, renewed.
+            </Text>
+          </VStack>
+
+          <MotionBox initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} w="100%">
+            <VideoContent />
+          </MotionBox>
         </VStack>
-
-        <br />
-
-        <MotionBox
-          w={sectionWidth}
-          maxW={maxWidth}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          position="relative"
-        >
-          <Box
-            bg="black"
-            borderRadius="3xl"
-            boxShadow="0 40px 100px rgba(0, 0, 0, 0.3)"
-            overflow="hidden"
-            border="1px solid"
-            borderColor="whiteAlpha.300"
-            aspectRatio={{ base: "16/9", lg: "21/9" }}
-          >
-            <Flex w="100%" h="100%" align="center" justify="center" bg="black">
-              <VideoContent />
-            </Flex>
-          </Box>
-        </MotionBox>
-      </VStack>
+      </Box>
     </Box>
   );
 }

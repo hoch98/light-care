@@ -1,11 +1,10 @@
 import './App.css';
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 import { Provider } from './components/ui/provider';
 import { LightMode } from './components/ui/color-mode';
 import Starter from './sections/Starter';
 import LookingAhead from './sections/LookingAhead';
 import TopBar from './sections/Topbar';
-import { Box } from '@chakra-ui/react';
 import TimelineSection from './sections/Timeline';
 import Footer from './sections/Footer';
 import Demonstration from './sections/Demonstration';
@@ -14,36 +13,26 @@ import BuiltForYou from './sections/BuiltForYou';
 import ChallengeSection from './sections/ChallengeSection';
 import PrivacySection from './sections/Privacy';
 
-const SectionSeparator = () => (
-  <Box
-    w="100%"
-    h="100px"
-    bg="white"
-    opacity="1"
-    position="relative"
-    zIndex="10"
-    shadow="sm"
-  />
-);
-
 function App() {
-
   return (
     <Provider>
       <LightMode>
-        <div id='body' style={{ cursor: "default" }}>
+        <div id='body' style={{ cursor: "default", backgroundColor: "#0A0B0E", color: "#F5F5F7" }}>
           <TopBar />
-          <Suspense fallback={<div style={{ height: '100vh', background: 'white' }} />}>
+          <Suspense fallback={<div style={{ height: '100vh', background: '#0A0B0E' }} />}>
             <Starter />
           </Suspense>
-          <SectionSeparator />
-          <ChallengeSection />
-          <Demonstration />
-          <BusinessPlan />
-          <BuiltForYou />
-          <PrivacySection />
-          <TimelineSection />
-          <LookingAhead />
+
+          {/* Main content flow with rich ambient transitions */}
+          <div id="mainContent">
+            <ChallengeSection />
+            <Demonstration />
+            <BusinessPlan />
+            <BuiltForYou />
+            <PrivacySection />
+            <TimelineSection />
+            <LookingAhead />
+          </div>
         </div>
         <footer>
           <Footer />
@@ -53,5 +42,4 @@ function App() {
   )
 }
 
-
-export default App
+export default App;

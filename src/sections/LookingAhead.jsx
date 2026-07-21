@@ -1,151 +1,66 @@
-import { Grid, GridItem, Text, Box, SimpleGrid, Icon, VStack } from "@chakra-ui/react";
+import { Box, Text, Flex, VStack, Button, SimpleGrid } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-import { Button } from "@chakra-ui/react";
 import { Link } from "react-router";
 
 const MotionBox = motion(Box);
+const GOLD = "#FFB200";
 
 function LookingAhead() {
-  const { width } = useWindowDimensions();
-  const isWide = width > 1200;
-
   const milestones = [
-    {
-      title: "Refining Accuracy and Speed",
-      desc: "Optimizing our AI models to detect symptoms with greater accuracy, as well as looking to combine the several models into 1, reducing overlap in detected symptoms as well as allowing for faster backend response."
-    },
-    {
-      title: "Trend Tracking",
-      desc: "Developing a data system to help users view wellness patterns over longer periods of time, not just a single morning."
-    },
-    {
-      title: "Expanded Insights",
-      desc: "Including additional wellness markers such as face reflectiveness and hydration levels."
-    },
-    {
-      title: "Pilot Testing",
-      desc: "Moving beyond internal prototyping to real-world testing environments to gather user feedback on the mirror's interface and utility."
-    }
+    { title: "Refining Accuracy", desc: "Combining several models into one to reduce overlap." },
+    { title: "Trend Tracking", desc: "View wellness patterns over weeks and months." },
+    { title: "Expanded Insights", desc: "Additional markers like facial reflectiveness." },
+    { title: "Pilot Testing", desc: "Moving to real-world environments to gather feedback." }
   ];
 
   return (
-    <Box className="content" pb="100px" px={isWide ? 20 : 6} position="relative" display="flex" flexDirection="column" alignItems="center">
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        backdropFilter: 'blur(2px)',
-        pointerEvents: 'none',
-        zIndex: -1,
-      }} />
-
-      <Box textAlign={"center"} mb={10} display="flex" flexDirection="column" alignItems={"center"}>
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"} color="gray.800">
-            LOOKING AHEAD
-          </Text>
-          <Box mt="10px" mb="20px" bg="#ffbe5cff" w="100%" h="6px" borderRadius="full" />
-        </motion.div>
-      </Box>
-
+    <Box w="100%" bg="#07080B" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+      
+      {/* Scaled-down Background Flair */}
       <Box
-        bg="rgba(255, 255, 255, 0.6)"
-        borderRadius="2xl"
-        border="1px solid rgba(255, 255, 255, 0.4)"
-        boxShadow="xl"
-        p={6}
-        mb={12}
-        w={isWide ? "60vw" : "90vw"}
-        textAlign="center"
-      >
-        <Text fontSize={"lg"} fontWeight="medium" color="gray.700" lineHeight="tall">
-          LightCare is currently in prototype development,
-          focusing on refining accuracy, usability, and feedback clarity.
-        </Text>
-      </Box>
+        position="absolute" bottom="0" left="0" w="100%" h="50%" zIndex="0"
+        backgroundImage={`
+          linear-gradient(transparent 0%, rgba(255,178,0,0.2) 1px, transparent 2px),
+          linear-gradient(90deg, transparent 0%, rgba(255,178,0,0.2) 1px, transparent 2px)
+        `}
+        backgroundSize="60px 60px" transform="perspective(600px) rotateX(75deg)" transformOrigin="bottom"
+      />
+      <Box position="absolute" bottom="0" left="50%" transform="translateX(-50%)" w="80%" h="200px" bg="radial-gradient(ellipse at bottom, rgba(255,178,0,0.25) 0%, transparent 60%)" zIndex="0" />
 
-      <SimpleGrid
-        columns={isWide ? 4 : 1}
-        gap={6}
-        mb={16}
-        maxW="80%"
-        w="100%"
-      >
-        {milestones.map((item, index) => (
-          <MotionBox
-            key={index}
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -3 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.4,
-              delay: index * 0.1,
-              y: { duration: 0.2, ease: "easeOut" }
-            }}
-            p={6}
-            bg="rgba(255, 255, 255, 0.5)"
-            backdropFilter="blur(5px)"
-            borderRadius="xl"
-            borderTop="4px solid #ffbe5cff"
-            borderLeft="1px solid rgba(255, 255, 255, 0.3)"
-            boxShadow="lg"
-            _hover={{
-              boxShadow: "xl",
-              bg: "white"
-            }}
-          >
-            <Text fontWeight="bold" fontSize="md" mb={2} color="gray.800">
-              {item.title}
+      <Box maxW="1100px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
+        <Flex direction={{ base: "column", lg: "row" }} gap={12} mb={20} align="center">
+          
+          <VStack align="start" spacing={4} flex="1" bg="rgba(0,0,0,0.6)" p={8} borderRadius="24px" border={`1px solid rgba(255,178,0,0.3)`} backdropFilter="blur(8px)">
+            <Text fontSize={{ base: "4xl", md: "5xl" }} fontWeight="800" color="white" lineHeight="1.1">
+              Still Early.<br/>Deliberately So.
             </Text>
-            <Text fontSize="xs" color="gray.600" lineHeight="relaxed">
-              {item.desc}
+            <Text color="#A1A1AA" fontSize="md" fontWeight="500">
+              Focused on accuracy, daily usability, and absolute clarity.
             </Text>
+          </VStack>
+
+          <SimpleGrid columns={{ base: 1, sm: 2 }} gap={4} flex="1.5">
+            {milestones.map((item, i) => (
+              <MotionBox key={item.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} p={6} bg="#12131A" border={`1px solid rgba(255,178,0,0.2)`} borderRadius="16px" boxShadow={`0 5px 15px rgba(0,0,0,0.3)`}>
+                <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{item.title}</Text>
+                <Text fontSize="sm" color="whiteAlpha.900" fontWeight="400">{item.desc}</Text>
+              </MotionBox>
+            ))}
+          </SimpleGrid>
+        </Flex>
+
+        <VStack align="center" textAlign="center" spacing={8}>
+          <Text fontSize={{ base: "lg", md: "xl" }} color="white" fontWeight="600" maxW="700px" bg="rgba(0,0,0,0.4)" p={4} borderRadius="lg">
+            Our goal isn't to replace medical tools — it's to empower people with proactive daily awareness.
+          </Text>
+          
+          <MotionBox whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button as={Link} to="/technology" bg={GOLD} color="#0A0B0E" fontWeight="800" borderRadius="full" px={10} py={7} fontSize="md" boxShadow={`0 0 20px rgba(255,178,0,0.3)`}>
+              Explore Technology
+            </Button>
           </MotionBox>
-        ))}
-      </SimpleGrid>
-
-      <Box
-        border="2px dashed"
-        borderColor="#ffbe5c88"
-        bg="rgba(255, 255, 255, 0.2)"
-        borderRadius="2xl"
-        p={isWide ? 10 : 6}
-        textAlign="center"
-        w={isWide ? "60vw" : "90vw"}
-      >
-        <VStack spacing={4}>
-          <Text fontSize={isWide ? "xl" : "md"} maxW="900px" color="gray.600" fontWeight="medium">
-            Our goal is not to replace medical tools, but to empower people with better daily awareness,
-            starting with the mirror they already use.
-          </Text>
         </VStack>
       </Box>
-
-      <br />
-      <VStack w="100%" mt={8}>
-        <MotionBox
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Button 
-            colorPalette="blue" 
-            variant="solid"
-          >
-            <Link to={"/technology"} style={{ textDecoration: 'none', color: 'inherit' }}>
-              Explore Our Technology →
-            </Link>
-          </Button>
-        </MotionBox>
-      </VStack>
     </Box>
   );
 }

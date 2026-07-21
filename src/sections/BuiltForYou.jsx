@@ -1,137 +1,72 @@
-import {
-  Text,
-  Box,
-  VStack,
-  Flex,
-  Icon,
-  Heading,
-  Circle,
-  Image
-} from "@chakra-ui/react";
-
+import { Text, Box, VStack, SimpleGrid, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { Zap, BrainCircuit, ShieldCheck, HeartPulse, Activity } from "lucide-react";
 
-const MotionFlex = motion(Flex);
+const MotionBox = motion(Box);
+const GOLD = "#FFB200";
 
 function BuiltForYou() {
-  const sectionWidth = { base: "95%", md: "85%", lg: "80%", xl: "70%" };
-  const maxWidth = "1200px";
-
-  const features = [
-    {
-      title: "Effortless Use",
-      icon: Zap,
-      desc: "Can operate during daily routines, such as brushing teeth, with little to no interaction required, allowing for seamless integration into user's everyday life.",
-    },
-    {
-      title: "Long-Term Return",
-      icon: BrainCircuit,
-      desc: "A one-time hardware investment designed for multi-year use. ROI improves over time as the system learns user baselines, supported by continuous software updates.",
-    },
-    {
-      title: "Pattern-Based Insight",
-      icon: Activity,
-      desc: "LightCare builds a personalized baseline by observing wellness indicators across repeated daily use. Instead of reacting to what users can already see, the system detects trends over time, focusing on persistent changes. When indicators remain consistent over time, LightCare highlights this pattern and suggests appropriate next steps, supporting earlier awareness and more informed decisions.",
-    },
-    {
-      title: "Wellness-Focused",
-      icon: HeartPulse,
-      desc: "Designed to support everyday wellbeing by highlighting potential lifestyle factors such as sleep, stress, and hydration, while avoiding medical diagnoses.",
-    },
+  const leftFeatures = [
+    { title: "Effortless Use", desc: "Works during routines you already have with zero friction." },
+    { title: "Long-term Return", desc: "Hardware investment that improves as AI learns your baseline." },
+  ];
+  const rightFeatures = [
+    { title: "Pattern Insight", desc: "Flags persistent changes rather than one-off daily noise." },
+    { title: "Wellness-Focused", desc: "Surfaces lifestyle factors like sleep — never a diagnosis." },
   ];
 
   return (
-    <Box
-      w="100%"
-      minH="50vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      py={24}
-      bg="gray.50"
-    >
-      <VStack spacing={16} w={sectionWidth} maxW={maxWidth}>
+    <Box w="100%" bg="#0E0F14" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+      
+      {/* Scaled-down Background Flair */}
+      {[1, 2, 3, 4].map((ring) => (
+        <MotionBox
+          key={ring} position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"
+          w={`${ring * 180}px`} h={`${ring * 180}px`} borderRadius="full"
+          border={`${ring}px dashed rgba(255, 178, 0, 0.15)`}
+          animate={{ rotate: ring % 2 === 0 ? 360 : -360 }}
+          transition={{ duration: 60 + ring * 10, repeat: Infinity, ease: "linear" }}
+          zIndex="0"
+        />
+      ))}
 
-        {/* HEADER */}
-        <VStack spacing={4} textAlign="center">
-          <VStack spacing={0}>
-            <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl" }} letterSpacing="-2px" color="gray.800">
-              BUILT FOR YOU
-            </Text>
-            <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
-          </VStack>
-          <br />
-          <Text color="gray.600" fontSize="lg" maxW="700px">
-            LightCare fits seamlessly into everyday routines—no wearables, apps, or extra effort required.
+      <Box maxW="1100px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
+        <VStack align="center" spacing={3} mb={16}>
+          <Text fontSize="sm" fontWeight="800" color={GOLD} textTransform="uppercase" letterSpacing="0.1em">
+            Why It Works
+          </Text>
+          <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="800" color="white" textAlign="center" bg="#0E0F14" px={4}>
+            Built for you, not another app.
           </Text>
         </VStack>
 
-        <Flex
-          direction={{ base: "column", lg: "row-reverse" }}
-          w="100%"
-          gap={12}
-          align="center"
-          mt={"20px"}
-        >
-          <Box
-            flex="1"
-            bg="white"
-            p={10}
-            borderRadius="3xl"
-            boxShadow="2xl"
-            border="1px solid"
-            borderColor="gray.100"
-            textAlign="center"
-          >
-            <Heading size="lg" mb={6} color="gray.800">The Seamless Experience</Heading>
-            <Text color="gray.500" mb={8}>
-              We believe wellness shouldn't be a chore. LightCare transforms your reflection into a partner in health.
-            </Text>
-            <Image
-              src="/media/hero.png"
-              alt="LightCare product visual"
-              h="400px"
-              w="100%"
-              objectFit="contain"
-              borderRadius="2xl"
-            />
-          </Box>
-
-          <VStack flex="1.2" spacing={0} align="stretch" position="relative" mt={"20px"}>
-            {features.map((item, index) => (
-              <MotionFlex
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                mb={8}
-                align="start"
-              >
-                <VStack mr={6} spacing={0}>
-                  <Circle size="48px" bg="white" border="2px solid" borderColor="#ffbe5cff" color="#ffbe5cff" shadow="md">
-                    <Icon as={item.icon} boxSize={5} />
-                  </Circle>
-                  {index !== features.length - 1 && (
-                    <Box w="2px" h="50px" bg="gray.200" my={2} />
-                  )}
-                </VStack>
-
-                <VStack align="start" spacing={1} pt={2}>
-                  <Text fontWeight="bold" fontSize="lg" color="gray.800">
-                    {item.title}
-                  </Text>
-                  <Text color="gray.500">
-                    {item.desc}
-                  </Text>
-                </VStack>
-              </MotionFlex>
+        <SimpleGrid columns={{ base: 1, lg: 3 }} gap={8} alignContent="center" alignItems="center">
+          
+          <VStack spacing={6} align="stretch">
+            {leftFeatures.map((f, i) => (
+              <MotionBox key={f.title} initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} p={6} bg="rgba(0,0,0,0.6)" border={`1px solid rgba(255,178,0,0.3)`} borderRadius="12px" textAlign={{ base: "left", lg: "right" }}>
+                <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{f.title}</Text>
+                <Text color="whiteAlpha.800" fontSize="sm" fontWeight="500">{f.desc}</Text>
+              </MotionBox>
             ))}
           </VStack>
-        </Flex>
-      </VStack>
+
+          <MotionBox initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} zIndex={2}>
+            <Box p={3} borderRadius="24px" bg="#1D1D1F" border={`2px solid ${GOLD}`} boxShadow={`0 0 40px rgba(255,178,0,0.2)`}>
+              <Image src="/media/hero.png" alt="Product visual" w="100%" h={{ base: "250px", md: "380px" }} objectFit="contain" />
+            </Box>
+          </MotionBox>
+
+          <VStack spacing={6} align="stretch">
+            {rightFeatures.map((f, i) => (
+              <MotionBox key={f.title} initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} p={6} bg="rgba(0,0,0,0.6)" border={`1px solid rgba(255,178,0,0.3)`} borderRadius="12px">
+                <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{f.title}</Text>
+                <Text color="whiteAlpha.800" fontSize="sm" fontWeight="500">{f.desc}</Text>
+              </MotionBox>
+            ))}
+          </VStack>
+
+        </SimpleGrid>
+      </Box>
     </Box>
   );
 }

@@ -1,131 +1,64 @@
-import {
-  Text,
-  Box,
-  VStack,
-  Flex,
-  SimpleGrid,
-  Icon,
-  Heading,
-} from "@chakra-ui/react";
+import { Text, Box, VStack, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { Layout, RefreshCw, Users, ShieldCheck } from "lucide-react";
 
 const MotionBox = motion(Box);
+const GOLD = "#FFB200";
 
 function BusinessPlan() {
-  const sectionWidth = { base: "95%", md: "85%", lg: "75%", xl: "65%" };
-  const maxWidth = "1100px";
-
   const pillars = [
-    {
-      title: "Phased Growth Strategy",
-      icon: Layout,
-      desc: "Starting with Prototype Development (USD 5k-10k) via grants, scaling to a 100-unit Pilot Phase funded by angel investors to test market demand.",
-    },
-    {
-      title: "Lean Cost Management",
-      icon: ShieldCheck,
-      desc: "Utilizing off-the-shelf hardware like Raspberry Pi and Pi Cameras to keep per-unit costs at SGD $370, focusing on a minimal MVP to reduce upfront capital.",
-    },
-    {
-      title: "Sustainable Revenue",
-      icon: RefreshCw,
-      desc: "Revenue is driven by hardware sales (USD $400) and an optional $5/month subscription for premium AI features, ensuring 5% projected monthly growth.",
-    },
-    {
-      title: "Strategic Partnerships",
-      icon: Users,
-      desc: "Scaling through hardware suppliers and smart-home ecosystem integration, targeting the 50% of smart home users who now adopt smart mirrors.",
-    },
+    { n: "01", title: "Phased Growth", desc: "Prototype development funded by grants, scaling to a 100-unit pilot backed by angel investors." },
+    { n: "02", title: "Lean Cost Management", desc: "Off-the-shelf hardware keeps per-unit cost near SGD $370, focused on a minimal MVP." },
+    { n: "03", title: "Sustainable Revenue", desc: "Hardware sales at USD $400, plus an optional $5/month subscription for premium AI features." },
+    { n: "04", title: "Strategic Partnerships", desc: "Scaling through hardware suppliers and smart-home ecosystem integration." },
   ];
 
   return (
-    <Box
-      w="100%"
-      minH="50vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      py={24}
-      bg="white"
-    >
-      <VStack spacing={16} w={sectionWidth} maxW={maxWidth}>
-        <VStack spacing={5} textAlign="center">
-          <VStack spacing={2}>
-            <Text
-              fontWeight="black"
-              fontSize={{ base: "4xl", md: "5xl" }}
-              letterSpacing="-2px"
-              color="gray.800"
-            >
-              BUSINESS PLAN
+    <Box w="100%" bg="#0B0C10" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+      
+      {/* Scaled-down Background Flair */}
+      <MotionBox
+        position="absolute" top="15%" left="0" whiteSpace="nowrap" zIndex="0" opacity="0.03"
+        animate={{ x: ["0%", "-50%"] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      >
+        <Text fontSize="100px" fontWeight="900" color="white" lineHeight="1">
+          SCALE SCALE SCALE SCALE SCALE SCALE SCALE SCALE
+        </Text>
+      </MotionBox>
+
+      <MotionBox
+        position="absolute" bottom="0" right="-5%" w="300px" h="300px" bg="rgba(255, 178, 0, 0.05)" borderRadius="30px"
+        transform="rotate(45deg)" animate={{ rotate: [45, 90, 45] }} transition={{ duration: 25, repeat: Infinity }} zIndex="0"
+      />
+
+      <Box maxW="1100px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
+        <Flex direction={{ base: "column", lg: "row" }} gap={10}>
+          
+          <VStack align="start" spacing={3} maxW="350px" position={{ lg: "sticky" }} top={{ lg: "150px" }} h="max-content">
+            <Text fontSize="sm" fontWeight="800" color={GOLD} bg="rgba(255,178,0,0.15)" px={3} py={1} borderRadius="md">
+              BUSINESS MODEL
             </Text>
-            <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
+            <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="800" lineHeight="1.1" color="white">
+              Built to scale deliberately.
+            </Text>
           </VStack>
-          <br />
-          <Text color="gray.500" fontSize="lg" maxW="800px">
-            LightCare is built on a scalable and sustainable model designed to support both individual users and institutions.
-          </Text>
-        </VStack>
 
-        <SimpleGrid
-          columns={{ base: 1, md: 2 }}
-          columnGap={10}
-          rowGap={10}
-          w="100%"
-          mt={"40px"}
-        >
-          {pillars.map((pillar, index) => (
-            <MotionBox
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              bg="gray.50"
-              p={8}
-              borderRadius="2xl"
-              border="1px solid"
-              borderColor="gray.100"
-              boxShadow="sm"
-              minH="140px"
-              _hover={{
-                bg: "gray.100",
-                transform: "translateY(-4px)",
-                transition: "0.2s ease",
-              }}
-            >
-              <Flex align="flex-start" gap={6}>
-                <Box
-                  p={4}
-                  bg="white"
-                  borderRadius="xl"
-                  boxShadow="sm"
-                  color="#ffbe5cff"
-                  flexShrink={0}
-                >
-                  <Icon as={pillar.icon} boxSize={6} />
-                </Box>
-
-                <VStack align="start" spacing={2}>
-                  <Heading
-                    fontSize="md"
-                    color="gray.800"
-                    textTransform="uppercase"
-                    letterSpacing="wide"
-                  >
-                    {pillar.title}
-                  </Heading>
-                  <Text color="gray.600" fontSize="sm" lineHeight="tall">
-                    {pillar.desc}
-                  </Text>
-                </VStack>
-              </Flex>
-            </MotionBox>
-          ))}
-        </SimpleGrid>
-      </VStack>
+          <VStack align="stretch" spacing={6} flex="1" pt={{ base: 6, lg: 12 }}>
+            {pillars.map((p, i) => (
+              <MotionBox
+                key={p.n}
+                initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }}
+                p={8} ml={{ md: `${i * 8}%` }} w={{ base: "100%", md: "85%" }}
+                bg="#12131A" borderLeft={`4px solid ${GOLD}`} borderRight="1px solid rgba(255,255,255,0.05)" borderTop="1px solid rgba(255,255,255,0.05)" borderBottom="1px solid rgba(255,255,255,0.05)"
+                boxShadow="0 15px 30px rgba(0,0,0,0.3)"
+              >
+                <Text fontSize="4xl" fontWeight="900" color="rgba(255,178,0,0.3)" lineHeight="1" mb={2}>{p.n}</Text>
+                <Text fontWeight="800" fontSize="xl" color="white" mb={1}>{p.title}</Text>
+                <Text color="#A1A1AA" fontSize="sm" fontWeight="500">{p.desc}</Text>
+              </MotionBox>
+            ))}
+          </VStack>
+        </Flex>
+      </Box>
     </Box>
   );
 }

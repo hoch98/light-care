@@ -1,140 +1,77 @@
-import { Grid, Text, Box, VStack, HStack, Icon } from "@chakra-ui/react";
+import { Text, Box, VStack, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
-import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 
 const MotionBox = motion(Box);
+const GOLD = "#FFB200";
+const MUTED = "#A1A1AA";
 
 function ChallengeSection() {
-  const { width } = useWindowDimensions();
-  const isWide = width > 1000;
-
-  const problemCards = [
-    {
-      title: "Wearables & Apps",
-      color: "gray.100",
-      icon: FaTimesCircle,
-      iconColor: "red.400",
-      points: ["High effort to maintain", "Manual data entry", "Charging fatigue"]
-    },
-    {
-      title: "Clinical Solutions",
-      color: "gray.100",
-      icon: FaTimesCircle,
-      iconColor: "red.400",
-      points: ["Often sought too late", "High cost barriers", "Invasive procedures"]
-    },
-    {
-      title: "Our Approach",
-      color: "orange.50",
-      borderColor: "#ffbe5cff",
-      icon: FaCheckCircle,
-      iconColor: "green.400",
-      points: ["Passive & non-invasive", "24/7 consistency", "Seamless daily routine"]
-    }
+  const stats = [
+    { value: "73%", desc: "report regular stress or burnout" },
+    { value: "1 in 3", desc: "adults get insufficient sleep" },
+    { value: "60%+", desc: "of health issues trace back to lifestyle" },
   ];
 
   return (
-    <Box
-      mx="auto"
-      w={isWide ? "85vw" : "90vw"}
-      maxW="1200px"
-      py={{ base: "60px", md: "100px" }}
-      id="mainContent"
-    >
-      <Grid
-        templateColumns={isWide ? "1.4fr 1fr" : "1fr"}
-        gap={{ base: 10, md: 16 }}
-        alignItems="center"
-      >
+    <Box w="100%" bg="#0A0B0E" py={{ base: 16, md: 24 }} position="relative" overflow="hidden" id="mainContent">
+      
+      {/* Scaled-down Background Flair */}
+      <Box
+        position="absolute" inset="0" zIndex="0" opacity="0.2"
+        backgroundImage={`
+          linear-gradient(rgba(255,178,0,0.15) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,178,0,0.15) 1px, transparent 1px)
+        `}
+        backgroundSize="60px 60px"
+        transform="perspective(800px) rotateX(60deg) scale(1.5)"
+        transformOrigin="top"
+      />
+      
+      <MotionBox
+        position="absolute" top="5%" right="-5%" w="0" h="0"
+        borderTop="150px solid transparent"
+        borderBottom="150px solid transparent"
+        borderLeft={`150px solid rgba(255, 178, 0, 0.08)`}
+        animate={{ x: [0, -30, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        zIndex="0"
+      />
 
-        <VStack align="start" spacing={6} w="100%">
-          <Box w="100%">
-            <Text
-              fontSize={{ base: "3xl", md: "5xl" }}
-              fontWeight="bold"
-              lineHeight="1.1"
-              color="gray.800"
-            >
-              Wellness Feedback <br />
-              <Text as="span" color="#ffbe5cff">Comes Too Late</Text>
+      <Box maxW="1100px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
+        <Flex direction={{ base: "column", lg: "row" }} gap={12} align="center">
+          
+          <VStack align="start" spacing={5} flex="1" maxW="480px" bg="rgba(10, 11, 14, 0.85)" p={6} borderRadius="24px" backdropFilter="blur(8px)">
+            <Text fontSize="xs" fontWeight="800" letterSpacing="0.15em" textTransform="uppercase" color={GOLD}>
+              // The Problem
             </Text>
-            <Text
-              mt={6}
-              color="gray.600"
-              fontSize={{ base: "md", md: "lg" }}
-              maxW="500px"
-            >
-              Modern life moves fast, but awareness hasn't kept up.
-              Small issues build quietly until they become major disruptions.
+            <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="800" letterSpacing="-0.02em" lineHeight="1.1" color="white">
+              Wellness feedback comes too late.
             </Text>
-          </Box>
-
-          <VStack align="start" spacing={6} mt={4} w="100%">
-            {[
-              { label: "73%", desc: "of people report regular stress or burnout" },
-              { label: "1 in 3", desc: "adults get insufficient sleep on a regular basis" },
-              { label: "60%+", desc: "of health issues are linked to lifestyle factors" }
-            ].map((item, i) => (
-              <HStack key={i} align="center" spacing={6} w="100%">
-                <Text
-                  fontSize={{ base: "2xl", md: "3xl" }}
-                  fontWeight="bold"
-                  color="#ffbe5cff"
-                  minW={{ base: "80px", md: "110px" }}
-                >
-                  {item.label}
-                </Text>
-                <Text
-                  fontWeight="medium"
-                  color="gray.700"
-                  fontSize={{ base: "sm", md: "md" }}
-                >
-                  {item.desc}
-                </Text>
-              </HStack>
-            ))}
+            <Text fontSize="md" color={MUTED} lineHeight="tall" borderLeft={`2px solid ${GOLD}`} pl={4}>
+              Small issues build quietly until they become disruptions. Daily awareness hasn't kept pace with modern life.
+            </Text>
           </VStack>
-        </VStack>
 
-        <VStack spacing={6} w="100%">
-          <Text alignSelf="start" fontWeight="bold" fontSize="xl" color="gray.800">
-            Existing Alternatives Fall Short
-          </Text>
-
-          {problemCards.map((card, idx) => (
-            <MotionBox
-              key={idx}
-              w="100%"
-              p={6}
-              bg={card.color}
-              borderRadius="2xl"
-              border={card.borderColor ? "2px solid" : "1px solid"}
-              borderColor={card.borderColor || "gray.200"}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              _hover={{ transform: "translateY(-4px)", boxShadow: "lg" }}
-            >
-              <Text fontWeight="bold" fontSize="md" mb={3} color="gray.800">
-                {card.title}
-              </Text>
-              <VStack align="start" spacing={2}>
-                {card.points.map((point, pIdx) => (
-                  <HStack key={pIdx} spacing={3}>
-                    <Icon as={card.icon} color={card.iconColor} boxSize={4} />
-                    <Text fontSize="sm" color="gray.600">
-                      {point}
-                    </Text>
-                  </HStack>
-                ))}
-              </VStack>
-            </MotionBox>
-          ))}
-        </VStack>
-
-      </Grid>
+          <Box flex="1" position="relative" w="100%">
+            <VStack spacing={4} align="stretch" position="relative">
+              {stats.map((s, i) => (
+                <MotionBox
+                  key={s.value}
+                  initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} whileHover={{ scale: 1.02, x: -5 }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  p={6} ml={{ base: 0, md: i % 2 === 0 ? "0" : "10%" }} mr={{ base: 0, md: i % 2 === 0 ? "10%" : "0" }}
+                  borderRadius="0 20px 0 20px"
+                  bg="#12131A" border="1px solid rgba(255, 178, 0, 0.2)"
+                  boxShadow="0 10px 20px rgba(0,0,0,0.4)"
+                >
+                  <Text fontSize="4xl" fontWeight="800" color={GOLD} lineHeight="1">{s.value}</Text>
+                  <Text mt={1} color="white" fontSize="sm" fontWeight="600" textTransform="uppercase">{s.desc}</Text>
+                </MotionBox>
+              ))}
+            </VStack>
+          </Box>
+        </Flex>
+      </Box>
     </Box>
   );
 }

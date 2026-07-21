@@ -16,21 +16,45 @@ function Starter() {
   return (
     <Box
       w="100%"
-      h="100vh"
+      h={{ base: "115vh", md: "125vh" }}
       position="relative"
       overflow="hidden"
       display="flex"
       alignItems="center"
       justifyContent="center"
-      backgroundImage="url('/media/starter-bg.jpg')"
-      backgroundSize="cover"
-      backgroundPosition="center"
+      pb="140px"
     >
+      {/* Background scaled in/inwards nicely with cover and custom positioning */}
+      <MotionBox
+        position="absolute"
+        top="0"
+        left="0"
+        w="100%"
+        h="100vh"
+        backgroundImage="url('/media/starter-bg.jpg')"
+        backgroundSize="cover"
+        backgroundRepeat="no-repeat"
+        backgroundPosition="center 30%" // Well-balanced position so bottom margins aren't cut off
+        zIndex={0}
+        animate={{
+          scale: [1, 1.08, 1],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Dark Overlay with Blur covering the full expanded section */}
       <Box
         position="absolute"
-        inset={0}
-        bg="blackAlpha.600"
-        backdropFilter="blur(3px)"
+        top="0"
+        left="0"
+        w="100%"
+        h="100%"
+        bg="blackAlpha.700"
+        backdropFilter="blur(4px)"
         zIndex={1}
       />
 
@@ -61,7 +85,7 @@ function Starter() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Text
-              fontSize={{ base: "xl", md: "2xl" }}
+              fontSize="sm"
               fontWeight="semibold"
               color="white" 
               letterSpacing="widest"
@@ -93,10 +117,13 @@ function Starter() {
                 _active={{ transform: "scale(0.98)" }}
                 boxShadow="0px 10px 20px rgba(255, 178, 0, 0.3)"
                 onClick={() => {
-                  document.getElementById("mainContent").scrollIntoView({
-                    behavior: "smooth", 
-                    block: "start" 
-                  });
+                  const mainContent = document.getElementById("mainContent");
+                  if (mainContent) {
+                    mainContent.scrollIntoView({
+                      behavior: "smooth", 
+                      block: "start" 
+                    });
+                  }
                 }}
               >
                 Learn More
@@ -105,6 +132,43 @@ function Starter() {
           </MotionBox>
         </VStack>
       </Container>
+
+      {/* Animated Wave / Equalizer Bottom Transition */}
+      <Box 
+        position="absolute" 
+        bottom="0" 
+        left="0" 
+        w="100%" 
+        h="140px" 
+        zIndex={3} 
+        display="flex" 
+        alignItems="flex-end" 
+        pointerEvents="none"
+      >
+        {[...Array(45)].map((_, i) => {
+          const baseHeights = [30, 60, 90, 45, 100, 70, 85, 40, 95, 60];
+          const hVal = baseHeights[i % 10];
+          return (
+            <MotionBox
+              key={i}
+              flex="1"
+              bg="#0A0B0E"
+              borderTopRadius="3px"
+              mx="1px"
+              initial={{ height: "20%" }}
+              animate={{ 
+                height: [`${hVal}%`, `${(hVal + 30) % 100}%`, `${hVal}%`]
+              }}
+              transition={{ 
+                duration: 2.5 + (i % 3) * 0.5, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: i * 0.04
+              }}
+            />
+          );
+        })}
+      </Box>
     </Box>
   );
 }
