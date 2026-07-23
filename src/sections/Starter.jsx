@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import {
   Box,
   Heading,
@@ -10,11 +10,31 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
+// Lazy so the three.js stack lands in its own chunk instead of the initial bundle.
+const HeroCanvas = lazy(() => import('@/components/HeroCanvas'));
+
 const MotionBox = motion(Box);
 
 function Starter() {
+  const heroRef = useRef(null);
+  const [inView, setInView] = useState(true);
+
+  // Stop rendering frames once the hero scrolls away — the page is long and the
+  // canvas would otherwise keep the GPU busy the whole way down.
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.01 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Box
+      ref={heroRef}
       w="100%"
       h={{ base: "115vh", md: "125vh" }}
       position="relative"
@@ -23,38 +43,24 @@ function Starter() {
       alignItems="center"
       justifyContent="center"
       pb="140px"
+      bg="#0A0B0E"
     >
-      {/* Background scaled in/inwards nicely with cover and custom positioning */}
-      <MotionBox
-        position="absolute"
-        top="0"
-        left="0"
-        w="100%"
-        h="100vh"
-        backgroundImage="url('/media/starter-bg.jpg')"
-        backgroundSize="cover"
-        backgroundRepeat="no-repeat"
-        backgroundPosition="center 30%" // Well-balanced position so bottom margins aren't cut off
-        zIndex={0}
-        animate={{
-          scale: [1, 1.08, 1],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Slowly rotating device — spins, floats and dollies behind the copy. */}
+      <Box position="absolute" top="0" left="0" w="100%" h="100vh" zIndex={0} pointerEvents="none">
+        <Suspense fallback={null}>
+          <HeroCanvas active={inView} />
+        </Suspense>
+      </Box>
 
-      {/* Dark Overlay with Blur covering the full expanded section */}
+      {/* Vignette — enough to hold text contrast over the model, light enough
+          that the device still reads now that the photo backdrop is gone. */}
       <Box
         position="absolute"
         top="0"
         left="0"
         w="100%"
         h="100%"
-        bg="blackAlpha.700"
-        backdropFilter="blur(4px)"
+        backgroundImage="radial-gradient(ellipse at center, rgba(10,11,14,0.60) 0%, rgba(10,11,14,0.32) 45%, rgba(10,11,14,0.82) 100%)"
         zIndex={1}
       />
 
