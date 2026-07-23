@@ -1,8 +1,6 @@
 import '../App.css';
-import { motion } from 'framer-motion';
 import { Provider } from '../components/ui/provider';
 import { LightMode } from '../components/ui/color-mode';
-import { SimpleGrid, Container, Box } from '@chakra-ui/react';
 import TopBar from '../sections/Topbar';
 import Technology from '@/sections/Technology';
 import Research from '@/sections/Research';
@@ -14,19 +12,20 @@ const Technologies = () => {
   return (
     <Provider>
       <LightMode>
-        <Box id='body' style={{ cursor: "default" }}>
+        <div id='body' style={{ cursor: "default" }}>
           <TopBar />
+          <TitleCard
+            text={"Behind the"}
+            lastword={"Mirror"}
+            slogan={"The technology that quietly turns everyday moments into wellness insights."}
+            waveColor="gray.50"
+          />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <TitleCard color={"#336298ff"} textColor={"white"} text={"Behind the"} lastword={"Mirror"} lastwordColour={"#FFBE5C"} slogan={"The technology that quietly turns everyday moments into wellness insights."} />
+          <div id="mainContent">
             <Technology />
             <Research />
-          </motion.div>
-        </Box>
+          </div>
+        </div>
         <footer>
           <Footer />
         </footer>

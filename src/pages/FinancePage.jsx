@@ -7,20 +7,30 @@ import FinanceSection from '@/sections/FinanceSection';
 import TitleCard from '@/sections/TitleCard';
 import RevenueProjections from '@/sections/ProjectionsSection';
 
-const ContactPage = () => {
+const FinancePage = () => {
   return (
     <Provider>
       <LightMode>
-        <TopBar />
-        <TitleCard color={"#00a743ff"} textColor={"#4b68f8ff"} text={"The Engine of"} lastword={"Growth"} lastwordColour={"#ffd54fff"} slogan={"A look at the finances behind Light Care"} />
-        <FinanceSection />
-        <RevenueProjections/>
+        <div id='body' style={{ cursor: "default" }}>
+          <TopBar />
+          <TitleCard
+            text={"The Engine of"}
+            lastword={"Growth"}
+            slogan={"A look at the finances behind Light Care."}
+            waveColor="white"
+          />
+
+          <div id="mainContent">
+            <FinanceSection />
+            <RevenueProjections />
+          </div>
+        </div>
+        <footer>
+          <Footer />
+        </footer>
       </LightMode>
-      <footer>
-        <Footer />
-      </footer>
     </Provider>
   )
 };
 
-export default ContactPage;
+export default FinancePage;

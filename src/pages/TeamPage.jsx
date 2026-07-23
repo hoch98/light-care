@@ -12,13 +12,22 @@ const TeamPage = () => {
   return (
     <Provider>
       <LightMode>
-        <TopBar />
-        <TitleCard color={"#336298ff"} textColor={"white"} text={"The Heart of"} lastword={"Light Care"} lastwordColour={"#FFBE5C"} slogan={"Dedicated to making non-diagnostic wellness sensing accessible, simple, and private."} />
-        <Team />
+        <div id='body' style={{ cursor: "default" }}>
+          <TopBar />
+          <TitleCard
+            text={"The Heart of"}
+            lastword={"Light Care"}
+            slogan={"Dedicated to making non-diagnostic wellness sensing accessible, simple, and private."}
+          />
+
+          <div id="mainContent">
+            <Team />
+          </div>
+        </div>
+        <footer>
+          <Footer />
+        </footer>
       </LightMode>
-      <footer>
-        <Footer />
-      </footer>
     </Provider>
   )
 };

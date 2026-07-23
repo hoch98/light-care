@@ -7,20 +7,29 @@ import Footer from '@/sections/Footer';
 import CodeSection from "@/sections/Code"
 import TitleCard from '@/sections/TitleCard';
 
-const ContactPage = () => {
+const BuildPage = () => {
   return (
     <Provider>
       <LightMode>
-        <TopBar />
-        <TitleCard color={"#ffbe5cff"} textColor={"#336298ff"} text={"The Architecture of"} lastword={"Insight"} lastwordColour={"#62daffff"} slogan={"From CAD designs to neural networks: a look at the system's core."} />
-        <BehindTheBuild />
-        <CodeSection />
+        <div id='body' style={{ cursor: "default" }}>
+          <TopBar />
+          <TitleCard
+            text={"The Architecture of"}
+            lastword={"Insight"}
+            slogan={"From CAD designs to neural networks: a look at the system's core."}
+          />
+
+          <div id="mainContent">
+            <BehindTheBuild />
+            <CodeSection />
+          </div>
+        </div>
+        <footer>
+          <Footer />
+        </footer>
       </LightMode>
-      <footer>
-        <Footer />
-      </footer>
     </Provider>
   )
 };
 
-export default ContactPage;
+export default BuildPage;

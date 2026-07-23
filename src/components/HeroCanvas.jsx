@@ -96,8 +96,8 @@ function Device({ reducedMotion }) {
     if (reducedMotion) return
     const t = clock.elapsedTime
 
-    // Continuous slow revolution — ~28s per full turn.
-    if (spinRef.current) spinRef.current.rotation.y += delta * 0.22
+    // Continuous revolution — ~14s per full turn.
+    if (spinRef.current) spinRef.current.rotation.y += delta * 0.45
 
     // Float + a gentle tilt drift so the turn never reads mechanical.
     if (bobRef.current) {
@@ -106,8 +106,8 @@ function Device({ reducedMotion }) {
       bobRef.current.rotation.z = Math.sin(t * 0.37) * 0.02
     }
 
-    // Slow dolly — breathes between 6.6 and 5.4 on a ~26s cycle.
-    camera.position.z = 6.0 + Math.sin(t * 0.24) * 0.6
+    // Slow dolly — breathes between 5.5 and 4.5 on a ~26s cycle.
+    camera.position.z = 5.0 + Math.sin(t * 0.24) * 0.5
     camera.position.y = Math.sin(t * 0.19) * 0.25
     camera.lookAt(0, 0, 0)
   })
@@ -143,7 +143,7 @@ export default function HeroCanvas({ active = true }) {
 
   return (
     <Canvas
-      camera={{ fov: 45, position: [0, 0, 6] }}
+      camera={{ fov: 45, position: [0, 0, 5] }}
       dpr={[1, 1.75]}
       frameloop={active && !reducedMotion ? 'always' : 'demand'}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
