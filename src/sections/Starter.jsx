@@ -1,26 +1,23 @@
-import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Heading,
   Text,
-  Button,
   Container,
   VStack,
   HStack
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-
-// Lazy so the three.js stack lands in its own chunk instead of the initial bundle.
-const HeroCanvas = lazy(() => import('@/components/HeroCanvas'));
+import GoldButton from '@/components/GoldButton';
 
 const MotionBox = motion(Box);
 
 function Starter() {
   const heroRef = useRef(null);
+  const videoRef = useRef(null);
   const [inView, setInView] = useState(true);
 
-  // Stop rendering frames once the hero scrolls away — the page is long and the
-  // canvas would otherwise keep the GPU busy the whole way down.
+  // Pause the background video once the hero scrolls away.
   useEffect(() => {
     const el = heroRef.current;
     if (!el || typeof IntersectionObserver === 'undefined') return;
@@ -31,6 +28,15 @@ function Starter() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) { v.pause(); return; }
+    if (inView) v.play().catch(() => {});
+    else v.pause();
+  }, [inView]);
 
   return (
     <Box
@@ -45,15 +51,21 @@ function Starter() {
       pb="140px"
       bg="#0A0B0E"
     >
-      {/* Slowly rotating device — spins, floats and dollies behind the copy. */}
-      <Box position="absolute" top="0" left="0" w="100%" h="100vh" zIndex={0} pointerEvents="none">
-        <Suspense fallback={null}>
-          <HeroCanvas active={inView} />
-        </Suspense>
+      {/* Rendered mirror video behind the copy. */}
+      <Box position="absolute" top="0" left="0" w="100%" h="100vh" zIndex={0} pointerEvents="none" overflow="hidden">
+        <video
+          ref={videoRef}
+          src="/media/mirror-render.mp4"
+          poster="/media/mirror-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
       </Box>
 
-      {/* Vignette — enough to hold text contrast over the model, light enough
-          that the device still reads now that the photo backdrop is gone. */}
+      {/* Vignette — enough to hold text contrast over the render. */}
       <Box
         position="absolute"
         top="0"
@@ -93,7 +105,7 @@ function Starter() {
             <Text
               fontSize="sm"
               fontWeight="semibold"
-              color="white" 
+              color="white"
               letterSpacing="widest"
               textTransform="uppercase"
             >
@@ -113,42 +125,35 @@ function Starter() {
             </Text>
 
             <HStack spacing={4} justify="center">
-              <Button
+              <GoldButton
                 size="lg"
-                bg="#FFB200"
-                color="white"
-                px={10}
-                borderRadius="full"
-                _hover={{ bg: "#e6a100", transform: "translateY(-2px)" }}
-                _active={{ transform: "scale(0.98)" }}
-                boxShadow="0px 10px 20px rgba(255, 178, 0, 0.3)"
                 onClick={() => {
                   const mainContent = document.getElementById("mainContent");
                   if (mainContent) {
                     mainContent.scrollIntoView({
-                      behavior: "smooth", 
-                      block: "start" 
+                      behavior: "smooth",
+                      block: "start"
                     });
                   }
                 }}
               >
                 Learn More
-              </Button>
+              </GoldButton>
             </HStack>
           </MotionBox>
         </VStack>
       </Container>
 
       {/* Animated Wave / Equalizer Bottom Transition */}
-      <Box 
-        position="absolute" 
-        bottom="0" 
-        left="0" 
-        w="100%" 
-        h="140px" 
-        zIndex={3} 
-        display="flex" 
-        alignItems="flex-end" 
+      <Box
+        position="absolute"
+        bottom="0"
+        left="0"
+        w="100%"
+        h="140px"
+        zIndex={3}
+        display="flex"
+        alignItems="flex-end"
         pointerEvents="none"
       >
         {[...Array(45)].map((_, i) => {
@@ -162,12 +167,12 @@ function Starter() {
               borderTopRadius="3px"
               mx="1px"
               initial={{ height: "20%" }}
-              animate={{ 
+              animate={{
                 height: [`${hVal}%`, `${(hVal + 30) % 100}%`, `${hVal}%`]
               }}
-              transition={{ 
-                duration: 2.5 + (i % 3) * 0.5, 
-                repeat: Infinity, 
+              transition={{
+                duration: 2.5 + (i % 3) * 0.5,
+                repeat: Infinity,
                 ease: "easeInOut",
                 delay: i * 0.04
               }}

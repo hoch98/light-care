@@ -4,26 +4,22 @@ import {
   VStack
 } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
-import useWindowDimensions from "../hooks/useWindowDimensions.jsx";
 import CodeContent from "@/components/specification/CodeContent.jsx";
-import { Button } from "@chakra-ui/react";
 import { Link } from "react-router";
+import GoldButton from '@/components/GoldButton';
 
 const MotionBox = motion(Box);
 
 function CodeSection() {
-  const { width } = useWindowDimensions();
-  const isWide = width > 1200;
-
   const contentWidth = { base: "95%", md: "85%", lg: "70%", xl: "60%" };
 
   const containerStyles = {
-    bg: "white",
+    bg: "#0D0E13",
     borderRadius: "2xl",
-    boxShadow: "xl",
+    boxShadow: "0 20px 45px rgba(0,0,0,0.5)",
     textAlign: "center",
     border: "1px solid",
-    borderColor: "gray.100"
+    borderColor: "whiteAlpha.100"
   };
 
   return (
@@ -37,10 +33,10 @@ function CodeSection() {
       w="100%"
     >
       <VStack spacing={0} mb={12}>
-        <Text fontWeight="black" fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }} letterSpacing="-2px">
+        <Text fontWeight="black" fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }} letterSpacing="-2px" color="white">
           Code
         </Text>
-        <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
+        <Box bg="#62daff" w="100%" h="8px" borderRadius="full" />
       </VStack>
 
       <Box
@@ -76,14 +72,9 @@ function CodeSection() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <Button 
-          colorPalette="blue" 
-          variant="solid" 
-        >
-          <Link to={"/team"} style={{ textDecoration: 'none', color: 'inherit' }}>
-            Explore Our Team →
-          </Link>
-        </Button>
+        <GoldButton as={Link} to={"/team"}>
+          Explore Our Team →
+        </GoldButton>
       </MotionBox>
     </Box>
   );

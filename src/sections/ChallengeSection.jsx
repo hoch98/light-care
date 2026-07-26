@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 const GOLD = "#FFB200";
+const BLUE = "#62daff";
 const MUTED = "#A1A1AA";
 
 function ChallengeSection() {
@@ -36,6 +37,11 @@ function ChallengeSection() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         zIndex="0"
       />
+      <Box
+        position="absolute" bottom="-20%" left="-10%" w="45%" h="70%"
+        bg="radial-gradient(circle, rgba(98,218,255,0.07) 0%, transparent 60%)"
+        filter="blur(50px)" pointerEvents="none" zIndex="0"
+      />
 
       <Box maxW="1100px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
         <Flex direction={{ base: "column", lg: "row" }} gap={12} align="center">
@@ -61,10 +67,10 @@ function ChallengeSection() {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   p={6} ml={{ base: 0, md: i % 2 === 0 ? "0" : "10%" }} mr={{ base: 0, md: i % 2 === 0 ? "10%" : "0" }}
                   borderRadius="0 20px 0 20px"
-                  bg="#12131A" border="1px solid rgba(255, 178, 0, 0.2)"
+                  bg="#12131A" border={`1px solid ${i % 2 === 1 ? "rgba(98, 218, 255, 0.25)" : "rgba(255, 178, 0, 0.2)"}`}
                   boxShadow="0 10px 20px rgba(0,0,0,0.4)"
                 >
-                  <Text fontSize="4xl" fontWeight="800" color={GOLD} lineHeight="1">{s.value}</Text>
+                  <Text fontSize="4xl" fontWeight="800" color={i % 2 === 1 ? BLUE : GOLD} lineHeight="1">{s.value}</Text>
                   <Text mt={1} color="white" fontSize="sm" fontWeight="600" textTransform="uppercase">{s.desc}</Text>
                 </MotionBox>
               ))}

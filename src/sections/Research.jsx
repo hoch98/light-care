@@ -1,8 +1,8 @@
 import { Grid, Text, Box, Link, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-import { Button } from "@chakra-ui/react";
 import { Link as LinkReact } from "react-router";
+import GoldButton from '@/components/GoldButton';
 
 const MotionBox = motion(Box);
 
@@ -43,10 +43,10 @@ function Research() {
     >
       <Box textAlign="center" mb={10} display="flex" flexDirection="column" alignItems="center">
         <Box>
-          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"} color="gray.800">
+          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"} color="white">
             RESEARCH
           </Text>
-          <Box mt="10px" bg="#ffbe5cff" w="100%" h="6px" borderRadius="full" />
+          <Box mt="10px" bg="#62daff" w="100%" h="6px" borderRadius="full" />
         </Box>
       </Box>
 
@@ -58,22 +58,22 @@ function Research() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: index * 0.15 }}
-            bg="rgba(255, 255, 255, 0.6)"
+            bg="rgba(255, 255, 255, 0.05)"
             backdropFilter="blur(10px)"
             borderRadius="2xl"
-            border="1px solid rgba(255, 255, 255, 0.3)"
-            boxShadow="xl"
+            border="1px solid rgba(255, 255, 255, 0.10)"
+            boxShadow="0 15px 35px rgba(0,0,0,0.4)"
             p={8}
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            _hover={{ transform: "translateY(-8px)", bg: "rgba(255, 255, 255, 0.75)", boxShadow: "2xl" }}
+            _hover={{ transform: "translateY(-8px)", bg: "rgba(255, 255, 255, 0.09)", boxShadow: "0 25px 45px rgba(0,0,0,0.5)" }}
           >
             <Box>
-              <Text fontWeight="bold" fontSize="lg" color="gray.800" mb={4}>
+              <Text fontWeight="bold" fontSize="lg" color="white" mb={4}>
                 {r.title}
               </Text>
-              <Text fontSize="sm" color="gray.600" lineHeight="relaxed">
+              <Text fontSize="sm" color="whiteAlpha.700" lineHeight="relaxed">
                 {r.description}
               </Text>
             </Box>
@@ -84,9 +84,9 @@ function Research() {
                 isExternal
                 fontSize="xs"
                 fontWeight="900"
-                color="#ffbe5cff"
+                color="#FFB200"
                 letterSpacing="widest"
-                _hover={{ color: "orange.500", textDecoration: "none" }}
+                _hover={{ color: "#FFD24D", textDecoration: "none" }}
               >
                 READ FULL STUDY →
               </Link>
@@ -102,14 +102,9 @@ function Research() {
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <VStack mt={16} w="100%" align="center">
-          <Button
-            as={LinkReact}
-            to="/design"
-            colorPalette="yellow"
-            variant="solid"
-          >
+          <GoldButton as={LinkReact} to="/design">
             Learn About Our Design & Development →
-          </Button>
+          </GoldButton>
         </VStack>
       </MotionBox>
     </Box>

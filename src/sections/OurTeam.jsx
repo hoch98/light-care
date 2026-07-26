@@ -1,10 +1,12 @@
 import { Grid, Text, Box, Image, SimpleGrid, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-import { Button } from "@chakra-ui/react";
 import { Link } from "react-router";
+import GoldButton from '@/components/GoldButton';
 
 const MotionBox = motion(Box);
+const GOLD = "#FFB200";
+const BLUE = "#62daff";
 
 export default function OurTeamSection() {
   const { width } = useWindowDimensions();
@@ -19,7 +21,7 @@ export default function OurTeamSection() {
     {
       name: "Felix Wang",
       imageSrc: "media/about/felix.png",
-      blurb: "Serves as the team lead and manager, overseeing project direction coordinaiting responsibilities, managing deadlines. He also lead in decision making, and played a crucial role in the hardware designing area",
+      blurb: "Serves as the team lead and project manager, overseeing project direction, coordinating team responsibilities, and ensuring project milestones are met. He leads strategic decision-making and contributes to both hardware and software development, including CAD design, product rendering, website development, and healthcare research to ensure the solution is technically sound and clinically relevant.",
     },
     {
       name: "Ho Yun Chen",
@@ -43,23 +45,23 @@ export default function OurTeamSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"}>
+          <Text fontWeight="bold" fontSize={isWide ? "5xl" : "4xl"} color="white">
             OUR TEAM
-            <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: "#ffbe5cff", width: "100%", height: "10px", borderRadius: "10px" }} />
+            <div style={{ marginTop: "10px", marginBottom: "20px", backgroundColor: GOLD, width: "100%", height: "10px", borderRadius: "10px" }} />
           </Text>
         </motion.div>
       </Box>
 
       <Box
-        bg="whiteAlpha.700"
+        bg="rgba(255, 255, 255, 0.04)"
         backdropFilter="blur(10px) saturate(120%)"
         borderRadius="2xl"
-        boxShadow="xl"
+        boxShadow="0 20px 50px rgba(0,0,0,0.45)"
         p={isWide ? 12 : 8}
         mb={10}
         mx={isWide ? 20 : 4}
         border="1px solid"
-        borderColor="whiteAlpha.500"
+        borderColor="whiteAlpha.100"
       >
         <VStack align="center" spacing={8} mx="auto" maxW="800px" mb={12}>
           <motion.div
@@ -69,14 +71,14 @@ export default function OurTeamSection() {
             transition={{ duration: 1 }}
           >
             <Box textAlign="center" mb={4}>
-              <Text fontSize="25px" color="gray.700">
-                <span style={{ fontWeight: "bold", color: "#416D9F" }}>Our Mission</span> is to make everyday wellness awareness simple, accessible, and effortless.
+              <Text fontSize="25px" color="whiteAlpha.800">
+                <span style={{ fontWeight: "bold", color: BLUE }}>Our Mission</span> is to make everyday wellness awareness simple, accessible, and effortless.
               </Text>
             </Box>
 
             <Box textAlign="center">
-              <Text fontSize="25px" color="gray.700">
-                <span style={{ fontWeight: "bold", color: "#ffb700ff" }}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.
+              <Text fontSize="25px" color="whiteAlpha.800">
+                <span style={{ fontWeight: "bold", color: GOLD }}>Our Vision</span> is to shape a future where people can understand their wellbeing in seconds, just by looking in the mirror.
               </Text>
             </Box>
           </motion.div>
@@ -90,12 +92,14 @@ export default function OurTeamSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              bg="white"
+              bg="#101118"
               borderRadius="xl"
-              boxShadow="md"
+              border="1px solid"
+              borderColor="whiteAlpha.100"
+              boxShadow="0 15px 35px rgba(0,0,0,0.4)"
               p={8}
               textAlign="center"
-              _hover={{ transform: "translateY(-5px)", boxShadow: "2xl" }}
+              _hover={{ transform: "translateY(-5px)", boxShadow: "0 25px 50px rgba(0,0,0,0.55)", borderColor: "rgba(255,178,0,0.3)" }}
             >
               <Box overflow="hidden" borderRadius="full" boxSize="240px" mx="auto" mb={4}>
                 <Image
@@ -107,16 +111,16 @@ export default function OurTeamSection() {
                   _hover={{ transform: "scale(1.1)" }}
                 />
               </Box>
-              <Text fontWeight="bold" fontSize="lg" color="gray.800">{p.name}</Text>
-              <Box w="30px" h="3px" bg="#ffbe5cff" mx="auto" mt={2} mb={3} />
-              <Text mt={3} fontSize="sm" color="gray.600" lineHeight="taller">{p.blurb}</Text>
+              <Text fontWeight="bold" fontSize="lg" color="white">{p.name}</Text>
+              <Box w="30px" h="3px" bg={GOLD} mx="auto" mt={2} mb={3} />
+              <Text mt={3} fontSize="sm" color="whiteAlpha.700" lineHeight="taller">{p.blurb}</Text>
             </MotionBox>
           ))}
         </Grid>
       </Box>
 
       <Box mb={16} mx={isWide ? 20 : 4}>
-        <Text textAlign="center" fontWeight="bold" fontSize="3xl" mb={8}>OUR VALUES</Text>
+        <Text textAlign="center" fontWeight="bold" fontSize="3xl" mb={8} color="white">OUR VALUES</Text>
         <SimpleGrid columns={isWide ? 4 : 2} gap={6}>
           {values.map((v, index) => (
             <MotionBox
@@ -125,20 +129,20 @@ export default function OurTeamSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              bg="whiteAlpha.800"
+              bg="rgba(255, 255, 255, 0.05)"
               backdropFilter="blur(5px)"
               border="1px solid"
-              borderColor="gray.100"
+              borderColor="whiteAlpha.100"
               p={6}
               borderRadius="xl"
               textAlign="center"
-              boxShadow="sm"
-              _hover={{ bg: "white", boxShadow: "md", transform: "translateY(-2px)" }}
+              boxShadow="0 10px 25px rgba(0,0,0,0.35)"
+              _hover={{ bg: "rgba(255, 255, 255, 0.09)", borderColor: "rgba(98,218,255,0.35)", transform: "translateY(-2px)" }}
             >
-              <Text fontWeight="bold" color="#ffbe5cff" mb={2} letterSpacing="wider" textTransform="uppercase" fontSize="xs">
+              <Text fontWeight="bold" color={BLUE} mb={2} letterSpacing="wider" textTransform="uppercase" fontSize="xs">
                 {v.title}
               </Text>
-              <Text fontSize="sm" color="gray.600" fontWeight="medium">{v.desc}</Text>
+              <Text fontSize="sm" color="whiteAlpha.700" fontWeight="medium">{v.desc}</Text>
             </MotionBox>
           ))}
         </SimpleGrid>
@@ -150,14 +154,9 @@ export default function OurTeamSection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Button 
-              colorPalette="green" 
-              variant="solid" 
-            >
-              <Link to={"/finance"} style={{ textDecoration: 'none', color: 'inherit' }}>
-                Explore Our Finances →
-              </Link>
-            </Button>
+            <GoldButton as={Link} to={"/finance"}>
+              Explore Our Finances →
+            </GoldButton>
           </MotionBox>
         </VStack>
       </Box>

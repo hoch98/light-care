@@ -1,42 +1,22 @@
-import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import React from 'react';
 import {
   Box,
   Heading,
   Text,
-  Button,
   Container,
   VStack,
   HStack
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-
-// Same lazy three.js chunk as the home hero — already cached once any page loads it.
-const HeroCanvas = lazy(() => import('@/components/HeroCanvas'));
+import GoldButton from '@/components/GoldButton';
 
 const MotionBox = motion(Box);
 
-// Page opener styled after the home hero: dark stage, rotating device behind the
-// copy, gold headline, and the equalizer transition into the page content.
-// `waveColor` should match the background of the first section below the hero.
-function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor = "#EDFCFF" }) {
-  const heroRef = useRef(null);
-  const [inView, setInView] = useState(true);
-
-  // Stop rendering frames once the hero scrolls away — same saving as the home page.
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.01 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+// Page opener styled after the home hero — same dark stage, gold headline and
+// equalizer transition, but static: only the first page carries an animation.
+function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor = "#0A0B0E" }) {
   return (
     <Box
-      ref={heroRef}
       w="100%"
       h={{ base: "100vh", md: "110vh" }}
       position="relative"
@@ -47,22 +27,30 @@ function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor =
       pb="140px"
       bg="#0A0B0E"
     >
-      {/* Rotating device behind the copy, same as the home hero. */}
-      <Box position="absolute" top="0" left="0" w="100%" h="100vh" zIndex={0} pointerEvents="none">
-        <Suspense fallback={null}>
-          <HeroCanvas active={inView} />
-        </Suspense>
-      </Box>
-
-      {/* Vignette — holds text contrast over the model. */}
+      {/* Perspective grid flair — same design language as the home sections. */}
       <Box
-        position="absolute"
-        top="0"
-        left="0"
-        w="100%"
-        h="100%"
-        backgroundImage="radial-gradient(ellipse at center, rgba(10,11,14,0.60) 0%, rgba(10,11,14,0.32) 45%, rgba(10,11,14,0.82) 100%)"
-        zIndex={1}
+        position="absolute" inset="0" zIndex={0} opacity="0.18"
+        backgroundImage={`
+          linear-gradient(rgba(255,178,0,0.15) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,178,0,0.15) 1px, transparent 1px)
+        `}
+        backgroundSize="60px 60px"
+        transform="perspective(800px) rotateX(60deg) scale(1.5)"
+        transformOrigin="top"
+      />
+
+      {/* Soft gold + blue glows for depth. */}
+      <Box
+        position="absolute" top="-20%" left="-10%" w="55vw" h="55vw" zIndex={0}
+        bg="radial-gradient(circle, rgba(255,178,0,0.12) 0%, transparent 60%)"
+        filter="blur(50px)"
+        pointerEvents="none"
+      />
+      <Box
+        position="absolute" bottom="-25%" right="-10%" w="55vw" h="55vw" zIndex={0}
+        bg="radial-gradient(circle, rgba(98,218,255,0.12) 0%, transparent 60%)"
+        filter="blur(50px)"
+        pointerEvents="none"
       />
 
       <Container maxW="container.lg" position="relative" zIndex={2}>
@@ -111,15 +99,8 @@ function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor =
             </Text>
 
             <HStack spacing={4} justify="center">
-              <Button
+              <GoldButton
                 size="lg"
-                bg="#FFB200"
-                color="white"
-                px={10}
-                borderRadius="full"
-                _hover={{ bg: "#e6a100", transform: "translateY(-2px)" }}
-                _active={{ transform: "scale(0.98)" }}
-                boxShadow="0px 10px 20px rgba(255, 178, 0, 0.3)"
                 onClick={() => {
                   const mainContent = document.getElementById("mainContent");
                   if (mainContent) {
@@ -131,7 +112,7 @@ function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor =
                 }}
               >
                 {ctaText}
-              </Button>
+              </GoldButton>
             </HStack>
           </MotionBox>
         </VStack>

@@ -38,7 +38,7 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
       overflow="hidden"
       borderRadius="xl"
       border="1px solid"
-      borderColor="gray.200"
+      borderColor="whiteAlpha.300"
       userSelect="none"
     >
       <Image
@@ -113,13 +113,13 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
 
 const BriefContent = () => {
   const BulletPoint = () => (
-    <Box minW="6px" h="6px" bg="#ffbe5c" borderRadius="full" mt="10px" />
+    <Box minW="6px" h="6px" bg="#FFB200" borderRadius="full" mt="10px" />
   );
 
   const SectionTitle = ({ icon, children }) => (
     <HStack spacing={3} mb={4}>
-      <Icon as={icon} boxSize={5} color="#ffbe5c" />
-      <Heading size="md" color="gray.800" textTransform="uppercase" letterSpacing="wider">
+      <Icon as={icon} boxSize={5} color="#FFB200" />
+      <Heading size="md" color="white" textTransform="uppercase" letterSpacing="wider">
         {children}
       </Heading>
     </HStack>
@@ -139,13 +139,13 @@ const BriefContent = () => {
           <VStack align="start" spacing={3} pl={2}>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Utilizes <strong>OpenCV.js</strong> and Haar Cascade Classifiers to perform real-time face detection at <strong>30 FPS</strong>.
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Implements <strong>YOLOv11 segmentation</strong> to isolate the user from the background for interference-free skin analysis.
               </Text>
             </HStack>
@@ -158,7 +158,7 @@ const BriefContent = () => {
               afterImg="media/brief/yolo2.png"
             />
           </AspectRatio>
-          <Text fontSize="xs" color="gray.400" mt={2} textAlign="center">
+          <Text fontSize="xs" color="whiteAlpha.500" mt={2} textAlign="center">
             Slide to compare Raw vs. YOLOv11 Segmentation
           </Text>
         </Box>
@@ -183,7 +183,7 @@ const BriefContent = () => {
               src="media/brief/model.png"
               borderRadius="xl"
               border="1px solid"
-              borderColor="gray.200"
+              borderColor="whiteAlpha.300"
               objectFit="cover"
               alt="Neural Network Performance"
             />
@@ -194,19 +194,19 @@ const BriefContent = () => {
           <VStack align="start" spacing={3} pl={2}>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Custom-tuned <strong>YOLOv11</strong> models to detect dermatological features real-time
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Models are trained 1.6k images from public datasets for 100 epochs.
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Flask-based backend handles asynchronous requests ensuring latency stays below <strong>150ms</strong>.
               </Text>
             </HStack>
@@ -225,19 +225,19 @@ const BriefContent = () => {
           <VStack align="start" spacing={3} pl={2}>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Extracts blood volume pulse by monitoring pixel color fluctuations in specific regions of interest.
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Processes raw signals through detrending, moving average smoothing, and frequency masking to derive heart rate variability.
               </Text>
             </HStack>
             <HStack align="start" spacing={4}>
               <BulletPoint />
-              <Text fontSize="lg" color="gray.600">
+              <Text fontSize="lg" color="whiteAlpha.800">
                 Makes use of principles of <strong>structured light</strong>, projecting a patterned light grid onto the face, creating distortions. These distortions can be analyzed to compensate for unpredictable ambient lighting, allowing for reliable signal detection for remote photoplethysmography. 
               </Text>
             </HStack>
@@ -249,7 +249,7 @@ const BriefContent = () => {
               src="media/brief/rppg.png"
               borderRadius="xl"
               border="1px solid"
-              borderColor="gray.200"
+              borderColor="whiteAlpha.300"
               objectFit="cover"
               alt="rPPG Waveform Analysis"
             />

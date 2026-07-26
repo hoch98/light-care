@@ -59,14 +59,14 @@ const FinanceSection = () => {
   ];
 
   return (
-    <Box w="100%" py={20} bg="white">
+    <Box w="100%" py={20} bg="#0A0B0E" color="white">
       <VStack spacing={12} maxW="1200px" mx="auto" px={{ base: 6, md: 10 }}>
         
         <VStack spacing={1} align="center" w="100%">
-          <Text fontWeight="black" fontSize={{ base: "3xl", md: "4xl" }} letterSpacing="-2px">
+          <Text fontWeight="black" fontSize={{ base: "3xl", md: "4xl" }} letterSpacing="-2px" color="white">
             FINANCES
           </Text>
-          <Box bg="#ffbe5cff" w="100px" h="6px" borderRadius="full" />
+          <Box bg="#FFB200" w="100px" h="6px" borderRadius="full" />
         </VStack>
         <br />
 
@@ -87,7 +87,7 @@ const FinanceSection = () => {
                 <Box
                   w={{ base: "130px", md: "160px" }}
                   h={{ base: "130px", md: "160px" }}
-                  bg="white"
+                  bg="#101118"
                   borderRadius="full"
                   display="flex"
                   flexDirection="column"
@@ -95,8 +95,8 @@ const FinanceSection = () => {
                   justifyContent="center"
                   shadow="inner"
                 >
-                  <Text fontSize="10px" color="gray.400" fontWeight="bold">TOTAL COST</Text>
-                  <Text fontSize="xl" fontWeight="black" color="gray.800">SGD$350</Text>
+                  <Text fontSize="10px" color="whiteAlpha.600" fontWeight="bold">TOTAL COST</Text>
+                  <Text fontSize="xl" fontWeight="black" color="white">SGD$350</Text>
                 </Box>
               </Box>
             </Box>
@@ -105,7 +105,7 @@ const FinanceSection = () => {
               {costData.map((item, i) => (
                 <HStack key={i} spacing={1.5}>
                   <Box w="10px" h="10px" borderRadius="sm" bg={item.color} />
-                  <Text fontSize="xs" fontWeight="bold" color="gray.500">
+                  <Text fontSize="xs" fontWeight="bold" color="whiteAlpha.700">
                     {item.label}
                   </Text>
                 </HStack>
@@ -114,7 +114,7 @@ const FinanceSection = () => {
           </VStack>
 
           <VStack align="stretch" spacing={0} flex="1">
-            <Text fontSize="xs" fontWeight="bold" color="orange.400" mb={4} textTransform="uppercase" letterSpacing="widest">
+            <Text fontSize="xs" fontWeight="bold" color="#FFB200" mb={4} textTransform="uppercase" letterSpacing="widest">
                 Growth Strategy
             </Text>
             
@@ -124,30 +124,30 @@ const FinanceSection = () => {
                   <VStack spacing={0}>
                     <Flex 
                       w="40px" h="40px" minW="40px" 
-                      bg={phase.isSpecial ? "orange.50" : "white"} 
+                      bg={phase.isSpecial ? "rgba(255,178,0,0.12)" : "rgba(255,255,255,0.06)"} 
                       rounded="full" shadow="sm" 
                       align="center" justify="center" 
                       border="1px solid" 
-                      borderColor={phase.isSpecial ? "orange.200" : "gray.100"} 
+                      borderColor={phase.isSpecial ? "rgba(255,178,0,0.35)" : "whiteAlpha.200"} 
                       zIndex={1}
                     >
                       <phase.icon size={18} color={phase.isSpecial ? "#ED8936" : "#ffbe5cff"} />
                     </Flex>
                     {index !== phases.length - 1 && (
-                      <Box w="2px" h="45px" bg="gray.100" />
+                      <Box w="2px" h="45px" bg="whiteAlpha.200" />
                     )}
                   </VStack>
                   
                   <VStack align="start" spacing={0.5} pt={0.5}>
                     <HStack spacing={2}>
-                      <Heading size="sm" color="gray.800" fontWeight="800">{phase.title}</Heading>
-                      <Box bg={phase.isSpecial ? "gray.100" : "orange.50"} px={2} py={0} borderRadius="full">
-                        <Text fontSize="10px" fontWeight="bold" color={phase.isSpecial ? "gray.600" : "orange.600"}>
+                      <Heading size="sm" color="white" fontWeight="800">{phase.title}</Heading>
+                      <Box bg={phase.isSpecial ? "whiteAlpha.200" : "rgba(255,178,0,0.15)"} px={2} py={0} borderRadius="full">
+                        <Text fontSize="10px" fontWeight="bold" color={phase.isSpecial ? "whiteAlpha.800" : "#FFC94D"}>
                           {phase.timeline}
                         </Text>
                       </Box>
                     </HStack>
-                    <Text color="gray.500" fontSize="13px" lineHeight="short" maxW="380px">
+                    <Text color="whiteAlpha.700" fontSize="13px" lineHeight="short" maxW="380px">
                       {phase.funding}
                     </Text>
                   </VStack>

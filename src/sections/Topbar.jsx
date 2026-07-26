@@ -56,11 +56,10 @@ const TopBar = () => {
             {/* Logo & Brand */}
             <HStack spacing={3} as={RouterLink} to="/" cursor="pointer" _hover={{ opacity: 0.9 }}>
               <Image
-                src="/media/logo-notext.png"
+                src="/media/logo-lc.png"
                 alt="LightCare Logo"
-                h="32px"
+                h="34px"
                 objectFit="contain"
-                fallbackSrc="https://via.placeholder.com/32"
               />
               <Text
                 fontWeight="900"
@@ -125,7 +124,8 @@ const TopBar = () => {
                 fontSize="xs"
                 letterSpacing="0.05em"
                 textTransform="uppercase"
-                _hover={{ bg: "#E6A100", transform: "translateY(-1px)", boxShadow: "0 4px 15px rgba(255,178,0,0.3)" }}
+                boxShadow="0 0 12px rgba(255,178,0,0.25)"
+                _hover={{ bg: "#E6A100", transform: "translateY(-1px)", boxShadow: "0 0 20px rgba(255,178,0,0.4)" }}
                 _active={{ transform: "translateY(0)" }}
                 rightIcon={<ArrowRight size={14} />}
                 display={{ base: "none", sm: "flex" }}

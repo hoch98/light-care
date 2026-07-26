@@ -37,7 +37,7 @@ const CodeContent = () => {
       <HStack
         spaceX={2}
         borderBottom="1px solid"
-        borderColor="gray.100"
+        borderColor="whiteAlpha.200"
         pb={2}
         overflowX="auto"
         whiteSpace="nowrap"
@@ -59,9 +59,9 @@ const CodeContent = () => {
             borderRadius="md"
             flexShrink={0}
             transition="all 0.2s"
-            bg={activeFile === file.name ? "#ffbe5cff" : "transparent"}
-            color={activeFile === file.name ? "white" : "gray.500"}
-            _hover={{ bg: activeFile === file.name ? "#ffbe5cff" : "gray.100" }}
+            bg={activeFile === file.name ? "#FFB200" : "transparent"}
+            color={activeFile === file.name ? "#0A0B0E" : "whiteAlpha.600"}
+            _hover={{ bg: activeFile === file.name ? "#FFB200" : "whiteAlpha.100" }}
           >
             {file.name}
           </Box>

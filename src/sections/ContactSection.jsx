@@ -36,13 +36,13 @@ export default function ContactSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Text fontWeight="black" fontSize={isWide ? "6xl" : "4xl"} color="gray.800" letterSpacing="-2px">
+          <Text fontWeight="black" fontSize={isWide ? "6xl" : "4xl"} color="white" letterSpacing="-2px">
             GET IN TOUCH
           </Text>
-          <Box mt="10px" bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
+          <Box mt="10px" bg="#FFB200" w="100%" h="8px" borderRadius="full" />
         </motion.div>
 
-        <Text fontSize="xl" color="gray.600" maxW="600px" mt={4} px={6}>
+        <Text fontSize="xl" color="whiteAlpha.700" maxW="600px" mt={4} px={6}>
           Interested or got any questions about LightCare?
           <br />
           We'd love to hear from you.
@@ -61,13 +61,13 @@ export default function ContactSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              bg="whiteAlpha.700"
+              bg="rgba(255, 255, 255, 0.05)"
               backdropFilter="blur(12px) saturate(150%)"
               borderRadius="3xl"
               p={12}
-              boxShadow="2xl"
+              boxShadow="0 20px 45px rgba(0,0,0,0.45)"
               border="1px solid"
-              borderColor="whiteAlpha.500"
+              borderColor="whiteAlpha.100"
               display="flex"
               flexDirection="column"
               alignItems="center"
@@ -75,21 +75,21 @@ export default function ContactSection() {
               width="100%"
             >
               <Flex
-                bg="#ffbe5c22"
+                bg="rgba(255, 178, 0, 0.12)"
                 p={6}
                 borderRadius="2xl"
                 mb={6}
                 alignItems="center"
                 justifyContent="center"
               >
-                <Icon as={method.icon} w={8} h={8} color="#ffbe5cff" />
+                <Icon as={method.icon} w={8} h={8} color="#FFB200" />
               </Flex>
 
               <VStack spacing={3}>
-                <Text fontWeight="black" fontSize="xs" color="#ffbe5cff" textTransform="uppercase" letterSpacing="widest">
+                <Text fontWeight="black" fontSize="xs" color="#62daff" textTransform="uppercase" letterSpacing="widest">
                   {method.label}
                 </Text>
-                <Text fontWeight="bold" fontSize={isWide ? "1xl" : "xl"} color="gray.800">
+                <Text fontWeight="bold" fontSize={isWide ? "1xl" : "xl"} color="white">
                   {method.value}
                 </Text>
               </VStack>

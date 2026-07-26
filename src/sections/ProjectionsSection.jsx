@@ -6,29 +6,45 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { TrendingUp, DollarSign, Users, Target } from "lucide-react";
+
+const MotionPolyline = motion.polyline;
+const MotionCircle = motion.circle;
+
+const GOLD = "#FFB200";
+const BLUE = "#62daff";
+const TEAL = "#4FD1C5";
 
 const RevenueProjections = () => {
   const conservativeData = "0,180 40,160 80,150 120,135 160,125 200,110 240,100 280,85 320,70";
   const realisticData = "0,170 40,140 80,120 120,130 160,100 200,80 240,65 280,45 320,20";
 
   const metrics = [
-    { label: "Unit Cost", value: "$350", color: "gray.500", icon: DollarSign },
-    { label: "Selling Price", value: "$400", color: "orange.400", icon: Target },
-    { label: "Subscription", value: "$5/mo", color: "blue.400", icon: Users },
-    { label: "Target Margin", value: "12.5%", color: "green.500", icon: TrendingUp },
+    { label: "Unit Cost", value: "$350", color: "whiteAlpha.700", icon: DollarSign },
+    { label: "Selling Price", value: "$400", color: GOLD, icon: Target },
+    { label: "Subscription", value: "$5/mo", color: BLUE, icon: Users },
+    { label: "Target Margin", value: "12.5%", color: "green.400", icon: TrendingUp },
   ];
 
+  // Lines redraw their climb each time the chart scrolls into view.
+  const drawLine = (delay = 0) => ({
+    initial: { pathLength: 0, opacity: 0 },
+    whileInView: { pathLength: 1, opacity: 1 },
+    viewport: { once: false, margin: "-80px" },
+    transition: { duration: 2.2, ease: "easeOut", delay, opacity: { duration: 0.3, delay } },
+  });
+
   return (
-    <Box w="100%" py={20} bg="#F7FAFC" borderRadius={{ base: "0", md: "50px" }} overflow="hidden">
+    <Box w="100%" py={20} bg="#0A0B0E" color="white" overflow="hidden">
       <VStack spacing={12} maxW="1200px" mx="auto" px={{ base: 6, md: 10 }}>
 
         {/* Header */}
         <VStack spacing={1} align="center" w="100%">
-          <Text fontWeight="black" fontSize={{ base: "3xl", md: "4xl" }} letterSpacing="-2px" color="gray.800">
+          <Text fontWeight="black" fontSize={{ base: "3xl", md: "4xl" }} letterSpacing="-2px" color="white">
             REVENUE PROJECTION
           </Text>
-          <Box bg="#ffbe5cff" w="100px" h="6px" borderRadius="full" />
+          <Box bg={GOLD} w="100px" h="6px" borderRadius="full" />
         </VStack>
 
         <Flex direction={{ base: "column", lg: "row" }} w="100%" gap={12} align="center">
@@ -37,44 +53,63 @@ const RevenueProjections = () => {
           <VStack flex="1.5" w="100%" align="start" spacing={6}>
             <HStack spacing={6} mb={2}>
               <HStack>
-                <Box w="3" h="3" borderRadius="full" bg="cyan.400" />
-                <Text color="gray.600" fontSize="xs" fontWeight="bold">Conservative</Text>
+                <Box w="3" h="3" borderRadius="full" bg={TEAL} />
+                <Text color="whiteAlpha.700" fontSize="xs" fontWeight="bold">Conservative</Text>
               </HStack>
               <HStack>
-                <Box w="3" h="3" borderRadius="full" bg="blue.400" />
-                <Text color="gray.600" fontSize="xs" fontWeight="bold">Realistic</Text>
+                <Box w="3" h="3" borderRadius="full" bg={BLUE} />
+                <Text color="whiteAlpha.700" fontSize="xs" fontWeight="bold">Realistic</Text>
               </HStack>
             </HStack>
 
-            <Box w="100%" h="300px" position="relative" borderLeft="2px solid" borderBottom="2px solid" borderColor="gray.200">
-              <VStack position="absolute" left="-45px" h="100%" justify="space-between" color="gray.400" fontSize="11px" fontWeight="bold">
+            <Box w="100%" h="300px" position="relative" borderLeft="2px solid" borderBottom="2px solid" borderColor="whiteAlpha.300">
+              <VStack position="absolute" left="-45px" h="100%" justify="space-between" color="whiteAlpha.500" fontSize="11px" fontWeight="bold">
                 <Text>$10k</Text><Text>$7.5k</Text><Text>$5k</Text><Text>$2.5k</Text><Text>$0</Text>
               </VStack>
 
               <svg viewBox="0 0 320 180" width="100%" height="100%" preserveAspectRatio="none">
-                <line x1="0" y1="45" x2="320" y2="45" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4" />
-                <line x1="0" y1="90" x2="320" y2="90" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4" />
-                <line x1="0" y1="135" x2="320" y2="135" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4" />
+                <line x1="0" y1="45" x2="320" y2="45" stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeDasharray="4" />
+                <line x1="0" y1="90" x2="320" y2="90" stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeDasharray="4" />
+                <line x1="0" y1="135" x2="320" y2="135" stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeDasharray="4" />
 
-                <polyline
+                {/* Moving-up draw animation for both revenue lines */}
+                <MotionPolyline
                   fill="none"
-                  stroke="#4FD1C5"
+                  stroke={TEAL}
                   strokeWidth="4"
                   points={conservativeData}
                   strokeLinejoin="round"
                   strokeLinecap="round"
+                  {...drawLine(0)}
                 />
-                <polyline
+                <MotionPolyline
                   fill="none"
-                  stroke="#3182CE"
+                  stroke={BLUE}
                   strokeWidth="4"
                   points={realisticData}
                   strokeLinejoin="round"
                   strokeLinecap="round"
+                  {...drawLine(0.35)}
+                />
+
+                {/* End-point pulses once the lines land */}
+                <MotionCircle
+                  cx="320" cy="70" r="5" fill={TEAL}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: [0, 1, 0.6, 1], scale: 1 }}
+                  viewport={{ once: false, margin: "-80px" }}
+                  transition={{ duration: 0.8, delay: 2.1 }}
+                />
+                <MotionCircle
+                  cx="320" cy="20" r="5" fill={BLUE}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: [0, 1, 0.6, 1], scale: 1 }}
+                  viewport={{ once: false, margin: "-80px" }}
+                  transition={{ duration: 0.8, delay: 2.5 }}
                 />
               </svg>
 
-              <HStack w="100%" justify="space-between" mt={4} color="gray.400" fontSize="11px" fontWeight="bold">
+              <HStack w="100%" justify="space-between" mt={4} color="whiteAlpha.500" fontSize="11px" fontWeight="bold">
                 <Text>Month 1</Text><Text>Month 3</Text><Text>Month 6</Text><Text>Month 9</Text><Text>Month 12</Text>
               </HStack>
             </Box>
@@ -86,20 +121,20 @@ const RevenueProjections = () => {
               <Flex
                 key={index}
                 w="100%"
-                bg="white"
+                bg="rgba(255,255,255,0.05)"
                 p={5}
                 borderRadius="2xl"
-                boxShadow="sm"
+                boxShadow="0 10px 25px rgba(0,0,0,0.35)"
                 border="1px solid"
-                borderColor="gray.100"
+                borderColor="whiteAlpha.100"
                 justify="space-between"
                 align="center"
               >
                 <HStack spacing={4}>
-                  <Box p={2} bg="gray.50" borderRadius="lg">
-                    <metric.icon size={18} color="#4A5568" />
+                  <Box p={2} bg="whiteAlpha.100" borderRadius="lg">
+                    <metric.icon size={18} color="#A0AEC0" />
                   </Box>
-                  <Text color="gray.600" fontWeight="bold" fontSize="sm">{metric.label}</Text>
+                  <Text color="whiteAlpha.700" fontWeight="bold" fontSize="sm">{metric.label}</Text>
                 </HStack>
                 <Text color={metric.color} fontWeight="900" fontSize="xl">{metric.value}</Text>
               </Flex>
@@ -110,18 +145,18 @@ const RevenueProjections = () => {
         {/* Final Insight Text */}
         <VStack spacing={3} align="center" w="100%" maxW="800px" pt={8}>
           <br />
-          <Text 
-            fontSize={{ base: "sm", md: "md" }} 
-            color="gray.500" 
-            textAlign="center" 
+          <Text
+            fontSize={{ base: "sm", md: "md" }}
+            color="whiteAlpha.600"
+            textAlign="center"
             lineHeight="tall"
             fontWeight="medium"
           >
-            The upward trajectory of the revenue lines across the 12-month period signifies a 
-            successful transition from initial capital expenditure to a scalable, 
+            The upward trajectory of the revenue lines across the 12-month period signifies a
+            successful transition from initial capital expenditure to a scalable,
             recurring income model.
           </Text>
-          <Box bg="gray.200" w="40px" h="2px" borderRadius="full" />
+          <Box bg="whiteAlpha.300" w="40px" h="2px" borderRadius="full" />
         </VStack>
 
       </VStack>

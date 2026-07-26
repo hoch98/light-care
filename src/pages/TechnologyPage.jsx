@@ -18,7 +18,6 @@ const Technologies = () => {
             text={"Behind the"}
             lastword={"Mirror"}
             slogan={"The technology that quietly turns everyday moments into wellness insights."}
-            waveColor="gray.50"
           />
 
           <div id="mainContent">

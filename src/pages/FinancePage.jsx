@@ -17,7 +17,6 @@ const FinancePage = () => {
             text={"The Engine of"}
             lastword={"Growth"}
             slogan={"A look at the finances behind Light Care."}
-            waveColor="white"
           />
 
           <div id="mainContent">

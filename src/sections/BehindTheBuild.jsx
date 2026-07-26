@@ -51,10 +51,10 @@ function BehindTheBuild() {
   return (
     <Box className="content" mt="120px" px={5} display="flex" flexDirection="column" alignItems="center" w="100%" mb="50px">
       <VStack spacing={0} mb={12}>
-        <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} letterSpacing="-2px">
+        <Text fontWeight="black" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} letterSpacing="-2px" color="white" textAlign="center">
           FROM IDEA TO IMPLEMENTATION
         </Text>
-        <Box bg="#ffbe5cff" w="100%" h="8px" borderRadius="full" />
+        <Box bg="#FFB200" w="100%" h="8px" borderRadius="full" />
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={6} w={{ base: "90%", md: "85%", lg: "70%", xl: "60%" }}>
