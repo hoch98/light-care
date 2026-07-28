@@ -14,7 +14,7 @@ function CodeSection() {
   const contentWidth = { base: "95%", md: "85%", lg: "70%", xl: "60%" };
 
   const containerStyles = {
-    bg: "#0D0E13",
+    bg: "#0B2444",
     borderRadius: "2xl",
     boxShadow: "0 20px 45px rgba(0,0,0,0.5)",
     textAlign: "center",

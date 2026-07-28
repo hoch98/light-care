@@ -49,7 +49,7 @@ function Starter() {
       alignItems="center"
       justifyContent="center"
       pb="140px"
-      bg="#0A0B0E"
+      bg="#061529"
     >
       {/* Rendered mirror video behind the copy. */}
       <Box position="absolute" top="0" left="0" w="100%" h="100vh" zIndex={0} pointerEvents="none" overflow="hidden">
@@ -72,7 +72,7 @@ function Starter() {
         left="0"
         w="100%"
         h="100%"
-        backgroundImage="radial-gradient(ellipse at center, rgba(10,11,14,0.60) 0%, rgba(10,11,14,0.32) 45%, rgba(10,11,14,0.82) 100%)"
+        backgroundImage="radial-gradient(ellipse at center, rgba(6,21,41,0.60) 0%, rgba(6,21,41,0.32) 45%, rgba(6,21,41,0.82) 100%)"
         zIndex={1}
       />
 
@@ -163,7 +163,7 @@ function Starter() {
             <MotionBox
               key={i}
               flex="1"
-              bg="#0A0B0E"
+              bg="#061529"
               borderTopRadius="3px"
               mx="1px"
               initial={{ height: "20%" }}

@@ -13,7 +13,7 @@ const Finance = lazy(() => import('./pages/FinancePage.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <Suspense fallback={<div style={{ background: '#0A0B0E', height: '100vh' }} />}>
+    <Suspense fallback={<div style={{ background: '#061529', height: '100vh' }} />}>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />

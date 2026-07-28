@@ -8,7 +8,7 @@ export default function GoldButton(props) {
   return (
     <Button
       bg={GOLD}
-      color="#0A0B0E"
+      color="#061529"
       fontWeight="800"
       borderRadius="full"
       px={10}

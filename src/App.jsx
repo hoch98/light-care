@@ -17,9 +17,9 @@ function App() {
   return (
     <Provider>
       <LightMode>
-        <div id='body' style={{ cursor: "default", backgroundColor: "#0A0B0E", color: "#F5F5F7" }}>
+        <div id='body' style={{ cursor: "default", backgroundColor: "#061529", color: "#F5F5F7" }}>
           <TopBar />
-          <Suspense fallback={<div style={{ height: '100vh', background: '#0A0B0E' }} />}>
+          <Suspense fallback={<div style={{ height: '100vh', background: '#061529' }} />}>
             <Starter />
           </Suspense>
 

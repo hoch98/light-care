@@ -43,7 +43,7 @@ const TopBar = () => {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          bg="rgba(10, 11, 14, 0.8)"
+          bg="rgba(6, 21, 41, 0.8)"
           backdropFilter="blur(16px)"
           border="1px solid"
           borderColor="rgba(255, 178, 0, 0.2)"
@@ -55,15 +55,30 @@ const TopBar = () => {
           <Flex align="center" justify="space-between" w="100%">
             {/* Logo & Brand */}
             <HStack spacing={3} as={RouterLink} to="/" cursor="pointer" _hover={{ opacity: 0.9 }}>
-              <Image
-                src="/media/logo-lc.png"
-                alt="LightCare Logo"
-                h="34px"
-                objectFit="contain"
-              />
+              {/* Light chip behind the mark — the logo's navy letterforms would
+                  otherwise disappear into the navy nav bar. */}
+              <Box
+                bg="white"
+                borderRadius="full"
+                p="6px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                boxShadow="0 0 18px rgba(76, 189, 255, 0.55), 0 0 0 1px rgba(76, 189, 255, 0.35)"
+                transition="all 0.25s ease"
+                _hover={{ boxShadow: "0 0 26px rgba(76, 189, 255, 0.8), 0 0 0 1px rgba(76, 189, 255, 0.6)" }}
+              >
+                <Image
+                  src="/media/logo-lc.png"
+                  alt="LightCare Logo"
+                  h="30px"
+                  w="30px"
+                  objectFit="contain"
+                />
+              </Box>
               <Text
                 fontWeight="900"
-                fontSize="md"
+                fontSize="lg"
                 color="white"
                 letterSpacing="-0.5px"
               >
@@ -115,7 +130,7 @@ const TopBar = () => {
                 as={RouterLink}
                 to="/contact"
                 bg={GOLD}
-                color="#0A0B0E"
+                color="#061529"
                 size="sm"
                 borderRadius="full"
                 px={5}
@@ -187,7 +202,7 @@ const TopBar = () => {
                   as={RouterLink}
                   to="/contact"
                   bg={GOLD}
-                  color="#0A0B0E"
+                  color="#061529"
                   size="sm"
                   borderRadius="full"
                   w="100%"

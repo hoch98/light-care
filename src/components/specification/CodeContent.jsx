@@ -60,7 +60,7 @@ const CodeContent = () => {
             flexShrink={0}
             transition="all 0.2s"
             bg={activeFile === file.name ? "#FFB200" : "transparent"}
-            color={activeFile === file.name ? "#0A0B0E" : "whiteAlpha.600"}
+            color={activeFile === file.name ? "#061529" : "whiteAlpha.600"}
             _hover={{ bg: activeFile === file.name ? "#FFB200" : "whiteAlpha.100" }}
           >
             {file.name}
@@ -72,16 +72,16 @@ const CodeContent = () => {
         borderRadius="lg"
         overflow="auto"
         boxShadow="inner"
-        bg="#1d1f21"
+        bg="#071B33"
         maxH="500px"
         minH="300px"
         css={{
           "&::-webkit-scrollbar": { width: "8px", height: "8px" },
-          "&::-webkit-scrollbar-track": { background: "#1d1f21" },
+          "&::-webkit-scrollbar-track": { background: "#071B33" },
           "&::-webkit-scrollbar-thumb": {
             background: "#4A5568",
             borderRadius: "10px",
-            border: "2px solid #1d1f21"
+            border: "2px solid #071B33"
           },
           "&::-webkit-scrollbar-thumb:hover": { background: "#ffbe5cff" },
         }}

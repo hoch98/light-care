@@ -33,7 +33,7 @@ export default function Footer() {
 
   return (
     <Box
-      bg="#040507"
+      bg="#03101F"
       color="white"
       mt="auto"
       as="footer"
@@ -48,7 +48,7 @@ export default function Footer() {
         left="10%"
         w="400px"
         h="400px"
-        bg="radial-gradient(circle, rgba(255,178,0,0.08) 0%, rgba(10,11,14,0) 70%)"
+        bg="radial-gradient(circle, rgba(255,178,0,0.08) 0%, rgba(6,21,41,0) 70%)"
         filter="blur(60px)"
         pointerEvents="none"
         zIndex={0}
@@ -153,7 +153,7 @@ export default function Footer() {
       <Box
         borderTop="1px solid"
         borderColor="rgba(255, 178, 0, 0.1)"
-        bg="rgba(10, 11, 14, 0.6)"
+        bg="rgba(6, 21, 41, 0.6)"
         backdropFilter="blur(10px)"
       >
         <Container

@@ -6,6 +6,8 @@ import BehindTheBuild from '@/sections/BehindTheBuild';
 import Footer from '@/sections/Footer';
 import CodeSection from "@/sections/Code"
 import TitleCard from '@/sections/TitleCard';
+import ExplodedView from '@/sections/ExplodedView';
+import HowItWorksDetail from '@/sections/HowItWorksDetail';
 
 const BuildPage = () => {
   return (
@@ -21,6 +23,8 @@ const BuildPage = () => {
 
           <div id="mainContent">
             <BehindTheBuild />
+            <ExplodedView />
+            <HowItWorksDetail />
             <CodeSection />
           </div>
         </div>

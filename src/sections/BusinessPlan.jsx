@@ -48,7 +48,7 @@ function BusinessPlan() {
                 key={p.n}
                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }}
                 p={8} ml={{ md: `${i * 8}%` }} w={{ base: "100%", md: "85%" }}
-                bg="#12131A" borderLeft={`4px solid ${GOLD}`} borderRight="1px solid rgba(255,255,255,0.05)" borderTop="1px solid rgba(255,255,255,0.05)" borderBottom="1px solid rgba(255,255,255,0.05)"
+                bg="#0E2B50" borderLeft={`4px solid ${GOLD}`} borderRight="1px solid rgba(255,255,255,0.05)" borderTop="1px solid rgba(255,255,255,0.05)" borderBottom="1px solid rgba(255,255,255,0.05)"
                 boxShadow="0 15px 30px rgba(0,0,0,0.3)"
               >
                 <Text fontSize="4xl" fontWeight="900" color="rgba(255,178,0,0.3)" lineHeight="1" mb={2}>{p.n}</Text>

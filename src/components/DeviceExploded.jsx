@@ -68,13 +68,15 @@ function Seperator({ material }) {
 
 // --- DEVICE ---
 
-function Device() {
+function Device({ playing = true }) {
   const bobRef = React.useRef()
   const swayRef = React.useRef()
   const mirrorRef = React.useRef()
   const monitorRef = React.useRef()
   const seperatorRef = React.useRef()
   const electronicsRef = React.useRef()
+  // Own clock so pausing freezes the pose instead of jumping when resumed.
+  const tRef = React.useRef(0)
 
   const woodTexture = useLoader(TextureLoader, '/media/frame_veneer/plywood_diff_1k.jpg')
   const woodMaterial = React.useMemo(() => {
@@ -86,8 +88,9 @@ function Device() {
     return new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0 })
   }, [woodTexture])
 
-  useFrame(({ clock }) => {
-    const t = clock.elapsedTime
+  useFrame((_, delta) => {
+    if (playing) tRef.current += delta
+    const t = tRef.current
 
     // Separation loop — layers ease apart along the mirror's normal and back.
     const sep = (Math.sin(t * 0.9 - Math.PI / 2) + 1) / 2
@@ -133,7 +136,7 @@ function Device() {
 // --- CANVAS ---
 
 // Looping "separation" exploded view of the device, on a transparent canvas.
-export default function DeviceExploded() {
+export default function DeviceExploded({ playing = true }) {
   return (
     <Canvas
       camera={{ fov: 45, position: [0, 0, 5] }}
@@ -147,7 +150,7 @@ export default function DeviceExploded() {
         <pointLight position={[-3, 2, 3]} intensity={22} color={GOLD} distance={14} />
         <pointLight position={[3, 1, -4]} intensity={14} color="#62daff" distance={14} />
 
-        <Device />
+        <Device playing={playing} />
 
         <Environment resolution={64}>
           <Lightformer form="rect" intensity={2.4} color={GOLD} position={[-4, 2, 2]} scale={[6, 6, 1]} target={[0, 0, 0]} />

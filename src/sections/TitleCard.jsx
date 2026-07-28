@@ -14,7 +14,7 @@ const MotionBox = motion(Box);
 
 // Page opener styled after the home hero — same dark stage, gold headline and
 // equalizer transition, but static: only the first page carries an animation.
-function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor = "#0A0B0E" }) {
+function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor = "#061529" }) {
   return (
     <Box
       w="100%"
@@ -25,7 +25,7 @@ function TitleCard({ text, lastword, slogan, ctaText = "Learn More", waveColor =
       alignItems="center"
       justifyContent="center"
       pb="140px"
-      bg="#0A0B0E"
+      bg="#061529"
     >
       {/* Perspective grid flair — same design language as the home sections. */}
       <Box

@@ -14,17 +14,26 @@ const MotionCircle = motion.circle;
 
 const GOLD = "#FFB200";
 const BLUE = "#62daff";
-const TEAL = "#4FD1C5";
+// Conservative vs Realistic need clearly separate hues — gold against cyan
+// reads far better on navy than the old teal/cyan pair.
+const CONSERVATIVE = "#FFB200";
+const REALISTIC = "#4CBDFF";
 
 const RevenueProjections = () => {
   const conservativeData = "0,180 40,160 80,150 120,135 160,125 200,110 240,100 280,85 320,70";
   const realisticData = "0,170 40,140 80,120 120,130 160,100 200,80 240,65 280,45 320,20";
 
+  // Unit cost matches the component breakdown on this page; the margin is
+  // derived from it so the three figures can never contradict each other.
+  const unitCost = 225;
+  const sellingPrice = 400;
+  const margin = ((sellingPrice - unitCost) / sellingPrice) * 100;
+
   const metrics = [
-    { label: "Unit Cost", value: "$350", color: "whiteAlpha.700", icon: DollarSign },
-    { label: "Selling Price", value: "$400", color: GOLD, icon: Target },
+    { label: "Unit Cost", value: `$${unitCost}`, color: "whiteAlpha.700", icon: DollarSign },
+    { label: "Selling Price", value: `$${sellingPrice}`, color: GOLD, icon: Target },
     { label: "Subscription", value: "$5/mo", color: BLUE, icon: Users },
-    { label: "Target Margin", value: "12.5%", color: "green.400", icon: TrendingUp },
+    { label: "Target Margin", value: `${margin.toFixed(1)}%`, color: "green.400", icon: TrendingUp },
   ];
 
   // Lines redraw their climb each time the chart scrolls into view.
@@ -36,7 +45,7 @@ const RevenueProjections = () => {
   });
 
   return (
-    <Box w="100%" py={20} bg="#0A0B0E" color="white" overflow="hidden">
+    <Box w="100%" py={20} bg="#061529" color="white" overflow="hidden">
       <VStack spacing={12} maxW="1200px" mx="auto" px={{ base: 6, md: 10 }}>
 
         {/* Header */}
@@ -53,11 +62,11 @@ const RevenueProjections = () => {
           <VStack flex="1.5" w="100%" align="start" spacing={6}>
             <HStack spacing={6} mb={2}>
               <HStack>
-                <Box w="3" h="3" borderRadius="full" bg={TEAL} />
+                <Box w="3" h="3" borderRadius="full" bg={CONSERVATIVE} />
                 <Text color="whiteAlpha.700" fontSize="xs" fontWeight="bold">Conservative</Text>
               </HStack>
               <HStack>
-                <Box w="3" h="3" borderRadius="full" bg={BLUE} />
+                <Box w="3" h="3" borderRadius="full" bg={REALISTIC} />
                 <Text color="whiteAlpha.700" fontSize="xs" fontWeight="bold">Realistic</Text>
               </HStack>
             </HStack>
@@ -75,7 +84,7 @@ const RevenueProjections = () => {
                 {/* Moving-up draw animation for both revenue lines */}
                 <MotionPolyline
                   fill="none"
-                  stroke={TEAL}
+                  stroke={CONSERVATIVE}
                   strokeWidth="4"
                   points={conservativeData}
                   strokeLinejoin="round"
@@ -84,7 +93,7 @@ const RevenueProjections = () => {
                 />
                 <MotionPolyline
                   fill="none"
-                  stroke={BLUE}
+                  stroke={REALISTIC}
                   strokeWidth="4"
                   points={realisticData}
                   strokeLinejoin="round"
@@ -94,14 +103,14 @@ const RevenueProjections = () => {
 
                 {/* End-point pulses once the lines land */}
                 <MotionCircle
-                  cx="320" cy="70" r="5" fill={TEAL}
+                  cx="320" cy="70" r="5" fill={CONSERVATIVE}
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: [0, 1, 0.6, 1], scale: 1 }}
                   viewport={{ once: false, margin: "-80px" }}
                   transition={{ duration: 0.8, delay: 2.1 }}
                 />
                 <MotionCircle
-                  cx="320" cy="20" r="5" fill={BLUE}
+                  cx="320" cy="20" r="5" fill={REALISTIC}
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: [0, 1, 0.6, 1], scale: 1 }}
                   viewport={{ once: false, margin: "-80px" }}

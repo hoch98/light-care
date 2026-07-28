@@ -11,15 +11,16 @@ import { Rocket, Users, TrendingUp, ShieldCheck } from "lucide-react";
 
 const FinanceSection = () => {
   const costData = [
-    { label: "Display", value: 100, color: "#ED8936" },
-    { label: "Raspberry Pi", value: 100, color: "#A0AEC0" },
-    { label: "Pi Camera", value: 50, color: "#CBD5E0" },
-    { label: "Mirror", value: 50, color: "#63B3ED" },
-    { label: "Other", value: 30, color: "#4299E1" },
-    { label: "Casing", value: 20, color: "#BEE3F8" },
+    { label: "Display", value: 65, color: "#ED8936" },
+    { label: "Raspberry Pi", value: 65, color: "#A0AEC0" },
+    { label: "Pi Camera", value: 32, color: "#CBD5E0" },
+    { label: "Mirror", value: 32, color: "#63B3ED" },
+    { label: "Other", value: 19, color: "#4299E1" },
+    { label: "Casing", value: 12, color: "#BEE3F8" },
   ];
 
-  const total = 350;
+  // Derived so the headline figure and the segments can never drift apart.
+  const total = costData.reduce((sum, item) => sum + item.value, 0);
 
   let cumulativePercentage = 0;
   const gradientString = costData
@@ -59,7 +60,7 @@ const FinanceSection = () => {
   ];
 
   return (
-    <Box w="100%" py={20} bg="#0A0B0E" color="white">
+    <Box w="100%" py={20} bg="#061529" color="white">
       <VStack spacing={12} maxW="1200px" mx="auto" px={{ base: 6, md: 10 }}>
         
         <VStack spacing={1} align="center" w="100%">
@@ -87,7 +88,7 @@ const FinanceSection = () => {
                 <Box
                   w={{ base: "130px", md: "160px" }}
                   h={{ base: "130px", md: "160px" }}
-                  bg="#101118"
+                  bg="#0B2444"
                   borderRadius="full"
                   display="flex"
                   flexDirection="column"
@@ -96,7 +97,7 @@ const FinanceSection = () => {
                   shadow="inner"
                 >
                   <Text fontSize="10px" color="whiteAlpha.600" fontWeight="bold">TOTAL COST</Text>
-                  <Text fontSize="xl" fontWeight="black" color="white">SGD$350</Text>
+                  <Text fontSize="xl" fontWeight="black" color="white">SGD${total}</Text>
                 </Box>
               </Box>
             </Box>

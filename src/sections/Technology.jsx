@@ -25,7 +25,7 @@ function Technology() {
       justifyContent="center"
       alignItems="center"
       py={20}
-      bg="#0A0B0E"
+      bg="#061529"
       color="white"
     >
       <VStack spacing={0} mb={16}>
@@ -38,7 +38,7 @@ function Technology() {
       <Box
         w={sectionWidth}
         maxW={maxWidth}
-        bg="#0D0E13"
+        bg="#0B2444"
         borderRadius="3xl"
         boxShadow="0 20px 50px rgba(0,0,0,0.5)"
         border="1px solid"
@@ -60,7 +60,7 @@ function Technology() {
           justifyContent="center"
         >
           <Box
-            bg="#0D0E13"
+            bg="#0B2444"
             borderRadius="3xl"
             boxShadow="0 20px 50px rgba(0,0,0,0.5)"
             border="1px solid"

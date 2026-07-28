@@ -35,7 +35,7 @@ const PrivacySection = () => {
         <VStack spacing={6} align="stretch" w="100%">
           {layers.map((layer, index) => (
             <MotionBox key={layer.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-              <Flex align="center" gap={6} p={6} bg="#12131A" borderLeft={`6px solid ${GOLD}`} borderRadius="0 16px 16px 0" boxShadow="0 10px 20px rgba(0,0,0,0.5)">
+              <Flex align="center" gap={6} p={6} bg="#0E2B50" borderLeft={`6px solid ${GOLD}`} borderRadius="0 16px 16px 0" boxShadow="0 10px 20px rgba(0,0,0,0.5)">
                 <Box w="50px" h="50px" borderRadius="12px" bg="rgba(255,178,0,0.15)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
                   <Icon as={layer.icon} boxSize={6} color={GOLD} />
                 </Box>

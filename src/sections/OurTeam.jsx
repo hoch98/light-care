@@ -92,7 +92,7 @@ export default function OurTeamSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              bg="#101118"
+              bg="#0B2444"
               borderRadius="xl"
               border="1px solid"
               borderColor="whiteAlpha.100"

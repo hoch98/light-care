@@ -34,7 +34,7 @@ function TimelineSection() {
                 key={item.n} direction={{ base: "column", md: isEven ? "row" : "row-reverse" }} justifyContent="space-between" alignItems="center"
                 initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} w="100%"
               >
-                <Box flex="1" p={6} bg="#12131A" border={`1px solid rgba(255,178,0,0.4)`} borderRadius="16px" textAlign={{ base: "center", md: isEven ? "right" : "left" }} w="100%" boxShadow={`0 0 15px rgba(255,178,0,0.05)`}>
+                <Box flex="1" p={6} bg="#0E2B50" border={`1px solid rgba(255,178,0,0.4)`} borderRadius="16px" textAlign={{ base: "center", md: isEven ? "right" : "left" }} w="100%" boxShadow={`0 0 15px rgba(255,178,0,0.05)`}>
                   <Text fontSize="md" fontWeight="800" color={GOLD} mb={1}>Phase {item.n} // {item.title}</Text>
                   <Text fontSize="sm" color="whiteAlpha.800" fontWeight="500">{item.description}</Text>
                 </Box>

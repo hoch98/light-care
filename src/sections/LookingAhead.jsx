@@ -41,7 +41,7 @@ function LookingAhead() {
 
           <SimpleGrid columns={{ base: 1, sm: 2 }} gap={4} flex="1.5">
             {milestones.map((item, i) => (
-              <MotionBox key={item.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} p={6} bg="#12131A" border={`1px solid rgba(255,178,0,0.2)`} borderRadius="16px" boxShadow={`0 5px 15px rgba(0,0,0,0.3)`}>
+              <MotionBox key={item.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} p={6} bg="#0E2B50" border={`1px solid rgba(255,178,0,0.2)`} borderRadius="16px" boxShadow={`0 5px 15px rgba(0,0,0,0.3)`}>
                 <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{item.title}</Text>
                 <Text fontSize="sm" color="whiteAlpha.900" fontWeight="400">{item.desc}</Text>
               </MotionBox>
@@ -55,7 +55,7 @@ function LookingAhead() {
           </Text>
           
           <MotionBox whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button as={Link} to="/technology" bg={GOLD} color="#0A0B0E" fontWeight="800" borderRadius="full" px={10} py={7} fontSize="md" boxShadow={`0 0 20px rgba(255,178,0,0.3)`}>
+            <Button as={Link} to="/technology" bg={GOLD} color="#061529" fontWeight="800" borderRadius="full" px={10} py={7} fontSize="md" boxShadow={`0 0 20px rgba(255,178,0,0.3)`}>
               Explore Technology
             </Button>
           </MotionBox>

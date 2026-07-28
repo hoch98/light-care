@@ -1,21 +1,13 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Flex, Text, VStack, Image } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
-
-// three.js lands in its own chunk and only loads on this page.
-const DeviceExploded = lazy(() => import('@/components/DeviceExploded'));
 
 const MotionBox = motion(Box);
 const GOLD = "#FFB200";
 const BLUE = "#62daff";
 
+// The layered-assembly animation lives on the Design & Development page now.
 const OBJECTS = [
-  {
-    key: "assembly",
-    label: "Layered Assembly",
-    desc: "Frame, two-way glass, display and electronics pull apart to show the slim stack that makes up the mirror.",
-    type: "canvas",
-  },
   {
     key: "camera",
     label: "Pi AI Camera",
@@ -57,7 +49,7 @@ function ComponentsShowcase() {
   return (
     <Box
       w="100%"
-      bg="#0D0E13"
+      bg="#0B2444"
       border="1px solid"
       borderColor="whiteAlpha.100"
       borderRadius="3xl"
@@ -154,25 +146,19 @@ function ComponentsShowcase() {
               alignItems="center"
               justifyContent="center"
             >
-              {obj.type === "canvas" ? (
-                <Suspense fallback={null}>
-                  <DeviceExploded />
-                </Suspense>
-              ) : (
-                <MotionBox
-                  animate={{ y: [0, -16, 0] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Image
-                    src={obj.img}
-                    alt={obj.label}
-                    maxH={{ base: "250px", md: "380px" }}
-                    maxW="100%"
-                    objectFit="contain"
-                    filter="drop-shadow(0 24px 45px rgba(0,0,0,0.6))"
-                  />
-                </MotionBox>
-              )}
+              <MotionBox
+                animate={{ y: [0, -16, 0] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Image
+                  src={obj.img}
+                  alt={obj.label}
+                  maxH={{ base: "250px", md: "380px" }}
+                  maxW="100%"
+                  objectFit="contain"
+                  filter="drop-shadow(0 24px 45px rgba(0,0,0,0.6))"
+                />
+              </MotionBox>
             </MotionBox>
           </AnimatePresence>
         </Box>
