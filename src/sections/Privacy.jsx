@@ -14,7 +14,7 @@ const PrivacySection = () => {
   ];
 
   return (
-    <Box w="100%" bg="#050507" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+    <Box w="100%" bg="#03101F" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
       
       {/* Scaled-down Background Flair */}
       {[...Array(5)].map((_, i) => (

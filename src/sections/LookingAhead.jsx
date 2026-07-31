@@ -14,7 +14,7 @@ function LookingAhead() {
   ];
 
   return (
-    <Box w="100%" bg="#07080B" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+    <Box w="100%" bg="#03101F" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
       
       {/* Scaled-down Background Flair */}
       <Box

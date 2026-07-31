@@ -13,7 +13,7 @@ function BusinessPlan() {
   ];
 
   return (
-    <Box w="100%" bg="#0B0C10" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+    <Box w="100%" bg="#061529" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
       
       {/* Scaled-down Background Flair */}
       <MotionBox

@@ -7,7 +7,7 @@ const GOLD = "#FFB200";
 
 function Demonstration() {
   return (
-    <Box w="100%" bg="#06070A" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+    <Box w="100%" bg="#03101F" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
       
       <Box
         position="absolute" inset="0" zIndex="0" opacity="0.05"
@@ -27,7 +27,7 @@ function Demonstration() {
       <Box maxW="1000px" mx="auto" px={{ base: 6, md: 8 }} position="relative" zIndex={1}>
         <VStack spacing={8} align="center">
           
-          <VStack align="center" spacing={2} textAlign="center" bg="#06070A" p={4} borderRadius="12px" border="1px solid rgba(255,178,0,0.5)">
+          <VStack align="center" spacing={2} textAlign="center" bg="#03101F" p={4} borderRadius="12px" border="1px solid rgba(255,178,0,0.5)">
             <Text fontSize="xs" fontWeight="800" letterSpacing="0.2em" textTransform="uppercase" color={GOLD}>
               [ Live System Feed ]
             </Text>

@@ -15,7 +15,7 @@ function BuiltForYou() {
   ];
 
   return (
-    <Box w="100%" bg="#0E0F14" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
+    <Box w="100%" bg="#061529" py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
       
       {/* Scaled-down Background Flair */}
       {[1, 2, 3, 4].map((ring) => (
@@ -34,7 +34,7 @@ function BuiltForYou() {
           <Text fontSize="sm" fontWeight="800" color={GOLD} textTransform="uppercase" letterSpacing="0.1em">
             Why It Works
           </Text>
-          <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="800" color="white" textAlign="center" bg="#0E0F14" px={4}>
+          <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="800" color="white" textAlign="center" bg="#061529" px={4}>
             Built for you, not another app.
           </Text>
         </VStack>
@@ -51,8 +51,8 @@ function BuiltForYou() {
           </VStack>
 
           <MotionBox initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} zIndex={2}>
-            <Box p={3} borderRadius="24px" bg="#1D1D1F" border={`2px solid ${GOLD}`} boxShadow={`0 0 40px rgba(255,178,0,0.2)`}>
-              <Image src="/media/hero.png" alt="Product visual" w="100%" h={{ base: "250px", md: "380px" }} objectFit="contain" />
+            <Box p={3} borderRadius="24px" bg="#0B2444" border={`2px solid ${GOLD}`} boxShadow={`0 0 40px rgba(255,178,0,0.2)`}>
+              <Image src="/media/mirror-flat.png" alt="Product visual" w="100%" h={{ base: "250px", md: "380px" }} objectFit="contain" />
             </Box>
           </MotionBox>
 
