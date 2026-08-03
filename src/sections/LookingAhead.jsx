@@ -40,7 +40,7 @@ function LookingAhead() {
           </VStack>
 
           <SimpleGrid columns={{ base: 1, sm: 2 }} gap={4} flex="1.5">
-            {milestones.map((item, i) => (
+            {milestones.map((item) => (
               <MotionBox key={item.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} p={6} bg="#0E2B50" border={`1px solid rgba(255,178,0,0.2)`} borderRadius="16px" boxShadow={`0 5px 15px rgba(0,0,0,0.3)`}>
                 <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{item.title}</Text>
                 <Text fontSize="sm" color="whiteAlpha.900" fontWeight="400">{item.desc}</Text>

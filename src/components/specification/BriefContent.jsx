@@ -111,19 +111,20 @@ const ComparisonSlider = ({ beforeImg, afterImg }) => {
   );
 };
 
-const BriefContent = () => {
-  const BulletPoint = () => (
-    <Box minW="6px" h="6px" bg="#FFB200" borderRadius="full" mt="10px" />
-  );
+const BulletPoint = () => (
+  <Box minW="6px" h="6px" bg="#FFB200" borderRadius="full" mt="10px" />
+);
 
-  const SectionTitle = ({ icon, children }) => (
-    <HStack spacing={3} mb={4}>
-      <Icon as={icon} boxSize={5} color="#FFB200" />
-      <Heading size="md" color="white" textTransform="uppercase" letterSpacing="wider">
-        {children}
-      </Heading>
-    </HStack>
-  );
+const SectionTitle = ({ icon, children }) => (
+  <HStack spacing={3} mb={4}>
+    <Icon as={icon} boxSize={5} color="#FFB200" />
+    <Heading size="md" color="white" textTransform="uppercase" letterSpacing="wider">
+      {children}
+    </Heading>
+  </HStack>
+);
+
+const BriefContent = () => {
 
   return (
     <VStack spacing={{ base: 32, md: 24 }} w="100%" align="stretch">

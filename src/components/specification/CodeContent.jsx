@@ -3,17 +3,19 @@ import { useState, useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+// Static list — lives at module scope so the fetch effect only depends on the
+// active file.
+const files = [
+  { name: "index.js", path: "code/index.js.txt", language: "javascript" },
+  { name: "heartbeat.js", path: "code/heartbeat.js.txt", language: "javascript" },
+  { name: "server.js", path: "code/server.js.txt", language: "javascript" },
+  { name: "background.py", path: "code/background.py.txt", language: "python" },
+];
+
 const CodeContent = () => {
   const [activeFile, setActiveFile] = useState("index.js");
   const [codeSnippet, setCodeSnippet] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
-  const files = [
-    { name: "index.js", path: "code/index.js.txt", language: "javascript" },
-    { name: "heartbeat.js", path: "code/heartbeat.js.txt", language: "javascript" },
-    { name: "server.js", path: "code/server.js.txt", language: "javascript" },
-    { name: "background.py", path: "code/background.py.txt", language: "python" },
-  ];
 
   useEffect(() => {
     const fetchCode = async () => {
@@ -23,7 +25,7 @@ const CodeContent = () => {
         const response = await fetch(fileToFetch.path);
         const text = await response.text();
         setCodeSnippet(text);
-      } catch (error) {
+      } catch {
         setCodeSnippet("// Failed to load code content.");
       } finally {
         setIsLoading(false);

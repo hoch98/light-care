@@ -1,6 +1,5 @@
 import { Box, Grid, Text, VStack, Heading, Icon, Circle, Image, SimpleGrid, HStack, Badge } from "@chakra-ui/react";
 import { FaChartLine, FaBullseye, FaCheckCircle } from "react-icons/fa";
-import { motion } from "framer-motion";
 
 const TrainingMetricCard = ({ label, value, helpText, color, icon }) => (
   <VStack

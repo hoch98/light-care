@@ -42,7 +42,7 @@ function BuiltForYou() {
         <SimpleGrid columns={{ base: 1, lg: 3 }} gap={8} alignContent="center" alignItems="center">
           
           <VStack spacing={6} align="stretch">
-            {leftFeatures.map((f, i) => (
+            {leftFeatures.map((f) => (
               <MotionBox key={f.title} initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} p={6} bg="rgba(0,0,0,0.6)" border={`1px solid rgba(255,178,0,0.3)`} borderRadius="12px" textAlign={{ base: "left", lg: "right" }}>
                 <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{f.title}</Text>
                 <Text color="whiteAlpha.800" fontSize="sm" fontWeight="500">{f.desc}</Text>
@@ -57,7 +57,7 @@ function BuiltForYou() {
           </MotionBox>
 
           <VStack spacing={6} align="stretch">
-            {rightFeatures.map((f, i) => (
+            {rightFeatures.map((f) => (
               <MotionBox key={f.title} initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} p={6} bg="rgba(0,0,0,0.6)" border={`1px solid rgba(255,178,0,0.3)`} borderRadius="12px">
                 <Text fontWeight="800" fontSize="lg" color={GOLD} mb={1}>{f.title}</Text>
                 <Text color="whiteAlpha.800" fontSize="sm" fontWeight="500">{f.desc}</Text>
