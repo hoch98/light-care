@@ -1,3 +1,3 @@
-# New Light-Care
+# Light-Care
 
-wow
+Smart Mirror
